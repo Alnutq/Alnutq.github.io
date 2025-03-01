@@ -13,7 +13,7 @@
             --primary: #4f9bff;
             --primary-variant: #275ea3;
             --secondary: #00c4da;
-            --background: #080c14;
+            --background: #121212; /* Changed to pitch black as requested */
             --surface: #111827;
             --text: #ffffff;
             --text-secondary: #a1b2d8;
@@ -44,6 +44,7 @@
             background-color: var(--background);
             color: var(--text);
             min-height: 100vh;
+            padding-bottom: 90px; /* Increased padding for the navigation bar */
         }
         
         .container {
@@ -93,7 +94,7 @@
         
         header {
             text-align: center;
-            padding: 100px 0 60px;
+            padding: 100px 0 30px;
             margin-bottom: 40px;
             position: relative;
             overflow: hidden;
@@ -104,7 +105,7 @@
             height: 100px;
             border-radius: 50%;
             margin: 0 auto 30px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: url('Logo.svg') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -124,48 +125,94 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            margin-bottom: 15px;
         }
         
-        .navigation {
+        .header-description {
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        /* Floating Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 600px;
+            height: 65px;
+            background-color: var(--surface);
             display: flex;
             justify-content: center;
-            gap: 25px;
-            margin: 50px 0 30px;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            border-radius: 18px;
         }
         
-        .nav-btn {
-            background: transparent;
-            color: var(--text);
-            border: none;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 500;
-            cursor: pointer;
-            padding: 8px 20px;
-            border-radius: 30px;
+        .nav-items {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            padding: 0 10px;
+        }
+        
+        .nav-item {
             position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+            padding: 10px 0;
         }
         
-        .nav-btn:hover {
+        .nav-item i {
+            font-size: 1.5rem;
+            margin-bottom: 4px;
+        }
+        
+        .nav-item span {
+            position: absolute;
+            top: -35px;
+            font-size: 0.8rem;
+            background-color: var(--surface);
+            padding: 5px 10px;
+            border-radius: 8px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .nav-item:hover {
             color: var(--primary);
         }
         
-        .nav-btn:after {
+        .nav-item:hover span {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .nav-item.active {
+            color: var(--primary);
+        }
+        
+        .nav-item.active::after {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 3px;
+            width: 5px;
+            height: 5px;
             background-color: var(--primary);
-            transition: width 0.3s ease, left 0.3s ease;
-        }
-        
-        .nav-btn:hover:after {
-            width: 100%;
-            left: 0;
+            border-radius: 50%;
         }
         
         .ramadan-campaign {
@@ -192,42 +239,8 @@
             height: 150px;
             margin: 0 auto 20px;
             position: relative;
+            background: url('Ramadan Vibes.svg') center/cover no-repeat;
         }
-        
-        .crescent {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background-color: var(--background);
-            box-shadow: 
-                0 0 20px rgba(79, 155, 255, 0.5),
-                0 0 40px rgba(79, 155, 255, 0.3),
-                0 0 60px rgba(79, 155, 255, 0.1);
-        }
-        
-        .circle {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            background-color: var(--primary);
-            z-index: -1;
-        }
-        
-        .star {
-            position: absolute;
-            color: var(--secondary);
-            font-size: 16px;
-        }
-        
-        .star:nth-child(1) { top: 20px; right: 30px; }
-        .star:nth-child(2) { top: 60px; right: 20px; }
-        .star:nth-child(3) { top: 100px; right: 40px; }
         
         .ramadan-text {
             color: var(--primary);
@@ -239,6 +252,26 @@
             background-clip: text;
             color: transparent;
             letter-spacing: 1px;
+        }
+        
+        .ramadan-list {
+            max-width: 800px;
+            margin: 30px auto;
+            text-align: left;
+            padding: 20px;
+            background-color: rgba(79, 155, 255, 0.05);
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .ramadan-list ol {
+            padding-left: 30px;
+        }
+        
+        .ramadan-list li {
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+            line-height: 1.7;
         }
         
         .description {
@@ -335,20 +368,9 @@
                 height: 120px;
             }
             
-            .circle {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .crescent {
-                width: 96px;
-                height: 96px;
-                top: 12px;
-                left: 12px;
-            }
-            
-            .navigation {
-                flex-wrap: wrap;
+            .bottom-nav {
+                width: 95%;
+                height: 60px;
             }
         }
         
@@ -357,25 +379,26 @@
                 font-size: 2rem;
             }
             
+            .header-description {
+                font-size: 0.9rem;
+                padding: 0 15px;
+            }
+            
             .ramadan-logo {
                 width: 100px;
                 height: 100px;
             }
             
-            .circle {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .crescent {
-                width: 80px;
-                height: 80px;
-                top: 10px;
-                left: 10px;
-            }
-            
             .ramadan-text {
                 font-size: 2rem;
+            }
+            
+            .nav-items {
+                max-width: 100%;
+            }
+            
+            .nav-item i {
+                font-size: 1.3rem;
             }
         }
     </style>
@@ -388,37 +411,33 @@
 
     <div class="container">
         <header class="animate__animated animate__fadeIn">
-            <div class="logo animate__animated animate__zoomIn">MMC</div>
+            <div class="logo animate__animated animate__zoomIn"></div>
             <h1 class="animate__animated animate__zoomIn">Mallu Muslim Club</h1>
-            
-            <div class="navigation">
-                <button class="nav-btn animate__animated animate__fadeIn" style="animation-delay: 0.1s">Home</button>
-                <button class="nav-btn animate__animated animate__fadeIn" style="animation-delay: 0.2s">About</button>
-                <button class="nav-btn animate__animated animate__fadeIn" style="animation-delay: 0.3s">Contact Us</button>
-                <button class="nav-btn animate__animated animate__fadeIn" style="animation-delay: 0.4s">Social</button>
-            </div>
+            <p class="header-description animate__animated animate__fadeIn" style="animation-delay: 0.2s">
+                A vibrant community dedicated to celebrating the rich cultural heritage of Kerala Muslims, bringing together people who share an appreciation for Malayalam culture and Islamic traditions.
+            </p>
         </header>
 
         <div class="ramadan-campaign animate__animated animate__fadeInUp" style="animation-delay: 0.3s">
-            <div class="ramadan-logo">
-                <div class="circle"></div>
-                <div class="crescent"></div>
-                <div class="star">✦</div>
-                <div class="star">✦</div>
-                <div class="star">✦</div>
-            </div>
-            <div class="ramadan-text">Ramadan Kareem</div>
+            <div class="ramadan-logo"></div>
+            <div class="ramadan-text">Ramadan Vibes</div>
             <p>Join us in celebrating the holy month with special events and gatherings</p>
-        </div>
-
-        <div class="description animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
-            <h2 class="section-title">Welcome</h2>
-            <p>Welcome to the Mallu Muslim Club, a vibrant community dedicated to celebrating the rich cultural heritage of Kerala Muslims. Our club brings together people who share an appreciation for Malayalam music, arts, culture, and Islamic traditions from Kerala.</p>
             
-            <p>We host regular events, cultural programs, and social gatherings that showcase the unique blend of Malayali and Islamic heritage. Whether you're from Kerala or simply interested in learning more about our culture, we welcome you to join our community.</p>
+            <div class="ramadan-list animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
+                <ol>
+                    <li>എല്ലാ ദിവസവും റസൂൽ ﷺ യുടെ ഒരു ഹദീസ് നമ്മുടെ സ്റ്റോറികളിലും മറ്റും നിറയുന്നു. റമളാൻ 30 ദിവസം കൊണ്ട് 30 ഹദീസുകൾ പഠിക്കുന്നു.</li>
+                    <li>എല്ലാ ദിവസവും സ്റ്റോറിയിൽ ഒരു ചോദ്യം വരും. അതിന് ഉത്തരങ്ങൾ അയക്കുക. ഓരോ ദിവസവും 100 രൂപ സമ്മാനം.</li>
+                    <li>ഏറ്റവും കൂടുതൽ ഖുർആൻ ഖത്തം തീർക്കുന്ന ആൾക്ക് MalluMuslimClub ന്റെ വക ഇഷ്ട്ടമുള്ള പെരുന്നാൾ ഡ്രസ്സ്‌.</li>
+                    <li>എല്ലാ ദിവസവും ഫ്രീ ആയി MalluMuslimClub വാട്സ്ആപ്പ് ഗ്രൂപ്പിൽ ഇസ്ലാമിക വിഷയങ്ങൾ ഉൾകൊള്ളുന്ന ക്ലാസുകൾ.</li>
+                    <li>ഒരു ദിവസം MalluMuslimClub പുരുഷ മെമ്പേഴ്സിന് ഒരുമിച്ചു കൂടി ദീൻ പറയാനും നോമ്പ് തുറക്കാനും ഉള്ള അവസരം.</li>
+                    <li>ചെറിയ സൂറത്ത് തഫ്സീർ പഠിക്കാനും അതിന്റെ ആശയങ്ങൾ ഉൾകൊള്ളാനുമുള്ള സ്പെഷ്യൽ ക്ലാസുകൾ.</li>
+                    <li>റമളാൻ റീലുകളിൽ MalluMuslimClub ഫോള്ളോവേർസിന് Content Create ചെയ്യാനുള്ള അവസരം.</li>
+                    <li>റമളാൻ ഹറാമുകളിൽ നിന്ന് ഒഴിവാകാൻ ഹലാൽ Playlist ഉൾകൊള്ളിക്കുന്ന ഒരു Website.</li>
+                </ol>
+            </div>
         </div>
 
-        <h2 class="section-title animate__animated animate__fadeInUp" style="animation-delay: 0.5s">Our Playlist</h2>
+        <h2 class="section-title animate__animated animate__fadeInUp" style="animation-delay: 0.5s">Halal Music</h2>
         <div class="playlist-container animate__animated animate__fadeInUp" style="animation-delay: 0.6s">
             <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3djwovOekK3L5bVLwkR4V7?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
@@ -438,6 +457,32 @@
         </footer>
     </div>
 
+    <!-- Floating Bottom Navigation with curved corners -->
+    <nav class="bottom-nav">
+        <div class="nav-items">
+            <div class="nav-item active" onclick="setActive(this)">
+                <span>Home</span>
+                <i class="fas fa-home"></i>
+            </div>
+            <div class="nav-item" onclick="setActive(this)">
+                <span>Ramadan Vibes</span>
+                <i class="fas fa-moon"></i>
+            </div>
+            <div class="nav-item" onclick="setActive(this)">
+                <span>About</span>
+                <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="nav-item" onclick="setActive(this)">
+                <span>Contact</span>
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div class="nav-item" onclick="setActive(this)">
+                <span>Social</span>
+                <i class="fas fa-users"></i>
+            </div>
+        </div>
+    </nav>
+
     <script>
         function toggleTheme() {
             const html = document.documentElement;
@@ -446,6 +491,17 @@
             } else {
                 html.setAttribute('data-theme', 'dark');
             }
+        }
+        
+        function setActive(element) {
+            // Remove active class from all nav items
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Add active class to clicked item
+            element.classList.add('active');
         }
     </script>
 </body>
