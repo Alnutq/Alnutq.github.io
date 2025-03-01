@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mallu Muslim Club</title>
+    <link rel="icon" href="Logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
-    <link rel="icon" href="Logo.svg" type="image/svg+xml">
     <style>
         :root {
             /* Dark theme (default) */
@@ -103,8 +103,8 @@
         }
         
         .logo {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             margin: 0 auto 30px;
             background: url('Logo.svg') center/cover no-repeat;
@@ -231,13 +231,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, rgba(79, 155, 255, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+            background: radial-gradient(circle at center, rgba(79, 155, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
             z-index: -1;
         }
         
         .ramadan-logo {
-            width: 200px; /* Enlarged as requested */
-            height: 200px; /* Enlarged as requested */
+            width: 200px; /* Increased size */
+            height: 200px; /* Increased size */
             margin: 0 auto 20px;
             position: relative;
             background: url('Ramadan Vibes.svg') center/cover no-repeat;
@@ -275,16 +275,126 @@
             line-height: 1.7;
         }
         
-        .description {
-            margin: 50px 0;
-            font-size: 1.2rem;
-            line-height: 1.8;
-            padding: 0 30px;
-            color: var(--text-secondary);
+        /* About Section */
+        #about {
+            padding: 60px 0;
         }
         
-        .description p {
+        /* Contact Section */
+        #contact {
+            padding: 60px 0;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--surface);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .form-group {
             margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: var(--background);
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(79, 155, 255, 0.3);
+        }
+        
+        /* Social Section */
+        #social {
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .social-card {
+            background-color: var(--surface);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .social-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(79, 155, 255, 0.3);
+        }
+        
+        .social-card .card-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .social-card .card-content {
+            padding: 20px;
+        }
+        
+        .social-card h3 {
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+        
+        .social-card p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        .social-btn-card {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-btn-card:hover {
+            background-color: var(--primary-variant);
         }
         
         .section-title {
@@ -304,11 +414,6 @@
             height: 4px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             border-radius: 2px;
-        }
-        
-        #about, #contact, #social {
-            padding-top: 100px;
-            margin-top: -40px;
         }
         
         footer {
@@ -345,59 +450,31 @@
             background-color: var(--primary);
         }
         
-        /* Playlist page styles */
-        .playlist-page {
-            display: none;
+        /* Music Player Styles for the Playlist page */
+        .playlist-section {
+            margin: 40px 0;
+            padding: 20px;
+            background-color: var(--surface);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
         
-        .playlist-page.active {
-            display: block;
-        }
-        
-        .main-page.inactive {
-            display: none;
-        }
-        
-        .back-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 50px;
-            text-decoration: none;
-            margin-bottom: 30px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        
-        .back-button:hover {
-            background-color: var(--primary-variant);
-        }
-        
-        .playlist-wrapper {
-            margin-top: 40px;
-        }
-        
-        .playlist-tabs {
+        .playlist-nav {
             display: flex;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .playlist-tab {
-            padding: 12px 20px;
+            padding: 10px 20px;
             cursor: pointer;
-            background-color: transparent;
             color: var(--text-secondary);
-            border: none;
-            font-size: 1rem;
-            font-weight: 500;
             transition: all 0.3s ease;
+            position: relative;
         }
         
         .playlist-tab.active {
             color: var(--primary);
-            position: relative;
         }
         
         .playlist-tab.active::after {
@@ -408,6 +485,7 @@
             width: 100%;
             height: 3px;
             background-color: var(--primary);
+            border-radius: 3px 3px 0 0;
         }
         
         .playlist-content {
@@ -418,136 +496,166 @@
             display: block;
         }
         
-        .audio-player {
-            width: 100%;
-            padding: 20px;
-            background-color: var(--surface);
-            border-radius: 16px;
-            margin-bottom: 30px;
-        }
-        
-        .song-list {
-            list-style: none;
-        }
-        
         .song-item {
             display: flex;
             align-items: center;
-            padding: 12px 20px;
-            background-color: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 8px;
             margin-bottom: 10px;
-            border-radius: 12px;
-            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.05);
             transition: background-color 0.3s ease;
+            cursor: pointer;
         }
         
         .song-item:hover {
             background-color: rgba(255, 255, 255, 0.1);
         }
         
-        .song-item.playing {
-            background-color: rgba(79, 155, 255, 0.15);
-            border-left: 3px solid var(--primary);
-        }
-        
         .song-number {
-            font-size: 1.2rem;
+            width: 30px;
+            text-align: center;
             font-weight: 600;
             color: var(--text-secondary);
-            width: 40px;
         }
         
         .song-info {
             flex: 1;
-            padding-left: 15px;
+            margin: 0 15px;
         }
         
         .song-title {
-            font-weight: 500;
             color: var(--text);
+            font-weight: 500;
             margin-bottom: 5px;
         }
         
         .song-artist {
-            font-size: 0.9rem;
             color: var(--text-secondary);
+            font-size: 0.9rem;
         }
         
         .song-duration {
             color: var(--text-secondary);
+        }
+        
+        .music-player {
+            background-color: var(--surface);
+            padding: 20px;
+            border-radius: 16px;
+            margin-top: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        .music-player-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .music-player-cover {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin-right: 20px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .music-player-details {
+            flex: 1;
+        }
+        
+        .music-player-title {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 5px;
+        }
+        
+        .music-player-artist {
+            color: var(--text-secondary);
             font-size: 0.9rem;
         }
         
-        .player-controls {
+        .music-player-controls {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-top: 20px;
-            padding: 15px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
+            margin-bottom: 20px;
         }
         
         .control-button {
             background: none;
             border: none;
             color: var(--text);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             cursor: pointer;
-            transition: color 0.3s ease;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
         
         .control-button:hover {
             color: var(--primary);
         }
         
-        .play-button {
-            background-color: var(--primary);
-            border-radius: 50%;
+        .play-pause-button {
             width: 50px;
             height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
         
-        .play-button:hover {
+        .play-pause-button:hover {
+            transform: scale(1.1);
             background-color: var(--primary-variant);
-            color: white;
         }
         
         .progress-container {
-            flex: 1;
-            margin: 0 15px;
-        }
-        
-        .progress-bar {
-            width: 100%;
-            height: 4px;
+            height: 5px;
             background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-            position: relative;
+            border-radius: 3px;
+            margin-bottom: 10px;
             cursor: pointer;
         }
         
-        .progress {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .progress-bar {
             height: 100%;
             background-color: var(--primary);
-            border-radius: 2px;
+            border-radius: 3px;
             width: 0%;
         }
         
         .time-display {
             display: flex;
             justify-content: space-between;
-            margin-top: 8px;
-            font-size: 0.8rem;
             color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-bottom: 30px;
+            padding: 10px 20px;
+            background-color: var(--surface);
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background-color: var(--primary-variant);
+            color: white;
+        }
+        
+        .back-button i {
+            margin-right: 8px;
         }
         
         /* Responsive adjustments */
@@ -556,18 +664,18 @@
                 font-size: 2.5rem;
             }
             
-            .description {
-                font-size: 1rem;
-            }
-            
             .ramadan-logo {
-                width: 150px;
-                height: 150px;
+                width: 160px;
+                height: 160px;
             }
             
             .bottom-nav {
                 width: 95%;
                 height: 60px;
+            }
+            
+            .social-grid {
+                grid-template-columns: 1fr;
             }
         }
         
@@ -582,8 +690,8 @@
             }
             
             .ramadan-logo {
-                width: 120px;
-                height: 120px;
+                width: 140px;
+                height: 140px;
             }
             
             .ramadan-text {
@@ -599,22 +707,434 @@
             }
             
             .playlist-tab {
-                padding: 10px 12px;
+                padding: 10px;
                 font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-    <button class="theme-toggle" onclick="toggleTheme()">
-        <i class="fas fa-sun light-icon"></i>
-        <i class="fas fa-moon dark-icon"></i>
-    </button>
+    <!-- Home Page -->
+    <div id="home-page">
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <i class="fas fa-sun light-icon"></i>
+            <i class="fas fa-moon dark-icon"></i>
+        </button>
 
-    <!-- Main Page -->
-    <div class="main-page">
         <div class="container">
-            <header id="home" class="animate__animated animate__fadeIn">
+            <a href="#" class="back-button" onclick="showHomePage()"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            
+            <header class="animate__animated animate__fadeIn">
+                <h1 class="animate__animated animate__zoomIn">Music Playlists</h1>
+                <p class="header-description animate__animated animate__fadeIn" style="animation-delay: 0.2s">
+                    Enjoy our curated collection of halal music that uplifts the soul and celebrates our cultural heritage.
+                </p>
+            </header>
+
+            <div class="playlist-section">
+                <div class="playlist-nav">
+                    <div class="playlist-tab active" onclick="switchPlaylist(this, 'islamic-nasheeds')">Islamic Nasheeds</div>
+                    <div class="playlist-tab" onclick="switchPlaylist(this, 'malayalam-songs')">Malayalam Songs</div>
+                    <div class="playlist-tab" onclick="switchPlaylist(this, 'ramadan-special')">Ramadan Special</div>
+                </div>
+                
+                <!-- Islamic Nasheeds Playlist -->
+                <div class="playlist-content active" id="islamic-nasheeds">
+                    <div class="song-item" onclick="playSong('nasheed1', 'Beautiful Nasheed', 'Various Artists', '04:25')">
+                        <div class="song-number">1</div>
+                        <div class="song-info">
+                            <div class="song-title">Beautiful Nasheed</div>
+                            <div class="song-artist">Various Artists</div>
+                        </div>
+                        <div class="song-duration">04:25</div>
+                    </div>
+                    
+                    <div class="song-item" onclick="playSong('nasheed2', 'Tala Al Badru', 'Maher Zain', '03:48')">
+                        <div class="song-number">2</div>
+                        <div class="song-info">
+                            <div class="song-title">Tala Al Badru</div>
+                            <div class="song-artist">Maher Zain</div>
+                        </div>
+                        <div class="song-duration">03:48</div>
+                    </div>
+                    
+                    <div class="song-item" onclick="playSong('nasheed3', 'Hasbi Rabbi', 'Sami Yusuf', '05:12')">
+                        <div class="song-number">3</div>
+                        <div class="song-info">
+                            <div class="song-title">Hasbi Rabbi</div>
+                            <div class="song-artist">Sami Yusuf</div>
+                        </div>
+                        <div class="song-duration">05:12</div>
+                    </div>
+                    
+                    <div class="song-item" onclick="playSong('nasheed4', 'Assalamu Alayka', 'Maher Zain', '04:15')">
+                        <div class="song-number">4</div>
+                        <div class="song-info">
+                            <div class="song-title">Assalamu Alayka</div>
+                            <div class="song-artist">Maher Zain</div>
+                        </div>
+                        <div class="song-duration">04:15</div>
+                    </div>
+                    
+                    <div class="song-item" onclick="playSong('nasheed5', 'Ya Nabi Salam Alayka', 'Mishary Rashid', '03:55')">
+                        <div class="song-number">5</div>
+                        <div class="song-info">
+                            <div class="song-title">Ya Nabi Salam Alayka</div>
+                            <div class="song-artist">Mishary Rashid</div>
+                        </div>
+                        <div class="song-duration">03:55</div>
+                    </div>
+                </div>
+                
+                <!-- Malayalam Songs Playlist -->
+                <div class="playlist-content" id="malayalam-songs">
+                    <div class="song-item" onclick="playSong('malayalam1', 'Kunjimaani Ponnumani', 'P.A. Azeez', '04:30')">
+                        <div class="song-number">1</div>
+                        <div class="song-info">
+                            <div class="song-title">Kunjimaani Ponnumani</div>
+                            <div class="song-artist">P.A. Azeez</div>
+                        </div>
+                        <div class="song-duration">04:30</div>
+                    </div>
+                    
+                    <div class="song-item" onclick="playSong('malayalam2', 'Mappila Pattu Medley', 'Various Artists', '06:15')">
+                        <div class="song-number">2</div>
+                        <div class="song-info">
+                            <div class="song-title">Mappila Pattu Medley</div>
+                            <div class="song-artist">Various Artists</div>
+                        </div>
+                        <div class="song-duration">06:15</div>
+                    </div>
+                    
+                    <div class="song-item" onclick="playSong('malayalam3', 'Malabar Cafe', 'Shahbaz Aman', '03:45')">
+                        <div class="song-number">3</div>
+                        <div class="song-info">
+                            <div class="song-title">Malabar Cafe</div>
+                            <div class="song-artist">Shahbaz Aman</div>
+                        </div>
+                        <div class="song-duration">03:45</div>
+                    </div>
+                    
+                    <div class="song-item" onclick="playSong('malayalam4', 'Muhabbath Chollanu', 'Kannur Shareef', '05:20')">
+                        <div class="song-number">4</div>
+                        <div class="song-info">
+                            <div class="song-title">Muhabbath Chollanu</div>
+                            <div class="song-artist">Kannur Shareef</div>
+                        </div>
+                        <div class="song-duration">05:20</div>
+                    </div>
+                    
+                    <div class="song-item" onclick="playSong('malayalam5', 'Kolkali Pattukal', 'Various Artists', '04:10')">
+                        <div class="song-number">5</div>
+                        <div class="song-info">
+                            <div class="song-title">Kolkali Pattukal</div>
+                            <div class="song-artist">Various Artists</div>
+                        </div>
+                        <div class="song-duration">04:10</div>
+                    </div>
+                </div>
+                
+                <!-- Ramadan Special Playlist -->
+                <div class="playlist-content" id="ramadan-special">
+                    <div class="song-item" onclick="playSong('ramadan1', 'Ramadan Mubarak', 'Various Artists', '03:45')">
+                        <div class="song-number">1</div>
+                        <div class="song-info">
+                            <div class="song-title">Ramadan Mubarak</div>
+                            <div class="song-artist">Various Artists</div>
+                        </div>
+                        <div class="song-duration">03:45</div>
+                    </div>
+                    
+                    <div class="song-item" onclick="playSong('ramadan2', 'Ramadan Kareem', 'Maher Zain', '04:20')">
+                        <div class="song-number">2</div>
+                        <div class="song-info">
+                            <div class="song-title">Ramadan Kareem</div>
+                            <div class="song-artist">Maher Zain</div>
+                        </div>
+                        <div class="song-duration">04:20</div>
+                    </div>
+                    
+                    <div class="song-item" onclick="playSong('ramadan3', 'Ramadan Greeting', 'Sami Yusuf', '03:55')">
+                        <div class="song-number">3</div>
+                        <div class="song-info">
+                            <div class="song-title">Ramadan Greeting</div>
+                            <div class="song-artist">Sami Yusuf</div>
+                        </div>
+                        <div class="song-duration">03:55</div>
+                    </div>
+                    
+                    <div class="song-item" onclick="playSong('ramadan4', 'Holy Month', 'Harris J', '04:05')">
+                        <div class="song-number">4</div>
+                        <div class="song-info">
+                            <div class="song-title">Holy Month</div>
+                            <div class="song-artist">Harris J</div>
+                        </div>
+                        <div class="song-duration">04:05</div>
+                    </div>
+                    
+                    <div class="song-item" onclick="playSong('ramadan5', 'Fasting and Prayer', 'Zain Bhikha', '03:50')">
+                        <div class="song-number">5</div>
+                        <div class="song-info">
+                            <div class="song-title">Fasting and Prayer</div>
+                            <div class="song-artist">Zain Bhikha</div>
+                        </div>
+                        <div class="song-duration">03:50</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Music Player -->
+            <div class="music-player">
+                <div class="music-player-info">
+                    <div class="music-player-cover" id="song-cover" style="background-image: url('/api/placeholder/400/320');"></div>
+                    <div class="music-player-details">
+                        <div class="music-player-title" id="song-title">Select a song to play</div>
+                        <div class="music-player-artist" id="song-artist"></div>
+                    </div>
+                </div>
+                
+                <div class="music-player-controls">
+                    <button class="control-button"><i class="fas fa-step-backward"></i></button>
+                    <div class="play-pause-button" id="play-pause-btn" onclick="togglePlayPause()">
+                        <i class="fas fa-play" id="play-icon"></i>
+                    </div>
+                    <button class="control-button"><i class="fas fa-step-forward"></i></button>
+                </div>
+                
+                <div class="progress-container" id="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                
+                <div class="time-display">
+                    <div id="current-time">00:00</div>
+                    <div id="duration">00:00</div>
+                </div>
+                
+                <audio id="audio-player"></audio>
+            </div>
+
+            <footer class="animate__animated animate__fadeInUp" style="animation-delay: 0.8s">
+                <div class="social-links">
+                    <a href="https://instagram.com/MalluMuslimClub" class="social-btn" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/919656331391" class="social-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <p>© 2025 Mallu Muslim Club. All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Floating Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-items">
+            <div class="nav-item active" onclick="navigateTo('home')">
+                <span>Home</span>
+                <i class="fas fa-home"></i>
+            </div>
+            <div class="nav-item" onclick="navigateTo('playlist')">
+                <span>Playlist</span>
+                <i class="fas fa-music"></i>
+            </div>
+            <div class="nav-item" onclick="navigateTo('about')">
+                <span>About</span>
+                <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="nav-item" onclick="navigateTo('contact')">
+                <span>Contact</span>
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div class="nav-item" onclick="navigateTo('social')">
+                <span>Social</span>
+                <i class="fas fa-users"></i>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.setAttribute('data-theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+            }
+        }
+        
+        function setActive(element) {
+            // Remove active class from all nav items
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Add active class to clicked item
+            element.classList.add('active');
+        }
+        
+        function navigateTo(target) {
+            // Set active nav item
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Add active class based on target
+            if (target === 'home') {
+                navItems[0].classList.add('active');
+                showHomePage();
+                window.scrollTo(0, 0);
+            } else if (target === 'playlist') {
+                navItems[1].classList.add('active');
+                showPlaylistPage();
+            } else if (target === 'about') {
+                navItems[2].classList.add('active');
+                showHomePage();
+                document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+            } else if (target === 'contact') {
+                navItems[3].classList.add('active');
+                showHomePage();
+                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            } else if (target === 'social') {
+                navItems[4].classList.add('active');
+                showHomePage();
+                document.getElementById('social').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        function showHomePage() {
+            document.getElementById('home-page').style.display = 'block';
+            document.getElementById('playlist-page').style.display = 'none';
+        }
+        
+        function showPlaylistPage() {
+            document.getElementById('home-page').style.display = 'none';
+            document.getElementById('playlist-page').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+        
+        function switchPlaylist(element, playlistId) {
+            // Update active tab
+            const tabs = document.querySelectorAll('.playlist-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            element.classList.add('active');
+            
+            // Show selected playlist
+            const playlists = document.querySelectorAll('.playlist-content');
+            playlists.forEach(playlist => {
+                playlist.classList.remove('active');
+            });
+            document.getElementById(playlistId).classList.add('active');
+        }
+        
+        // Music player functionality
+        let isPlaying = false;
+        const audioPlayer = document.getElementById('audio-player');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const playIcon = document.getElementById('play-icon');
+        const progressBar = document.getElementById('progress-bar');
+        const currentTimeEl = document.getElementById('current-time');
+        const durationEl = document.getElementById('duration');
+        const progressContainer = document.getElementById('progress-container');
+        
+        function playSong(songId, title, artist, duration) {
+            // In a real implementation, you would load the actual mp3 file
+            // For this demo, we'll just update the UI
+            document.getElementById('song-title').textContent = title;
+            document.getElementById('song-artist').textContent = artist;
+            durationEl.textContent = duration;
+            
+            // Simulate playing a song
+            isPlaying = true;
+            playIcon.classList.remove('fa-play');
+            playIcon.classList.add('fa-pause');
+            
+            // Reset progress bar
+            progressBar.style.width = '0%';
+            currentTimeEl.textContent = '00:00';
+            
+            // Simulate progress (for demo purposes)
+            simulateProgress();
+        }
+        
+        function togglePlayPause() {
+            if (isPlaying) {
+                // Pause
+                isPlaying = false;
+                playIcon.classList.remove('fa-pause');
+                playIcon.classList.add('fa-play');
+            } else {
+                // Play
+                isPlaying = true;
+                playIcon.classList.remove('fa-play');
+                playIcon.classList.add('fa-pause');
+                
+                // Continue progress simulation if paused
+                simulateProgress();
+            }
+        }
+        
+        let progressInterval;
+        function simulateProgress() {
+            // Clear any existing interval
+            clearInterval(progressInterval);
+            
+            if (!isPlaying) return;
+            
+            // For demo purposes, simulate song playing with progress updates
+            let progress = parseFloat(progressBar.style.width) || 0;
+            
+            progressInterval = setInterval(() => {
+                if (!isPlaying) {
+                    clearInterval(progressInterval);
+                    return;
+                }
+                
+                progress += 0.5;
+                if (progress >= 100) {
+                    progress = 0;
+                    isPlaying = false;
+                    playIcon.classList.remove('fa-pause');
+                    playIcon.classList.add('fa-play');
+                    clearInterval(progressInterval);
+                }
+                
+                progressBar.style.width = progress + '%';
+                
+                // Update current time display (simulated)
+                const duration = durationEl.textContent;
+                const [mins, secs] = duration.split(':').map(Number);
+                const totalSeconds = mins * 60 + secs;
+                const currentSeconds = Math.floor((progress / 100) * totalSeconds);
+                const currentMins = Math.floor(currentSeconds / 60);
+                const currentSecs = currentSeconds % 60;
+                currentTimeEl.textContent = `${String(currentMins).padStart(2, '0')}:${String(currentSecs).padStart(2, '0')}`;
+            }, 500);
+        }
+        
+        // Allow seeking by clicking on progress bar
+        progressContainer.addEventListener('click', function(e) {
+            const width = this.clientWidth;
+            const clickX = e.offsetX;
+            const percent = (clickX / width) * 100;
+            progressBar.style.width = percent + '%';
+            
+            // Update time display
+            const duration = durationEl.textContent;
+            const [mins, secs] = duration.split(':').map(Number);
+            const totalSeconds = mins * 60 + secs;
+            const currentSeconds = Math.floor((percent / 100) * totalSeconds);
+            const currentMins = Math.floor(currentSeconds / 60);
+            const currentSecs = currentSeconds % 60;
+            currentTimeEl.textContent = `${String(currentMins).padStart(2, '0')}:${String(currentSecs).padStart(2, '0')}`;
+        });
+    </script>
+</body>
+</html><i class="fas fa-moon dark-icon"></i>
+        </button>
+
+        <div class="container">
+            <header class="animate__animated animate__fadeIn" id="home">
                 <div class="logo animate__animated animate__zoomIn"></div>
                 <h1 class="animate__animated animate__zoomIn">Mallu Muslim Club</h1>
                 <p class="header-description animate__animated animate__fadeIn" style="animation-delay: 0.2s">
@@ -641,143 +1161,78 @@
                 </div>
             </div>
 
+            <!-- About Section -->
             <section id="about" class="animate__animated animate__fadeInUp" style="animation-delay: 0.5s">
                 <h2 class="section-title">About Us</h2>
                 <div class="description">
-                    <p>Mallu Muslim Club is dedicated to preserving and celebrating the unique cultural identity of Kerala Muslims. We create a space where members can connect, share experiences, and participate in events that honor our heritage.</p>
-                    <p>Our community brings together people of all ages who are interested in Malayalam language, Kerala culture, and Islamic traditions. Through our activities, we aim to foster a sense of belonging and provide resources for cultural and spiritual growth.</p>
+                    <p>The Mallu Muslim Club is a community-driven organization established to celebrate and promote the rich cultural heritage of Kerala Muslims. Our mission is to create a space where people can connect, learn, and share experiences that honor both Malayalam culture and Islamic traditions.</p>
+                    
+                    <p>Founded in 2023, our club has grown rapidly, bringing together members from across the globe who share a common interest in preserving and celebrating our unique cultural identity. We organize regular events, educational programs, and social gatherings that allow our members to forge meaningful connections while exploring aspects of our heritage.</p>
+                    
+                    <p>Through various initiatives like our Ramadan Vibes program, we aim to foster a deeper understanding of Islamic principles while embracing the colorful tapestry of Malayalam culture that makes our community so special.</p>
                 </div>
             </section>
 
+            <!-- Contact Section -->
             <section id="contact" class="animate__animated animate__fadeInUp" style="animation-delay: 0.6s">
                 <h2 class="section-title">Contact Us</h2>
-                <div class="description">
-                    <p>Have questions or want to join our community? Get in touch with us through any of the following channels:</p>
-                    <p>📧 Email: info@mallumuslimclub.org</p>
-                    <p>📱 Phone: +91 123 456 7890</p>
-                    <p>📍 Address: 123 Community Center, Kochi, Kerala, India</p>
+                <div class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Your name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Your email address">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" placeholder="Write your message here..."></textarea>
+                    </div>
+                    
+                    <button type="button" class="submit-btn">Send Message</button>
                 </div>
             </section>
 
+            <!-- Social Section -->
             <section id="social" class="animate__animated animate__fadeInUp" style="animation-delay: 0.7s">
                 <h2 class="section-title">Connect With Us</h2>
-                <div class="description">
-                    <p>Join our growing community on social media to stay updated on all our events, activities, and announcements. Follow us for daily content including Islamic teachings, cultural insights, and community highlights.</p>
-                </div>
-                <div class="social-links">
-                    <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
+                <p>Join our community on social media platforms to stay updated with latest events and activities.</p>
+                
+                <div class="social-grid">
+                    <div class="social-card">
+                        <div class="card-image" style="background-image: url('/api/placeholder/400/320');"></div>
+                        <div class="card-content">
+                            <h3>Instagram</h3>
+                            <p>Follow us on Instagram for daily updates, inspirational content, and community highlights.</p>
+                            <a href="https://instagram.com/MalluMuslimClub" class="social-btn-card" target="_blank">Follow Us</a>
+                        </div>
+                    </div>
+                    
+                    <div class="social-card">
+                        <div class="card-image" style="background-image: url('/api/placeholder/400/320');"></div>
+                        <div class="card-content">
+                            <h3>WhatsApp</h3>
+                            <p>Join our WhatsApp community for instant updates and to connect with other members.</p>
+                            <a href="https://wa.me/919656331391" class="social-btn-card" target="_blank">Message Us</a>
+                        </div>
+                    </div>
                 </div>
             </section>
 
             <footer class="animate__animated animate__fadeInUp" style="animation-delay: 0.8s">
+                <div class="social-links">
+                    <a href="https://instagram.com/MalluMuslimClub" class="social-btn" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/919656331391" class="social-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
                 <p>© 2025 Mallu Muslim Club. All rights reserved.</p>
             </footer>
         </div>
     </div>
 
-    <!-- Playlist Page -->
-    <div class="playlist-page">
-        <div class="container">
-            <header class="animate__animated animate__fadeIn">
-                <div class="back-button" onclick="showMainPage()">
-                    <i class="fas fa-arrow-left"></i> Back to Home
-                </div>
-                <h1 class="animate__animated animate__zoomIn">Halal Playlists</h1>
-                <p class="header-description animate__animated animate__fadeIn" style="animation-delay: 0.2s">
-                    Enjoy our curated collection of halal music that uplifts your spirit during Ramadan and beyond.
-                </p>
-            </header>
-
-            <div class="playlist-wrapper">
-                <div class="playlist-tabs">
-                    <button class="playlist-tab active" onclick="showPlaylist(0)">Nasheeds</button>
-                    <button class="playlist-tab" onclick="showPlaylist(1)">Malayalam Islamic</button>
-                    <button class="playlist-tab" onclick="showPlaylist(2)">Ramadan Special</button>
-                </div>
-
-                <!-- Nasheed Playlist -->
-                <div class="playlist-content active">
-                    <div class="audio-player">
-                        <audio id="nasheed-player"></audio>
-                        <ul class="song-list" id="nasheed-list">
-                            <li class="song-item" data-src="nasheed1.mp3" onclick="playSong(this, 'nasheed-player')">
-                                <div class="song-number">01</div>
-                                <div class="song-info">
-                                    <div class="song-title">Tala'al Badru Alayna</div>
-                                    <div class="song-artist">Various Artists</div>
-                                </div>
-                                <div class="song-duration">4:25</div>
-                            </li>
-                            <li class="song-item" data-src="nasheed2.mp3" onclick="playSong(this, 'nasheed-player')">
-                                <div class="song-number">02</div>
-                                <div class="song-info">
-                                    <div class="song-title">Hasbi Rabbi</div>
-                                    <div class="song-artist">Sami Yusuf</div>
-                                </div>
-                                <div class="song-duration">3:51</div>
-                            </li>
-                            <li class="song-item" data-src="nasheed3.mp3" onclick="playSong(this, 'nasheed-player')">
-                                <div class="song-number">03</div>
-                                <div class="song-info">
-                                    <div class="song-title">Mawlaya</div>
-                                    <div class="song-artist">Maher Zain</div>
-                                </div>
-                                <div class="song-duration">4:08</div>
-                            </li>
-                            <li class="song-item" data-src="nasheed4.mp3" onclick="playSong(this, 'nasheed-player')">
-                                <div class="song-number">04</div>
-                                <div class="song-info">
-                                    <div class="song-title">Ya Nabi Salam Alayka</div>
-                                    <div class="song-artist">Islamic Devotional</div>
-                                </div>
-                                <div class="song-duration">5:12</div>
-                            </li>
-                        </ul>
-                        <div class="player-controls">
-                            <button class="control-button" onclick="previousSong('nasheed-player')">
-                                <i class="fas fa-step-backward"></i>
-                            </button>
-                            <button class="control-button play-button" onclick="togglePlayPause('nasheed-player')">
-                                <i class="fas fa-play" id="nasheed-play-icon"></i>
-                            </button>
-                            <button class="control-button" onclick="nextSong('nasheed-player')">
-                                <i class="fas fa-step-forward"></i>
-                            </button>
-                            <div class="progress-container">
-                                <div class="progress-bar" id="nasheed-progress" onclick="seek(event, 'nasheed-player')">
-                                    <div class="progress" id="nasheed-progress-bar"></div>
-                                </div>
-                                <div class="time-display">
-                                    <span id="nasheed-current-time">0:00</span>
-                                    <span id="nasheed-duration">0:00</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Malayalam Islamic Playlist -->
-                <div class="playlist-content">
-                    <div class="audio-player">
-                        <audio id="malayalam-player"></audio>
-                        <ul class="song-list" id="malayalam-list">
-                            <li class="song-item" data-src="malayalam1.mp3" onclick="playSong(this, 'malayalam-player')">
-                                <div class="song-number">01</div>
-                                <div class="song-info">
-                                    <div class="song-title">Mappilapattu Collection</div>
-                                    <div class="song-artist">Various Artists</div>
-                                </div>
-                                <div class="song-duration">5:32</div>
-                            </li>
-                            <li class="song-item" data-src="malayalam2.mp3" onclick="playSong(this, 'malayalam-player')">
-                                <div class="song-number">02</div>
-                                <div class="song-info">
-                                    <div class="song-title">Madeena Thujje Salaam</div>
-                                    <div class="song-artist">Kannur Shareef</div>
-                                </div>
-                                <div class="song-duration">4:45</div>
-                            </li>
-                            <li class="song-item" data-src="malay
+    <!-- Playlist Page (Hidden by default) -->
+    <div id="playlist-page" style="display: none;">
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <i class="fas fa-sun light-icon"></i>
