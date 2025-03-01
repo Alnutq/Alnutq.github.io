@@ -1,0 +1,879 @@
+</style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-sun light-icon"></i>
+        <i class="fas fa-moon dark-icon"></i>
+    </button>
+
+    <div class="container">
+        <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        
+        <header class="animate__animated animate__fadeIn">
+            <h1 class="animate__animated animate__zoomIn">Music Playlists</h1>
+            <p class="header-description animate__animated animate__fadeIn" style="animation-delay: 0.2s">
+                Enjoy our curated collection of halal music that uplifts the soul and celebrates our cultural heritage.
+            </p>
+        </header>
+
+        <div class="playlist-section">
+            <div class="playlist-nav">
+                <div class="playlist-tab active" onclick="switchPlaylist(this, 'islamic-nasheeds')">Islamic Nasheeds</div>
+                <div class="playlist-tab" onclick="switchPlaylist(this, 'malayalam-songs')">Malayalam Songs</div>
+                <div class="playlist-tab" onclick="switchPlaylist(this, 'ramadan-special')">Ramadan Special</div>
+            </div>
+            
+            <!-- Islamic Nasheeds Playlist -->
+            <div class="playlist-content active" id="islamic-nasheeds">
+                <div class="song-item" onclick="playSong('nasheed1', 'Beautiful Nasheed', 'Various Artists', '04:25')">
+                    <div class="song-number">1</div>
+                    <div class="song-info">
+                        <div class="song-title">Beautiful Nasheed</div>
+                        <div class="song-artist">Various Artists</div>
+                    </div>
+                    <div class="song-duration">04:25</div>
+                </div>
+                
+                <div class="song-item" onclick="playSong('nasheed2', 'Tala Al Badru', 'Maher Zain', '03:48')">
+                    <div class="song-number">2</div>
+                    <div class="song-info">
+                        <div class="song-title">Tala Al Badru</div>
+                        <div class="song-artist">Maher Zain</div>
+                    </div>
+                    <div class="song-duration">03:48</div>
+                </div>
+                
+                <div class="song-item" onclick="playSong('nasheed3', 'Hasbi Rabbi', 'Sami Yusuf', '05:12')">
+                    <div class="song-number">3</div>
+                    <div class="song-info">
+                        <div class="song-title">Hasbi Rabbi</div>
+                        <div class="song-artist">Sami Yusuf</div>
+                    </div>
+                    <div class="song-duration">05:12</div>
+                </div>
+                
+                <div class="song-item" onclick="playSong('nasheed4', 'Assalamu Alayka', 'Maher Zain', '04:15')">
+                    <div class="song-number">4</div>
+                    <div class="song-info">
+                        <div class="song-title">Assalamu Alayka</div>
+                        <div class="song-artist">Maher Zain</div>
+                    </div>
+                    <div class="song-duration">04:15</div>
+                </div>
+                
+                <div class="song-item" onclick="playSong('nasheed5', 'Ya Nabi Salam Alayka', 'Mishary Rashid', '03:55')">
+                    <div class="song-number">5</div>
+                    <div class="song-info">
+                        <div class="song-title">Ya Nabi Salam Alayka</div>
+                        <div class="song-artist">Mishary Rashid</div>
+                    </div>
+                    <div class="song-duration">03:55</div>
+                </div>
+            </div>
+            
+            <!-- Malayalam Songs Playlist -->
+            <div class="playlist-content" id="malayalam-songs">
+                <div class="song-item" onclick="playSong('malayalam1', 'Kunjimaani Ponnumani', 'P.A. Azeez', '04:30')">
+                    <div class="song-number">1</div>
+                    <div class="song-info">
+                        <div class="song-title">Kunjimaani Ponnumani</div>
+                        <div class="song-artist">P.A. Azeez</div>
+                    </div>
+                    <div class="song-duration">04:30</div>
+                </div>
+                
+                <div class="song-item" onclick="playSong('malayalam2', 'Mappila Pattu Medley', 'Various Artists', '06:15')">
+                    <div class="song-number">2</div>
+                    <div class="song-info">
+                        <div class="song-title">Mappila Pattu Medley</div>
+                        <div class="song-artist">Various Artists</div>
+                    </div>
+                    <div class="song-duration">06:15</div>
+                </div>
+                
+                <div class="song-item" onclick="playSong('malayalam3', 'Malabar Cafe', 'Shahbaz Aman', '03:45')">
+                    <div class="song-number">3</div>
+                    <div class="song-info">
+                        <div class="song-title">Malabar Cafe</div>
+                        <div class="song-artist">Shahbaz Aman</div>
+                    </div>
+                    <div class="song-duration">03:45</div>
+                </div>
+                
+                <div class="song-item" onclick="playSong('malayalam4', 'Muhabbath Chollanu', 'Kannur Shareef', '05:20')">
+                    <div class="song-number">4</div>
+                    <div class="song-info">
+                        <div class="song-title">Muhabbath Chollanu</div>
+                        <div class="song-artist">Kannur Shareef</div>
+                    </div>
+                    <div class="song-duration">05:20</div>
+                </div>
+                
+                <div class="song-item" onclick="playSong('malayalam5', 'Kolkali Pattukal', 'Various Artists', '04:10')">
+                    <div class="song-number">5</div>
+                    <div class="song-info">
+                        <div class="song-title">Kolkali Pattukal</div>
+                        <div class="song-artist">Various Artists</div>
+                    </div>
+                    <div class="song-duration">04:10</div>
+                </div>
+            </div>
+            
+            <!-- Ramadan Special Playlist -->
+            <div class="playlist-content" id="ramadan-special">
+                <div class="song-item" onclick="playSong('ramadan1', 'Ramadan Mubarak', 'Various Artists', '03:45')">
+                    <div class="song-number">1</div>
+                    <div class="song-info">
+                        <div class="song-title">Ramadan Mubarak</div>
+                        <div class="song-artist">Various Artists</div>
+                    </div>
+                    <div class="song-duration">03:45</div>
+                </div>
+                
+                <div class="song-item" onclick="playSong('ramadan2', 'Ramadan Kareem', 'Maher Zain', '04:20')">
+                    <div class="song-number">2</div>
+                    <div class="song-info">
+                        <div class="song-title">Ramadan Kareem</div>
+                        <div class="song-artist">Maher Zain</div>
+                    </div>
+                    <div class="song-duration">04:20</div>
+                </div>
+                
+                <div class="song-item" onclick="playSong('ramadan3', 'Ramadan Greeting', 'Sami Yusuf', '03:55')">
+                    <div class="song-number">3</div>
+                    <div class="song-info">
+                        <div class="song-title">Ramadan Greeting</div>
+                        <div class="song-artist">Sami Yusuf</div>
+                    </div>
+                    <div class="song-duration">03:55</div>
+                </div>
+                
+                <div class="song-item" onclick="playSong('ramadan4', 'Holy Month', 'Harris J', '04:05')">
+                    <div class="song-number">4</div>
+                    <div class="song-info">
+                        <div class="song-title">Holy Month</div>
+                        <div class="song-artist">Harris J</div>
+                    </div>
+                    <div class="song-duration">04:05</div>
+                </div>
+                
+                <div class="song-item" onclick="playSong('ramadan5', 'Fasting and Prayer', 'Zain Bhikha', '03:50')">
+                    <div class="song-number">5</div>
+                    <div class="song-info">
+                        <div class="song-title">Fasting and Prayer</div>
+                        <div class="song-artist">Zain Bhikha</div>
+                    </div>
+                    <div class="song-duration">03:50</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Music Player -->
+        <div class="music-player">
+            <div class="music-player-info">
+                <div class="music-player-cover" id="song-cover" style="background-image: url('/api/placeholder/400/320');"></div>
+                <div class="music-player-details">
+                    <div class="music-player-title" id="song-title">Select a song to play</div>
+                    <div class="music-player-artist" id="song-artist"></div>
+                </div>
+            </div>
+            
+            <div class="music-player-controls">
+                <button class="control-button"><i class="fas fa-step-backward"></i></button>
+                <div class="play-pause-button" id="play-pause-btn" onclick="togglePlayPause()">
+                    <i class="fas fa-play" id="play-icon"></i>
+                </div>
+                <button class="control-button"><i class="fas fa-step-forward"></i></button>
+            </div>
+            
+            <div class="progress-container" id="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            
+            <div class="time-display">
+                <div id="current-time">00:00</div>
+                <div id="duration">00:00</div>
+            </div>
+            
+            <audio id="audio-player"></audio>
+        </div>
+
+        <footer class="animate__animated animate__fadeInUp" style="animation-delay: 0.8s">
+            <div class="social-links">
+                <a href="https://instagram.com/MalluMuslimClub" class="social-btn" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/919656331391" class="social-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p>© 2025 Mallu Muslim Club. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Floating Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-items">
+            <div class="nav-item" onclick="navigateTo('home')">
+                <span>Home</span>
+                <i class="fas fa-home"></i>
+            </div>
+            <div class="nav-item active" onclick="navigateTo('playlist')">
+                <span>Playlist</span>
+                <i class="fas fa-music"></i>
+            </div>
+            <div class="nav-item" onclick="navigateTo('about')">
+                <span>About</span>
+                <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="nav-item" onclick="navigateTo('contact')">
+                <span>Contact</span>
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div class="nav-item" onclick="navigateTo('social')">
+                <span>Social</span>
+                <i class="fas fa-users"></i>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        function navigateTo(target) {
+            // Set active nav item
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Add active class based on target
+            if (target === 'home') {
+                window.location.href = 'index.html';
+            } else if (target === 'playlist') {
+                navItems[1].classList.add('active');
+                // Already on playlist page, do nothing
+            } else if (target === 'about') {
+                window.location.href = 'index.html#about';
+            } else if (target === 'contact') {
+                window.location.href = 'index.html#contact';
+            } else if (target === 'social') {
+                window.location.href = 'index.html#social';
+            }
+        }
+        
+        function switchPlaylist(element, playlistId) {
+            // Update active tab
+            const tabs = document.querySelectorAll('.playlist-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            element.classList.add('active');
+            
+            // Show selected playlist
+            const playlists = document.querySelectorAll('.playlist-content');
+            playlists.forEach(playlist => {
+                playlist.classList.remove('active');
+            });
+            document.getElementById(playlistId).classList.add('active');
+        }
+        
+        // Music player functionality
+        let isPlaying = false;
+        const audioPlayer = document.getElementById('audio-player');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const playIcon = document.getElementById('play-icon');
+        const progressBar = document.getElementById('progress-bar');
+        const currentTimeEl = document.getElementById('current-time');
+        const durationEl = document.getElementById('duration');
+        const progressContainer = document.getElementById('progress-container');
+        
+        function playSong(songId, title, artist, duration) {
+            // In a real implementation, you would load the actual mp3 file
+            // For this demo, we'll just update the UI
+            document.getElementById('song-title').textContent = title;
+            document.getElementById('song-artist').textContent = artist;
+            durationEl.textContent = duration;
+            
+            // Simulate playing a song
+            isPlaying = true;
+            playIcon.classList.remove('fa-play');
+            playIcon.classList.add('fa-pause');
+            
+            // Reset progress bar
+            progressBar.style.width = '0%';
+            currentTimeEl.textContent = '00:00';
+            
+            // Simulate progress (for demo purposes)
+            simulateProgress();
+        }
+        
+        function togglePlayPause() {
+            if (isPlaying) {
+                // Pause
+                isPlaying = false;
+                playIcon.classList.remove('fa-pause');
+                playIcon.classList.add('fa-play');
+            } else {
+                // Play
+                isPlaying = true;
+                playIcon.classList.remove('fa-play');
+                playIcon.classList.add('fa-pause');
+                
+                // Continue progress simulation if paused
+                simulateProgress();
+            }
+        }
+        
+        let progressInterval;
+        function simulateProgress() {
+            // Clear any existing interval
+            clearInterval(progressInterval);
+            
+            if (!isPlaying) return;
+            
+            // For demo purposes, simulate song playing with progress updates
+            let progress = parseFloat(progressBar.style.width) || 0;
+            
+            progressInterval = setInterval(() => {
+                if (!isPlaying) {
+                    clearInterval(progressInterval);
+                    return;
+                }
+                
+                progress += 0.5;
+                if (progress >= 100) {
+                    progress = 0;
+                    isPlaying = false;
+                    playIcon.classList.remove('fa-pause');
+                    playIcon.classList.add('fa-play');
+                    clearInterval(progressInterval);
+                }
+                
+                progressBar.style.width = progress + '%';
+                
+                // Update current time display (simulated)
+                const duration = durationEl.textContent;
+                const [mins, secs] = duration.split(':').map(Number);
+                const totalSeconds = mins * 60 + secs;
+                const currentSeconds = Math.floor((progress / 100) * totalSeconds);
+                const currentMins = Math.floor(currentSeconds / 60);
+                const currentSecs = currentSeconds % 60;
+                currentTimeEl.textContent = `${String(currentMins).padStart(2, '0')}:${String(currentSecs).padStart(2, '0')}`;
+            }, 500);
+        }
+        
+        // Allow seeking by clicking on progress bar
+        progressContainer.addEventListener('click', function(e) {
+            const width = this.clientWidth;
+            const clickX = e.offsetX;
+            const percent = (clickX / width) * 100;
+            progressBar.style.width = percent + '%';
+            
+            // Update time display
+            const duration = durationEl.textContent;
+            const [mins, secs] = duration.split(':').map(Number);
+            const totalSeconds = mins * 60 + secs;
+            const currentSeconds = Math.floor((percent / 100) * totalSeconds);
+            const currentMins = Math.floor(currentSeconds / 60);
+            const currentSecs = currentSeconds % 60;
+            currentTimeEl.textContent = `${String(currentMins).padStart(2, '0')}:${String(currentSecs).padStart(2, '0')}`;
+        });
+        
+        // Load theme from localStorage
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            }
+        }
+        
+        // Load theme when page loads
+        window.addEventListener('DOMContentLoaded', loadTheme);
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mallu Muslim Club - Playlists</title>
+    <link rel="icon" href="Logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
+    <style>
+        :root {
+            /* Dark theme (default) */
+            --primary: #4f9bff;
+            --primary-variant: #275ea3;
+            --secondary: #00c4da;
+            --background: #121212;
+            --surface: #111827;
+            --text: #ffffff;
+            --text-secondary: #a1b2d8;
+            --accent: #00e5ff;
+        }
+        
+        [data-theme="light"] {
+            --primary: #0066cc;
+            --primary-variant: #0050a3;
+            --secondary: #009eb0;
+            --background: #f7f9fc;
+            --surface: #ffffff;
+            --text: #111827;
+            --text-secondary: #4b5563;
+            --accent: #0088cc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background-color: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 90px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--surface);
+            color: var(--primary);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        [data-theme="dark"] .light-icon {
+            display: block;
+        }
+        
+        [data-theme="dark"] .dark-icon {
+            display: none;
+        }
+        
+        [data-theme="light"] .light-icon {
+            display: none;
+        }
+        
+        [data-theme="light"] .dark-icon {
+            display: block;
+        }
+        
+        header {
+            text-align: center;
+            padding: 100px 0 30px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 3.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+        }
+        
+        .header-description {
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        /* Floating Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 600px;
+            height: 65px;
+            background-color: var(--surface);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            border-radius: 18px;
+        }
+        
+        .nav-items {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            padding: 0 10px;
+        }
+        
+        .nav-item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+            padding: 10px 0;
+        }
+        
+        .nav-item i {
+            font-size: 1.5rem;
+            margin-bottom: 4px;
+        }
+        
+        .nav-item span {
+            position: absolute;
+            top: -35px;
+            font-size: 0.8rem;
+            background-color: var(--surface);
+            padding: 5px 10px;
+            border-radius: 8px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .nav-item:hover {
+            color: var(--primary);
+        }
+        
+        .nav-item:hover span {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .nav-item.active {
+            color: var(--primary);
+        }
+        
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 5px;
+            height: 5px;
+            background-color: var(--primary);
+            border-radius: 50%;
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-bottom: 30px;
+            padding: 10px 20px;
+            background-color: var(--surface);
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background-color: var(--primary-variant);
+            color: white;
+        }
+        
+        .back-button i {
+            margin-right: 8px;
+        }
+        
+        /* Music Player Styles */
+        .playlist-section {
+            margin: 40px 0;
+            padding: 20px;
+            background-color: var(--surface);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        .playlist-nav {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .playlist-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .playlist-tab.active {
+            color: var(--primary);
+        }
+        
+        .playlist-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 3px 3px 0 0;
+        }
+        
+        .playlist-content {
+            display: none;
+        }
+        
+        .playlist-content.active {
+            display: block;
+        }
+        
+        .song-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .song-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .song-number {
+            width: 30px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        
+        .song-info {
+            flex: 1;
+            margin: 0 15px;
+        }
+        
+        .song-title {
+            color: var(--text);
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .song-artist {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .song-duration {
+            color: var(--text-secondary);
+        }
+        
+        .music-player {
+            background-color: var(--surface);
+            padding: 20px;
+            border-radius: 16px;
+            margin-top: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        .music-player-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .music-player-cover {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin-right: 20px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .music-player-details {
+            flex: 1;
+        }
+        
+        .music-player-title {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 5px;
+        }
+        
+        .music-player-artist {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .music-player-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .control-button {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .control-button:hover {
+            color: var(--primary);
+        }
+        
+        .play-pause-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .play-pause-button:hover {
+            transform: scale(1.1);
+            background-color: var(--primary-variant);
+        }
+        
+        .progress-container {
+            height: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 3px;
+            width: 0%;
+        }
+        
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 80px;
+            padding: 40px 0;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-variant);
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .social-btn:hover {
+            transform: scale(1.1);
+            background-color: var(--primary);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .bottom-nav {
+                width: 95%;
+                height: 60px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .header-description {
+                font-size: 0.9rem;
+                padding: 0 15px;
+            }
+            
+            .nav-items {
+                max-width: 100%;
+            }
+            
+            .nav-item i {
+                font-size: 1.3rem;
+            }
+            
+            .playlist-tab {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+        }
