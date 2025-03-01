@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
+    <link rel="icon" href="Logo.svg" type="image/svg+xml">
     <style>
         :root {
             /* Dark theme (default) */
             --primary: #4f9bff;
             --primary-variant: #275ea3;
             --secondary: #00c4da;
-            --background: #121212; /* Changed to pitch black as requested */
+            --background: #121212;
             --surface: #111827;
             --text: #ffffff;
             --text-secondary: #a1b2d8;
@@ -36,6 +37,7 @@
             padding: 0;
             box-sizing: border-box;
             transition: background-color 0.3s ease, color 0.3s ease;
+            scroll-behavior: smooth;
         }
         
         body {
@@ -44,7 +46,7 @@
             background-color: var(--background);
             color: var(--text);
             min-height: 100vh;
-            padding-bottom: 90px; /* Increased padding for the navigation bar */
+            padding-bottom: 90px;
         }
         
         .container {
@@ -112,7 +114,6 @@
             font-weight: bold;
             color: #ffffff;
             font-size: 1.8rem;
-            box-shadow: 0 0 30px rgba(79, 155, 255, 0.5);
         }
         
         h1 {
@@ -230,13 +231,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, rgba(79, 155, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            background: radial-gradient(circle at center, rgba(79, 155, 255, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
             z-index: -1;
         }
         
         .ramadan-logo {
-            width: 150px;
-            height: 150px;
+            width: 200px; /* Enlarged as requested */
+            height: 200px; /* Enlarged as requested */
             margin: 0 auto 20px;
             position: relative;
             background: url('Ramadan Vibes.svg') center/cover no-repeat;
@@ -286,20 +287,6 @@
             margin-bottom: 20px;
         }
         
-        .playlist-container {
-            margin: 40px 0;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            transform: translateY(0);
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
-        }
-        
-        .playlist-container:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 40px rgba(79, 155, 255, 0.3);
-        }
-        
         .section-title {
             font-size: 2.2rem;
             margin-bottom: 25px;
@@ -317,6 +304,11 @@
             height: 4px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             border-radius: 2px;
+        }
+        
+        #about, #contact, #social {
+            padding-top: 100px;
+            margin-top: -40px;
         }
         
         footer {
@@ -353,6 +345,211 @@
             background-color: var(--primary);
         }
         
+        /* Playlist page styles */
+        .playlist-page {
+            display: none;
+        }
+        
+        .playlist-page.active {
+            display: block;
+        }
+        
+        .main-page.inactive {
+            display: none;
+        }
+        
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-bottom: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background-color: var(--primary-variant);
+        }
+        
+        .playlist-wrapper {
+            margin-top: 40px;
+        }
+        
+        .playlist-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .playlist-tab {
+            padding: 12px 20px;
+            cursor: pointer;
+            background-color: transparent;
+            color: var(--text-secondary);
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .playlist-tab.active {
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .playlist-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .playlist-content {
+            display: none;
+        }
+        
+        .playlist-content.active {
+            display: block;
+        }
+        
+        .audio-player {
+            width: 100%;
+            padding: 20px;
+            background-color: var(--surface);
+            border-radius: 16px;
+            margin-bottom: 30px;
+        }
+        
+        .song-list {
+            list-style: none;
+        }
+        
+        .song-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            margin-bottom: 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .song-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .song-item.playing {
+            background-color: rgba(79, 155, 255, 0.15);
+            border-left: 3px solid var(--primary);
+        }
+        
+        .song-number {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            width: 40px;
+        }
+        
+        .song-info {
+            flex: 1;
+            padding-left: 15px;
+        }
+        
+        .song-title {
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 5px;
+        }
+        
+        .song-artist {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .song-duration {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .player-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+        
+        .control-button {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .control-button:hover {
+            color: var(--primary);
+        }
+        
+        .play-button {
+            background-color: var(--primary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+        
+        .play-button:hover {
+            background-color: var(--primary-variant);
+            color: white;
+        }
+        
+        .progress-container {
+            flex: 1;
+            margin: 0 15px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 2px;
+            width: 0%;
+        }
+        
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             h1 {
@@ -364,8 +561,8 @@
             }
             
             .ramadan-logo {
-                width: 120px;
-                height: 120px;
+                width: 150px;
+                height: 150px;
             }
             
             .bottom-nav {
@@ -385,8 +582,8 @@
             }
             
             .ramadan-logo {
-                width: 100px;
-                height: 100px;
+                width: 120px;
+                height: 120px;
             }
             
             .ramadan-text {
@@ -400,6 +597,11 @@
             .nav-item i {
                 font-size: 1.3rem;
             }
+            
+            .playlist-tab {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -409,100 +611,173 @@
         <i class="fas fa-moon dark-icon"></i>
     </button>
 
-    <div class="container">
-        <header class="animate__animated animate__fadeIn">
-            <div class="logo animate__animated animate__zoomIn"></div>
-            <h1 class="animate__animated animate__zoomIn">Mallu Muslim Club</h1>
-            <p class="header-description animate__animated animate__fadeIn" style="animation-delay: 0.2s">
-                A vibrant community dedicated to celebrating the rich cultural heritage of Kerala Muslims, bringing together people who share an appreciation for Malayalam culture and Islamic traditions.
-            </p>
-        </header>
+    <!-- Main Page -->
+    <div class="main-page">
+        <div class="container">
+            <header id="home" class="animate__animated animate__fadeIn">
+                <div class="logo animate__animated animate__zoomIn"></div>
+                <h1 class="animate__animated animate__zoomIn">Mallu Muslim Club</h1>
+                <p class="header-description animate__animated animate__fadeIn" style="animation-delay: 0.2s">
+                    A vibrant community dedicated to celebrating the rich cultural heritage of Kerala Muslims, bringing together people who share an appreciation for Malayalam culture and Islamic traditions.
+                </p>
+            </header>
 
-        <div class="ramadan-campaign animate__animated animate__fadeInUp" style="animation-delay: 0.3s">
-            <div class="ramadan-logo"></div>
-            <div class="ramadan-text">Ramadan Vibes</div>
-            <p>Join us in celebrating the holy month with special events and gatherings</p>
-            
-            <div class="ramadan-list animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
-                <ol>
-                    <li>എല്ലാ ദിവസവും റസൂൽ ﷺ യുടെ ഒരു ഹദീസ് നമ്മുടെ സ്റ്റോറികളിലും മറ്റും നിറയുന്നു. റമളാൻ 30 ദിവസം കൊണ്ട് 30 ഹദീസുകൾ പഠിക്കുന്നു.</li>
-                    <li>എല്ലാ ദിവസവും സ്റ്റോറിയിൽ ഒരു ചോദ്യം വരും. അതിന് ഉത്തരങ്ങൾ അയക്കുക. ഓരോ ദിവസവും 100 രൂപ സമ്മാനം.</li>
-                    <li>ഏറ്റവും കൂടുതൽ ഖുർആൻ ഖത്തം തീർക്കുന്ന ആൾക്ക് MalluMuslimClub ന്റെ വക ഇഷ്ട്ടമുള്ള പെരുന്നാൾ ഡ്രസ്സ്‌.</li>
-                    <li>എല്ലാ ദിവസവും ഫ്രീ ആയി MalluMuslimClub വാട്സ്ആപ്പ് ഗ്രൂപ്പിൽ ഇസ്ലാമിക വിഷയങ്ങൾ ഉൾകൊള്ളുന്ന ക്ലാസുകൾ.</li>
-                    <li>ഒരു ദിവസം MalluMuslimClub പുരുഷ മെമ്പേഴ്സിന് ഒരുമിച്ചു കൂടി ദീൻ പറയാനും നോമ്പ് തുറക്കാനും ഉള്ള അവസരം.</li>
-                    <li>ചെറിയ സൂറത്ത് തഫ്സീർ പഠിക്കാനും അതിന്റെ ആശയങ്ങൾ ഉൾകൊള്ളാനുമുള്ള സ്പെഷ്യൽ ക്ലാസുകൾ.</li>
-                    <li>റമളാൻ റീലുകളിൽ MalluMuslimClub ഫോള്ളോവേർസിന് Content Create ചെയ്യാനുള്ള അവസരം.</li>
-                    <li>റമളാൻ ഹറാമുകളിൽ നിന്ന് ഒഴിവാകാൻ ഹലാൽ Playlist ഉൾകൊള്ളിക്കുന്ന ഒരു Website.</li>
-                </ol>
+            <div class="ramadan-campaign animate__animated animate__fadeInUp" style="animation-delay: 0.3s">
+                <div class="ramadan-logo"></div>
+                <div class="ramadan-text">Ramadan Vibes</div>
+                <p>Join us in celebrating the holy month with special events and gatherings</p>
+                
+                <div class="ramadan-list animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
+                    <ol>
+                        <li>എല്ലാ ദിവസവും റസൂൽ ﷺ യുടെ ഒരു ഹദീസ് നമ്മുടെ സ്റ്റോറികളിലും മറ്റും നിറയുന്നു. റമളാൻ 30 ദിവസം കൊണ്ട് 30 ഹദീസുകൾ പഠിക്കുന്നു.</li>
+                        <li>എല്ലാ ദിവസവും സ്റ്റോറിയിൽ ഒരു ചോദ്യം വരും. അതിന് ഉത്തരങ്ങൾ അയക്കുക. ഓരോ ദിവസവും 100 രൂപ സമ്മാനം.</li>
+                        <li>ഏറ്റവും കൂടുതൽ ഖുർആൻ ഖത്തം തീർക്കുന്ന ആൾക്ക് MalluMuslimClub ന്റെ വക ഇഷ്ട്ടമുള്ള പെരുന്നാൾ ഡ്രസ്സ്‌.</li>
+                        <li>എല്ലാ ദിവസവും ഫ്രീ ആയി MalluMuslimClub വാട്സ്ആപ്പ് ഗ്രൂപ്പിൽ ഇസ്ലാമിക വിഷയങ്ങൾ ഉൾകൊള്ളുന്ന ക്ലാസുകൾ.</li>
+                        <li>ഒരു ദിവസം MalluMuslimClub പുരുഷ മെമ്പേഴ്സിന് ഒരുമിച്ചു കൂടി ദീൻ പറയാനും നോമ്പ് തുറക്കാനും ഉള്ള അവസരം.</li>
+                        <li>ചെറിയ സൂറത്ത് തഫ്സീർ പഠിക്കാനും അതിന്റെ ആശയങ്ങൾ ഉൾകൊള്ളാനുമുള്ള സ്പെഷ്യൽ ക്ലാസുകൾ.</li>
+                        <li>റമളാൻ റീലുകളിൽ MalluMuslimClub ഫോള്ളോവേർസിന് Content Create ചെയ്യാനുള്ള അവസരം.</li>
+                        <li>റമളാൻ ഹറാമുകളിൽ നിന്ന് ഒഴിവാകാൻ ഹലാൽ Playlist ഉൾകൊള്ളിക്കുന്ന ഒരു Website.</li>
+                    </ol>
+                </div>
             </div>
-        </div>
 
-        <h2 class="section-title animate__animated animate__fadeInUp" style="animation-delay: 0.5s">Halal Music</h2>
-        <div class="playlist-container animate__animated animate__fadeInUp" style="animation-delay: 0.6s">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3djwovOekK3L5bVLwkR4V7?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
+            <section id="about" class="animate__animated animate__fadeInUp" style="animation-delay: 0.5s">
+                <h2 class="section-title">About Us</h2>
+                <div class="description">
+                    <p>Mallu Muslim Club is dedicated to preserving and celebrating the unique cultural identity of Kerala Muslims. We create a space where members can connect, share experiences, and participate in events that honor our heritage.</p>
+                    <p>Our community brings together people of all ages who are interested in Malayalam language, Kerala culture, and Islamic traditions. Through our activities, we aim to foster a sense of belonging and provide resources for cultural and spiritual growth.</p>
+                </div>
+            </section>
 
-        <div class="description animate__animated animate__fadeInUp" style="animation-delay: 0.7s">
-            <p>Enjoy our curated Spotify playlist featuring a selection of popular Malayalam songs and Islamic devotional music from Kerala. These tracks showcase the melodious traditions and contemporary expressions that make our musical heritage so special.</p>
-        </div>
+            <section id="contact" class="animate__animated animate__fadeInUp" style="animation-delay: 0.6s">
+                <h2 class="section-title">Contact Us</h2>
+                <div class="description">
+                    <p>Have questions or want to join our community? Get in touch with us through any of the following channels:</p>
+                    <p>📧 Email: info@mallumuslimclub.org</p>
+                    <p>📱 Phone: +91 123 456 7890</p>
+                    <p>📍 Address: 123 Community Center, Kochi, Kerala, India</p>
+                </div>
+            </section>
 
-        <footer class="animate__animated animate__fadeInUp" style="animation-delay: 0.8s">
-            <div class="social-links">
-                <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
-            </div>
-            <p>© 2025 Mallu Muslim Club. All rights reserved.</p>
-        </footer>
+            <section id="social" class="animate__animated animate__fadeInUp" style="animation-delay: 0.7s">
+                <h2 class="section-title">Connect With Us</h2>
+                <div class="description">
+                    <p>Join our growing community on social media to stay updated on all our events, activities, and announcements. Follow us for daily content including Islamic teachings, cultural insights, and community highlights.</p>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
+                </div>
+            </section>
+
+            <footer class="animate__animated animate__fadeInUp" style="animation-delay: 0.8s">
+                <p>© 2025 Mallu Muslim Club. All rights reserved.</p>
+            </footer>
+        </div>
     </div>
 
-    <!-- Floating Bottom Navigation with curved corners -->
-    <nav class="bottom-nav">
-        <div class="nav-items">
-            <div class="nav-item active" onclick="setActive(this)">
-                <span>Home</span>
-                <i class="fas fa-home"></i>
-            </div>
-            <div class="nav-item" onclick="setActive(this)">
-                <span>Ramadan Vibes</span>
-                <i class="fas fa-moon"></i>
-            </div>
-            <div class="nav-item" onclick="setActive(this)">
-                <span>About</span>
-                <i class="fas fa-info-circle"></i>
-            </div>
-            <div class="nav-item" onclick="setActive(this)">
-                <span>Contact</span>
-                <i class="fas fa-envelope"></i>
-            </div>
-            <div class="nav-item" onclick="setActive(this)">
-                <span>Social</span>
-                <i class="fas fa-users"></i>
-            </div>
-        </div>
-    </nav>
+    <!-- Playlist Page -->
+    <div class="playlist-page">
+        <div class="container">
+            <header class="animate__animated animate__fadeIn">
+                <div class="back-button" onclick="showMainPage()">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </div>
+                <h1 class="animate__animated animate__zoomIn">Halal Playlists</h1>
+                <p class="header-description animate__animated animate__fadeIn" style="animation-delay: 0.2s">
+                    Enjoy our curated collection of halal music that uplifts your spirit during Ramadan and beyond.
+                </p>
+            </header>
 
-    <script>
-        function toggleTheme() {
-            const html = document.documentElement;
-            if (html.getAttribute('data-theme') === 'dark') {
-                html.setAttribute('data-theme', 'light');
-            } else {
-                html.setAttribute('data-theme', 'dark');
-            }
-        }
-        
-        function setActive(element) {
-            // Remove active class from all nav items
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            // Add active class to clicked item
-            element.classList.add('active');
-        }
-    </script>
-</body>
-</html>
+            <div class="playlist-wrapper">
+                <div class="playlist-tabs">
+                    <button class="playlist-tab active" onclick="showPlaylist(0)">Nasheeds</button>
+                    <button class="playlist-tab" onclick="showPlaylist(1)">Malayalam Islamic</button>
+                    <button class="playlist-tab" onclick="showPlaylist(2)">Ramadan Special</button>
+                </div>
+
+                <!-- Nasheed Playlist -->
+                <div class="playlist-content active">
+                    <div class="audio-player">
+                        <audio id="nasheed-player"></audio>
+                        <ul class="song-list" id="nasheed-list">
+                            <li class="song-item" data-src="nasheed1.mp3" onclick="playSong(this, 'nasheed-player')">
+                                <div class="song-number">01</div>
+                                <div class="song-info">
+                                    <div class="song-title">Tala'al Badru Alayna</div>
+                                    <div class="song-artist">Various Artists</div>
+                                </div>
+                                <div class="song-duration">4:25</div>
+                            </li>
+                            <li class="song-item" data-src="nasheed2.mp3" onclick="playSong(this, 'nasheed-player')">
+                                <div class="song-number">02</div>
+                                <div class="song-info">
+                                    <div class="song-title">Hasbi Rabbi</div>
+                                    <div class="song-artist">Sami Yusuf</div>
+                                </div>
+                                <div class="song-duration">3:51</div>
+                            </li>
+                            <li class="song-item" data-src="nasheed3.mp3" onclick="playSong(this, 'nasheed-player')">
+                                <div class="song-number">03</div>
+                                <div class="song-info">
+                                    <div class="song-title">Mawlaya</div>
+                                    <div class="song-artist">Maher Zain</div>
+                                </div>
+                                <div class="song-duration">4:08</div>
+                            </li>
+                            <li class="song-item" data-src="nasheed4.mp3" onclick="playSong(this, 'nasheed-player')">
+                                <div class="song-number">04</div>
+                                <div class="song-info">
+                                    <div class="song-title">Ya Nabi Salam Alayka</div>
+                                    <div class="song-artist">Islamic Devotional</div>
+                                </div>
+                                <div class="song-duration">5:12</div>
+                            </li>
+                        </ul>
+                        <div class="player-controls">
+                            <button class="control-button" onclick="previousSong('nasheed-player')">
+                                <i class="fas fa-step-backward"></i>
+                            </button>
+                            <button class="control-button play-button" onclick="togglePlayPause('nasheed-player')">
+                                <i class="fas fa-play" id="nasheed-play-icon"></i>
+                            </button>
+                            <button class="control-button" onclick="nextSong('nasheed-player')">
+                                <i class="fas fa-step-forward"></i>
+                            </button>
+                            <div class="progress-container">
+                                <div class="progress-bar" id="nasheed-progress" onclick="seek(event, 'nasheed-player')">
+                                    <div class="progress" id="nasheed-progress-bar"></div>
+                                </div>
+                                <div class="time-display">
+                                    <span id="nasheed-current-time">0:00</span>
+                                    <span id="nasheed-duration">0:00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Malayalam Islamic Playlist -->
+                <div class="playlist-content">
+                    <div class="audio-player">
+                        <audio id="malayalam-player"></audio>
+                        <ul class="song-list" id="malayalam-list">
+                            <li class="song-item" data-src="malayalam1.mp3" onclick="playSong(this, 'malayalam-player')">
+                                <div class="song-number">01</div>
+                                <div class="song-info">
+                                    <div class="song-title">Mappilapattu Collection</div>
+                                    <div class="song-artist">Various Artists</div>
+                                </div>
+                                <div class="song-duration">5:32</div>
+                            </li>
+                            <li class="song-item" data-src="malayalam2.mp3" onclick="playSong(this, 'malayalam-player')">
+                                <div class="song-number">02</div>
+                                <div class="song-info">
+                                    <div class="song-title">Madeena Thujje Salaam</div>
+                                    <div class="song-artist">Kannur Shareef</div>
+                                </div>
+                                <div class="song-duration">4:45</div>
+                            </li>
+                            <li class="song-item" data-src="malay
