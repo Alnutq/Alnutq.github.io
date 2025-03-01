@@ -339,6 +339,10 @@
             background-color: rgba(255, 255, 255, 0.1);
         }
         
+        .song-item.playing {
+            background-color: rgba(79, 155, 255, 0.2);
+        }
+        
         .song-number {
             width: 30px;
             text-align: center;
@@ -388,6 +392,11 @@
             margin-right: 20px;
             background-size: cover;
             background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--text-secondary);
         }
         
         .music-player-details {
@@ -601,146 +610,110 @@
             </div>
             
             <!-- Arabic Nasheeds Playlist -->
-            <div class="playlist-content active" id="islamic-nasheeds">
-                <div class="song-item" onclick="playSong('nasheed1', 'Beautiful Nasheed', 'Various Artists', '04:25')">
+            <div class="playlist-content active" id="arabic-nasheeds">
+                <div class="song-item" onclick="playSong('playlists/arabic nasheeds/1.mp3', 'Arabic Nasheed 1', 'Various Artists')">
                     <div class="song-number">1</div>
                     <div class="song-info">
-                        <div class="song-title">Beautiful Nasheed</div>
+                        <div class="song-title">Arabic Nasheed 1</div>
                         <div class="song-artist">Various Artists</div>
                     </div>
-                    <div class="song-duration">04:25</div>
+                    <div class="song-duration" id="duration-an-1">--:--</div>
                 </div>
                 
-                <div class="song-item" onclick="playSong('nasheed2', 'Tala Al Badru', 'Maher Zain', '03:48')">
+                <div class="song-item" onclick="playSong('playlists/arabic nasheeds/2.mp3', 'Arabic Nasheed 2', 'Various Artists')">
                     <div class="song-number">2</div>
                     <div class="song-info">
-                        <div class="song-title">Tala Al Badru</div>
-                        <div class="song-artist">Maher Zain</div>
+                        <div class="song-title">Arabic Nasheed 2</div>
+                        <div class="song-artist">Various Artists</div>
                     </div>
-                    <div class="song-duration">03:48</div>
+                    <div class="song-duration" id="duration-an-2">--:--</div>
                 </div>
                 
-                <div class="song-item" onclick="playSong('nasheed3', 'Hasbi Rabbi', 'Sami Yusuf', '05:12')">
+                <div class="song-item" onclick="playSong('playlists/arabic nasheeds/3.mp3', 'Arabic Nasheed 3', 'Various Artists')">
                     <div class="song-number">3</div>
                     <div class="song-info">
-                        <div class="song-title">Hasbi Rabbi</div>
-                        <div class="song-artist">Sami Yusuf</div>
+                        <div class="song-title">Arabic Nasheed 3</div>
+                        <div class="song-artist">Various Artists</div>
                     </div>
-                    <div class="song-duration">05:12</div>
+                    <div class="song-duration" id="duration-an-3">--:--</div>
                 </div>
                 
-                <div class="song-item" onclick="playSong('nasheed4', 'Assalamu Alayka', 'Maher Zain', '04:15')">
+                <div class="song-item" onclick="playSong('playlists/arabic nasheeds/4.mp3', 'Arabic Nasheed 4', 'Various Artists')">
                     <div class="song-number">4</div>
                     <div class="song-info">
-                        <div class="song-title">Assalamu Alayka</div>
-                        <div class="song-artist">Maher Zain</div>
+                        <div class="song-title">Arabic Nasheed 4</div>
+                        <div class="song-artist">Various Artists</div>
                     </div>
-                    <div class="song-duration">04:15</div>
+                    <div class="song-duration" id="duration-an-4">--:--</div>
                 </div>
                 
-                <div class="song-item" onclick="playSong('nasheed5', 'Ya Nabi Salam Alayka', 'Mishary Rashid', '03:55')">
+                <div class="song-item" onclick="playSong('playlists/arabic nasheeds/5.mp3', 'Arabic Nasheed 5', 'Various Artists')">
                     <div class="song-number">5</div>
                     <div class="song-info">
-                        <div class="song-title">Ya Nabi Salam Alayka</div>
-                        <div class="song-artist">Mishary Rashid</div>
+                        <div class="song-title">Arabic Nasheed 5</div>
+                        <div class="song-artist">Various Artists</div>
                     </div>
-                    <div class="song-duration">03:55</div>
+                    <div class="song-duration" id="duration-an-5">--:--</div>
+                </div>
+                
+                <div class="song-item" onclick="playSong('playlists/arabic nasheeds/6.mp3', 'Arabic Nasheed 6', 'Various Artists')">
+                    <div class="song-number">6</div>
+                    <div class="song-info">
+                        <div class="song-title">Arabic Nasheed 6</div>
+                        <div class="song-artist">Various Artists</div>
+                    </div>
+                    <div class="song-duration" id="duration-an-6">--:--</div>
+                </div>
+                
+                <div class="song-item" onclick="playSong('playlists/arabic nasheeds/7.mp3', 'Arabic Nasheed 7', 'Various Artists')">
+                    <div class="song-number">7</div>
+                    <div class="song-info">
+                        <div class="song-title">Arabic Nasheed 7</div>
+                        <div class="song-artist">Various Artists</div>
+                    </div>
+                    <div class="song-duration" id="duration-an-7">--:--</div>
                 </div>
             </div>
             
             <!-- Malayalam Songs Playlist -->
             <div class="playlist-content" id="malayalam-songs">
-                <div class="song-item" onclick="playSong('malayalam1', 'Kunjimaani Ponnumani', 'P.A. Azeez', '04:30')">
+                <div class="song-item" onclick="playSong('playlists/malayalam songs/1.mp3', 'Malayalam Song 1', 'Malayalam Artist')">
                     <div class="song-number">1</div>
                     <div class="song-info">
-                        <div class="song-title">Kunjimaani Ponnumani</div>
-                        <div class="song-artist">P.A. Azeez</div>
+                        <div class="song-title">Malayalam Song 1</div>
+                        <div class="song-artist">Malayalam Artist</div>
                     </div>
-                    <div class="song-duration">04:30</div>
+                    <div class="song-duration" id="duration-ms-1">--:--</div>
                 </div>
                 
-                <div class="song-item" onclick="playSong('malayalam2', 'Mappila Pattu Medley', 'Various Artists', '06:15')">
+                <div class="song-item" onclick="playSong('playlists/malayalam songs/2.mp3', 'Malayalam Song 2', 'Malayalam Artist')">
                     <div class="song-number">2</div>
                     <div class="song-info">
-                        <div class="song-title">Mappila Pattu Medley</div>
-                        <div class="song-artist">Various Artists</div>
+                        <div class="song-title">Malayalam Song 2</div>
+                        <div class="song-artist">Malayalam Artist</div>
                     </div>
-                    <div class="song-duration">06:15</div>
-                </div>
-                
-                <div class="song-item" onclick="playSong('malayalam3', 'Malabar Cafe', 'Shahbaz Aman', '03:45')">
-                    <div class="song-number">3</div>
-                    <div class="song-info">
-                        <div class="song-title">Malabar Cafe</div>
-                        <div class="song-artist">Shahbaz Aman</div>
-                    </div>
-                    <div class="song-duration">03:45</div>
-                </div>
-                
-                <div class="song-item" onclick="playSong('malayalam4', 'Muhabbath Chollanu', 'Kannur Shareef', '05:20')">
-                    <div class="song-number">4</div>
-                    <div class="song-info">
-                        <div class="song-title">Muhabbath Chollanu</div>
-                        <div class="song-artist">Kannur Shareef</div>
-                    </div>
-                    <div class="song-duration">05:20</div>
-                </div>
-                
-                <div class="song-item" onclick="playSong('malayalam5', 'Kolkali Pattukal', 'Various Artists', '04:10')">
-                    <div class="song-number">5</div>
-                    <div class="song-info">
-                        <div class="song-title">Kolkali Pattukal</div>
-                        <div class="song-artist">Various Artists</div>
-                    </div>
-                    <div class="song-duration">04:10</div>
+                    <div class="song-duration" id="duration-ms-2">--:--</div>
                 </div>
             </div>
             
-            <!-- gym nasheeds Playlist -->
-            <div class="playlist-content" id="ramadan-special">
-                <div class="song-item" onclick="playSong('ramadan1', 'Ramadan Mubarak', 'Various Artists', '03:45')">
+            <!-- Gym Nasheeds Playlist -->
+            <div class="playlist-content" id="gym-nasheeds">
+                <div class="song-item" onclick="playSong('playlists/gym nasheeds/1.mp3', 'Gym Nasheed 1', 'Workout Nasheed')">
                     <div class="song-number">1</div>
                     <div class="song-info">
-                        <div class="song-title">Ramadan Mubarak</div>
-                        <div class="song-artist">Various Artists</div>
+                        <div class="song-title">Gym Nasheed 1</div>
+                        <div class="song-artist">Workout Nasheed</div>
                     </div>
-                    <div class="song-duration">03:45</div>
+                    <div class="song-duration" id="duration-gn-1">--:--</div>
                 </div>
                 
-                <div class="song-item" onclick="playSong('ramadan2', 'Ramadan Kareem', 'Maher Zain', '04:20')">
+                <div class="song-item" onclick="playSong('playlists/gym nasheeds/2.mp3', 'Gym Nasheed 2', 'Workout Nasheed')">
                     <div class="song-number">2</div>
                     <div class="song-info">
-                        <div class="song-title">Ramadan Kareem</div>
-                        <div class="song-artist">Maher Zain</div>
+                        <div class="song-title">Gym Nasheed 2</div>
+                        <div class="song-artist">Workout Nasheed</div>
                     </div>
-                    <div class="song-duration">04:20</div>
-                </div>
-                
-                <div class="song-item" onclick="playSong('ramadan3', 'Ramadan Greeting', 'Sami Yusuf', '03:55')">
-                    <div class="song-number">3</div>
-                    <div class="song-info">
-                        <div class="song-title">Ramadan Greeting</div>
-                        <div class="song-artist">Sami Yusuf</div>
-                    </div>
-                    <div class="song-duration">03:55</div>
-                </div>
-                
-                <div class="song-item" onclick="playSong('ramadan4', 'Holy Month', 'Harris J', '04:05')">
-                    <div class="song-number">4</div>
-                    <div class="song-info">
-                        <div class="song-title">Holy Month</div>
-                        <div class="song-artist">Harris J</div>
-                    </div>
-                    <div class="song-duration">04:05</div>
-                </div>
-                
-                <div class="song-item" onclick="playSong('ramadan5', 'Fasting and Prayer', 'Zain Bhikha', '03:50')">
-                    <div class="song-number">5</div>
-                    <div class="song-info">
-                        <div class="song-title">Fasting and Prayer</div>
-                        <div class="song-artist">Zain Bhikha</div>
-                    </div>
-                    <div class="song-duration">03:50</div>
+                    <div class="song-duration" id="duration-gn-2">--:--</div>
                 </div>
             </div>
         </div>
@@ -748,7 +721,9 @@
         <!-- Music Player -->
         <div class="music-player">
             <div class="music-player-info">
-                <div class="music-player-cover" id="song-cover" style="background-image: url('/api/placeholder/400/320');"></div>
+                <div class="music-player-cover" id="song-cover">
+                    <i class="fas fa-music"></i>
+                </div>
                 <div class="music-player-details">
                     <div class="music-player-title" id="song-title">Select a song to play</div>
                     <div class="music-player-artist" id="song-artist"></div>
@@ -756,11 +731,11 @@
             </div>
             
             <div class="music-player-controls">
-                <button class="control-button"><i class="fas fa-step-backward"></i></button>
+                <button class="control-button" onclick="playPrevious()"><i class="fas fa-step-backward"></i></button>
                 <div class="play-pause-button" id="play-pause-btn" onclick="togglePlayPause()">
                     <i class="fas fa-play" id="play-icon"></i>
                 </div>
-                <button class="control-button"><i class="fas fa-step-forward"></i></button>
+                <button class="control-button" onclick="playNext()"><i class="fas fa-step-forward"></i></button>
             </div>
             
             <div class="progress-container" id="progress-container">
@@ -881,6 +856,29 @@
             }
         }
         
+        // Playlist management
+        let currentPlaylist = 'arabic-nasheeds';
+        let currentSongIndex = -1;
+        let playlists = {
+            'arabic-nasheeds': [
+                { path: 'playlists/arabic nasheeds/1.mp3', title: 'Arabic Nasheed 1', artist: 'Various Artists' },
+                { path: 'playlists/arabic nasheeds/2.mp3', title: 'Arabic Nasheed 2', artist: 'Various Artists' },
+                { path: 'playlists/arabic nasheeds/3.mp3', title: 'Arabic Nasheed 3', artist: 'Various Artists' },
+                { path: 'playlists/arabic nasheeds/4.mp3', title: 'Arabic Nasheed 4', artist: 'Various Artists' },
+                { path: 'playlists/arabic nasheeds/5.mp3', title: 'Arabic Nasheed 5', artist: 'Various Artists' },
+                { path: 'playlists/arabic nasheeds/6.mp3', title: 'Arabic Nasheed 6', artist: 'Various Artists' },
+                { path: 'playlists/arabic nasheeds/7.mp3', title: 'Arabic Nasheed 7', artist: 'Various Artists' }
+            ],
+            'malayalam-songs': [
+                { path: 'playlists/malayalam songs/1.mp3', title: 'Malayalam Song 1', artist: 'Malayalam Artist' },
+                { path: 'playlists/malayalam songs/2.mp3', title: 'Malayalam Song 2', artist: 'Malayalam Artist' }
+            ],
+            'gym-nasheeds': [
+                { path: 'playlists/gym nasheeds/1.mp3', title: 'Gym Nasheed 1', artist: 'Workout Nasheed' },
+                { path: 'playlists/gym nasheeds/2.mp3', title: 'Gym Nasheed 2', artist: 'Workout Nasheed' }
+            ]
+        };
+        
         function switchPlaylist(element, playlistId) {
             // Update active tab
             const tabs = document.querySelectorAll('.playlist-tab');
@@ -890,11 +888,22 @@
             element.classList.add('active');
             
             // Show selected playlist
-            const playlists = document.querySelectorAll('.playlist-content');
-            playlists.forEach(playlist => {
+            const playlistContents = document.querySelectorAll('.playlist-content');
+            playlistContents.forEach(playlist => {
                 playlist.classList.remove('active');
             });
             document.getElementById(playlistId).classList.add('active');
+            
+            // Update current playlist
+            currentPlaylist = playlistId;
+            
+            // Reset current song if playlist changes
+            if (audioPlayer.src && audioPlayer.src.includes(currentPlaylist)) {
+                // Keep playing if in same playlist
+            } else {
+                resetPlayer();
+                currentSongIndex = -1;
+            }
         }
         
         // Music player functionality
@@ -907,97 +916,229 @@
         const durationEl = document.getElementById('duration');
         const progressContainer = document.getElementById('progress-container');
         
-        function playSong(songId, title, artist, duration) {
-            // In a real implementation, you would load the actual mp3 file
-            // For this demo, we'll just update the UI
+        // Initialize audio player
+        function initAudioPlayer() {
+            // Load song durations
+            loadSongDurations();
+            
+            // Set up audio player events
+            audioPlayer.addEventListener('timeupdate', updateProgress);
+            audioPlayer.addEventListener('ended', songEnded);
+            audioPlayer.addEventListener('canplay', updateDuration);
+            
+            // Enable progress bar seeking
+            progressContainer.addEventListener('click', seek);
+        }
+        
+        // Load song durations (this loads metadata without playing the songs)
+        function loadSongDurations() {
+            for (const playlistId in playlists) {
+                playlists[playlistId].forEach((song, index) => {
+                    const audio = new Audio();
+                    audio.src = song.path;
+                    const durationId = `duration-${playlistId.replace('-', '-')}-${index+1}`;
+                    
+                    audio.addEventListener('loadedmetadata', function() {
+                        const minutes = Math.floor(audio.duration / 60);
+                        const seconds = Math.floor(audio.duration % 60);
+                        const durationElement = document.getElementById(durationId);
+                        if (durationElement) {
+                            durationElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                        }
+                    });
+                    
+                    // Just load metadata, don't play
+                    audio.preload = 'metadata';
+                });
+            }
+        }
+        
+        // Play a song by path, title, and artist
+        function playSong(path, title, artist) {
+            // Find which playlist and index the song is in
+            for (const playlistId in playlists) {
+                const songIndex = playlists[playlistId].findIndex(song => song.path === path);
+                if (songIndex !== -1) {
+                    currentPlaylist = playlistId;
+                    currentSongIndex = songIndex;
+                    
+                    // Switch to the correct playlist tab if not already active
+                    const activeContent = document.querySelector('.playlist-content.active');
+                    if (activeContent.id !== currentPlaylist) {
+                        const playlistTab = document.querySelector(`.playlist-tab[onclick*="${currentPlaylist}"]`);
+                        switchPlaylist(playlistTab, currentPlaylist);
+                    }
+                    break;
+                }
+            }
+            
+            // Highlight the current song
+            highlightCurrentSong();
+            
+            // Set up the audio player
+            audioPlayer.src = path;
             document.getElementById('song-title').textContent = title;
             document.getElementById('song-artist').textContent = artist;
-            durationEl.textContent = duration;
             
-            // Simulate playing a song
+            // Start playing
+            audioPlayer.play();
             isPlaying = true;
             playIcon.classList.remove('fa-play');
             playIcon.classList.add('fa-pause');
             
-            // Reset progress bar
-            progressBar.style.width = '0%';
-            currentTimeEl.textContent = '00:00';
-            
-            // Simulate progress (for demo purposes)
-            simulateProgress();
+            // Update cover icon based on playlist
+            updateCoverIcon();
         }
         
-        function togglePlayPause() {
-            if (isPlaying) {
-                // Pause
-                isPlaying = false;
-                playIcon.classList.remove('fa-pause');
-                playIcon.classList.add('fa-play');
-            } else {
-                // Play
-                isPlaying = true;
-                playIcon.classList.remove('fa-play');
-                playIcon.classList.add('fa-pause');
-                
-                // Continue progress simulation if paused
-                simulateProgress();
+        // Update the cover icon based on current playlist
+        function updateCoverIcon() {
+            const coverElement = document.getElementById('song-cover');
+            
+            if (currentPlaylist === 'arabic-nasheeds') {
+                coverElement.innerHTML = '<i class="fas fa-mosque"></i>';
+            } else if (currentPlaylist === 'malayalam-songs') {
+                coverElement.innerHTML = '<i class="fas fa-music"></i>';
+            } else if (currentPlaylist === 'gym-nasheeds') {
+                coverElement.innerHTML = '<i class="fas fa-dumbbell"></i>';
             }
         }
         
-        let progressInterval;
-        function simulateProgress() {
-            // Clear any existing interval
-            clearInterval(progressInterval);
+        // Toggle play/pause
+        function togglePlayPause() {
+            if (currentSongIndex === -1 && playlists[currentPlaylist].length > 0) {
+                // If no song is selected, play the first one
+                const firstSong = playlists[currentPlaylist][0];
+                playSong(firstSong.path, firstSong.title, firstSong.artist);
+                return;
+            }
             
-            if (!isPlaying) return;
+            if (isPlaying) {
+                audioPlayer.pause();
+                playIcon.classList.remove('fa-pause');
+                playIcon.classList.add('fa-play');
+            } else {
+                audioPlayer.play();
+                playIcon.classList.remove('fa-play');
+                playIcon.classList.add('fa-pause');
+            }
             
-            // For demo purposes, simulate song playing with progress updates
-            let progress = parseFloat(progressBar.style.width) || 0;
-            
-            progressInterval = setInterval(() => {
-                if (!isPlaying) {
-                    clearInterval(progressInterval);
-                    return;
-                }
-                
-                progress += 0.5;
-                if (progress >= 100) {
-                    progress = 0;
-                    isPlaying = false;
-                    playIcon.classList.remove('fa-pause');
-                    playIcon.classList.add('fa-play');
-                    clearInterval(progressInterval);
-                }
-                
-                progressBar.style.width = progress + '%';
-                
-                // Update current time display (simulated)
-                const duration = durationEl.textContent;
-                const [mins, secs] = duration.split(':').map(Number);
-                const totalSeconds = mins * 60 + secs;
-                const currentSeconds = Math.floor((progress / 100) * totalSeconds);
-                const currentMins = Math.floor(currentSeconds / 60);
-                const currentSecs = currentSeconds % 60;
-                currentTimeEl.textContent = `${String(currentMins).padStart(2, '0')}:${String(currentSecs).padStart(2, '0')}`;
-            }, 500);
+            isPlaying = !isPlaying;
         }
         
-        // Allow seeking by clicking on progress bar
-        progressContainer.addEventListener('click', function(e) {
+        // Play the next song in the playlist
+        function playNext() {
+            if (currentSongIndex === -1) return;
+            
+            let nextIndex = currentSongIndex + 1;
+            if (nextIndex >= playlists[currentPlaylist].length) {
+                nextIndex = 0; // Loop back to the beginning
+            }
+            
+            const nextSong = playlists[currentPlaylist][nextIndex];
+            playSong(nextSong.path, nextSong.title, nextSong.artist);
+        }
+        
+        // Play the previous song in the playlist
+        function playPrevious() {
+            if (currentSongIndex === -1) return;
+            
+            // If at the beginning of the song, go to previous song, otherwise restart current song
+            if (audioPlayer.currentTime > 3) {
+                audioPlayer.currentTime = 0;
+                return;
+            }
+            
+            let prevIndex = currentSongIndex - 1;
+            if (prevIndex < 0) {
+                prevIndex = playlists[currentPlaylist].length - 1; // Loop to the end
+            }
+            
+            const prevSong = playlists[currentPlaylist][prevIndex];
+            playSong(prevSong.path, prevSong.title, prevSong.artist);
+        }
+        
+        // When song ends, play the next one
+        function songEnded() {
+            playNext();
+        }
+        
+        // Update the progress bar
+        function updateProgress() {
+            const duration = audioPlayer.duration;
+            const currentTime = audioPlayer.currentTime;
+            
+            if (duration) {
+                // Update progress bar
+                const progressPercent = (currentTime / duration) * 100;
+                progressBar.style.width = `${progressPercent}%`;
+                
+                // Update time display
+                const currentMinutes = Math.floor(currentTime / 60);
+                const currentSeconds = Math.floor(currentTime % 60);
+                currentTimeEl.textContent = `${String(currentMinutes).padStart(2, '0')}:${String(currentSeconds).padStart(2, '0')}`;
+            }
+        }
+        
+        // Update duration display when metadata loads
+        function updateDuration() {
+            const duration = audioPlayer.duration;
+            if (duration) {
+                const minutes = Math.floor(duration / 60);
+                const seconds = Math.floor(duration % 60);
+                durationEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            }
+        }
+        
+        // Seek to position in the song
+        function seek(e) {
+            if (!audioPlayer.duration) return;
+            
             const width = this.clientWidth;
             const clickX = e.offsetX;
-            const percent = (clickX / width) * 100;
-            progressBar.style.width = percent + '%';
+            const duration = audioPlayer.duration;
             
-            // Update time display
-            const duration = durationEl.textContent;
-            const [mins, secs] = duration.split(':').map(Number);
-            const totalSeconds = mins * 60 + secs;
-            const currentSeconds = Math.floor((percent / 100) * totalSeconds);
-            const currentMins = Math.floor(currentSeconds / 60);
-            const currentSecs = currentSeconds % 60;
-            currentTimeEl.textContent = `${String(currentMins).padStart(2, '0')}:${String(currentSecs).padStart(2, '0')}`;
-        });
+            audioPlayer.currentTime = (clickX / width) * duration;
+        }
+        
+        // Reset player display
+        function resetPlayer() {
+            audioPlayer.pause();
+            audioPlayer.src = '';
+            document.getElementById('song-title').textContent = 'Select a song to play';
+            document.getElementById('song-artist').textContent = '';
+            durationEl.textContent = '00:00';
+            currentTimeEl.textContent = '00:00';
+            progressBar.style.width = '0%';
+            playIcon.classList.remove('fa-pause');
+            playIcon.classList.add('fa-play');
+            isPlaying = false;
+            
+            // Remove highlights from all songs
+            const songItems = document.querySelectorAll('.song-item');
+            songItems.forEach(item => {
+                item.classList.remove('playing');
+            });
+        }
+        
+        // Highlight the currently playing song
+        function highlightCurrentSong() {
+            // Remove highlight from all songs
+            const songItems = document.querySelectorAll('.song-item');
+            songItems.forEach(item => {
+                item.classList.remove('playing');
+            });
+            
+            // Add highlight to current song
+            if (currentSongIndex !== -1) {
+                const playlistElement = document.getElementById(currentPlaylist);
+                if (playlistElement) {
+                    const songElements = playlistElement.querySelectorAll('.song-item');
+                    if (songElements[currentSongIndex]) {
+                        songElements[currentSongIndex].classList.add('playing');
+                    }
+                }
+            }
+        }
         
         function scrollToTop() {
             window.scrollTo({top: 0, behavior: 'smooth'});
@@ -1011,8 +1152,16 @@
             }
         }
         
-        // Load theme when page loads
-        window.addEventListener('DOMContentLoaded', loadTheme);
+        // Initialize when the page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            loadTheme();
+            initAudioPlayer();
+            
+            // Initialize the correct playlist tab
+            const defaultPlaylistTab = document.querySelector('.playlist-tab.active');
+            const defaultPlaylistId = defaultPlaylistTab.onclick.toString().match(/switchPlaylist\(this, ['"](.+)['"]\)/)[1];
+            currentPlaylist = defaultPlaylistId;
+        });
     </script>
 </body>
 </html>
