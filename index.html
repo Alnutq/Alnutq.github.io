@@ -19,6 +19,7 @@
             --text: #ffffff;
             --text-secondary: #a1b2d8;
             --accent: #00e5ff;
+            --cursor-color: rgba(79, 155, 255, 0.6);
         }
         
         [data-theme="light"] {
@@ -30,6 +31,7 @@
             --text: #111827;
             --text-secondary: #4b5563;
             --accent: #0088cc;
+            --cursor-color: rgba(0, 102, 204, 0.6);
         }
         
         * {
@@ -38,6 +40,7 @@
             box-sizing: border-box;
             transition: background-color 0.3s ease, color 0.3s ease;
             scroll-behavior: smooth;
+            cursor: none;
         }
         
         body {
@@ -47,12 +50,54 @@
             color: var(--text);
             min-height: 100vh;
             padding-bottom: 90px;
+            overflow-x: hidden;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+        }
+        
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--cursor-color);
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--cursor-color);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: 0.1s ease;
+            mix-blend-mode: difference;
+        }
+        
+        a, button, .nav-item, .social-btn {
+            cursor: none;
+        }
+        
+        a:hover ~ .cursor, 
+        button:hover ~ .cursor,
+        .nav-item:hover ~ .cursor,
+        .social-btn:hover ~ .cursor {
+            width: 50px;
+            height: 50px;
+            background-color: transparent;
+            border: 2px solid var(--cursor-color);
         }
         
         .theme-toggle {
@@ -69,7 +114,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
+            cursor: none;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             transition: transform 0.3s ease, background-color 0.3s ease;
         }
@@ -144,7 +189,7 @@
             left: 50%;
             transform: translateX(-50%);
             width: 90%;
-            max-width: 600px;
+            max-width: 500px;
             height: 65px;
             background-color: var(--surface);
             display: flex;
@@ -153,6 +198,12 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             z-index: 1000;
             border-radius: 18px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .bottom-nav.hidden {
+            transform: translate(-50%, 100px);
+            opacity: 0;
         }
         
         .nav-items {
@@ -170,7 +221,7 @@
             color: var(--text-secondary);
             text-decoration: none;
             transition: color 0.3s ease;
-            cursor: pointer;
+            cursor: none;
             padding: 10px 0;
         }
         
@@ -280,62 +331,6 @@
             padding: 60px 0;
         }
         
-        /* Contact Section */
-        #contact {
-            padding: 60px 0;
-        }
-        
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: var(--surface);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--text);
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background-color: var(--background);
-            color: var(--text);
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(79, 155, 255, 0.3);
-        }
-        
         /* Social Section */
         #social {
             padding: 60px 0;
@@ -391,6 +386,7 @@
             border-radius: 8px;
             font-weight: 500;
             transition: background-color 0.3s ease;
+            cursor: none;
         }
         
         .social-btn-card:hover {
@@ -443,11 +439,42 @@
             text-decoration: none;
             font-size: 1.2rem;
             transition: transform 0.3s ease, background-color 0.3s ease;
+            cursor: none;
         }
         
         .social-btn:hover {
             transform: scale(1.1);
             background-color: var(--primary);
+        }
+        
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            cursor: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 99;
+        }
+        
+        .scroll-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .scroll-top:hover {
+            background-color: var(--primary-variant);
         }
         
         /* Responsive adjustments */
@@ -501,9 +528,18 @@
     </style>
 </head>
 <body>
+    <!-- Custom cursor elements -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    
     <button class="theme-toggle" onclick="toggleTheme()">
         <i class="fas fa-sun light-icon"></i>
         <i class="fas fa-moon dark-icon"></i>
+    </button>
+    
+    <!-- Scroll to top button -->
+    <button class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
     </button>
 
     <div class="container">
@@ -543,29 +579,6 @@
                 <p>Founded in 2023, our club has grown rapidly, bringing together members from across the globe who share a common interest in preserving and celebrating our unique cultural identity. We organize regular events, educational programs, and social gatherings that allow our members to forge meaningful connections while exploring aspects of our heritage.</p>
                 
                 <p>Through various initiatives like our Ramadan Vibes program, we aim to foster a deeper understanding of Islamic principles while embracing the colorful tapestry of Malayalam culture that makes our community so special.</p>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="animate__animated animate__fadeInUp" style="animation-delay: 0.6s">
-            <h2 class="section-title">Contact Us</h2>
-            <div class="contact-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" placeholder="Your name">
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Your email address">
-                </div>
-                
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" placeholder="Write your message here..."></textarea>
-                </div>
-                
-                <button type="button" class="submit-btn">Send Message</button>
             </div>
         </section>
 
@@ -611,17 +624,13 @@
                 <span>Home</span>
                 <i class="fas fa-home"></i>
             </div>
-            <div class="nav-item" onclick="navigateTo('playlists.html')">
+            <div class="nav-item" onclick="navigateTo('playlist')">
                 <span>Playlist</span>
                 <i class="fas fa-music"></i>
             </div>
             <div class="nav-item" onclick="navigateTo('about')">
                 <span>About</span>
                 <i class="fas fa-info-circle"></i>
-            </div>
-            <div class="nav-item" onclick="navigateTo('contact')">
-                <span>Contact</span>
-                <i class="fas fa-envelope"></i>
             </div>
             <div class="nav-item" onclick="navigateTo('social')">
                 <span>Social</span>
@@ -631,12 +640,77 @@
     </nav>
 
     <script>
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        
+        document.addEventListener('mousemove', function(e) {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            // Add slight delay to follower for nice effect
+            setTimeout(function() {
+                cursorFollower.style.left = e.clientX + 'px';
+                cursorFollower.style.top = e.clientY + 'px';
+            }, 50);
+        });
+        
+        document.addEventListener('mousedown', function() {
+            cursor.style.transform = 'translate(-50%, -50%) scale(0.7)';
+            cursorFollower.style.transform = 'translate(-50%, -50%) scale(0.7)';
+        });
+        
+        document.addEventListener('mouseup', function() {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+        });
+        
+        // Make cursor disappear when leaving the window
+        document.addEventListener('mouseleave', function() {
+            cursor.style.opacity = '0';
+            cursorFollower.style.opacity = '0';
+        });
+        
+        document.addEventListener('mouseenter', function() {
+            cursor.style.opacity = '1';
+            cursorFollower.style.opacity = '1';
+        });
+        
+        // Hide navbar when scrolling down, show when scrolling up
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('.bottom-nav');
+        const scrollTopBtn = document.querySelector('.scroll-top');
+        
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Hide/show navbar
+            if (scrollTop > lastScrollTop && scrollTop > 200) {
+                // Scrolling down
+                navbar.classList.add('hidden');
+            } else {
+                // Scrolling up
+                navbar.classList.remove('hidden');
+            }
+            
+            // Show/hide scroll to top button
+            if (scrollTop > 500) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+        
         function toggleTheme() {
             const html = document.documentElement;
             if (html.getAttribute('data-theme') === 'dark') {
                 html.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
             } else {
                 html.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
             }
         }
         
@@ -650,26 +724,21 @@
             // Add active class based on target
             if (target === 'home') {
                 navItems[0].classList.add('active');
-                window.scrollTo(0, 0);
+                window.scrollTo({top: 0, behavior: 'smooth'});
             } else if (target === 'playlist') {
                 navItems[1].classList.add('active');
                 window.location.href = 'playlists.html';
             } else if (target === 'about') {
                 navItems[2].classList.add('active');
                 document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
-            } else if (target === 'contact') {
-                navItems[3].classList.add('active');
-                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
             } else if (target === 'social') {
-                navItems[4].classList.add('active');
+                navItems[3].classList.add('active');
                 document.getElementById('social').scrollIntoView({ behavior: 'smooth' });
             }
         }
         
-        // Store current theme in localStorage
-        function saveTheme() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            localStorage.setItem('theme', currentTheme);
+        function scrollToTop() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
         
         // Load theme from localStorage
@@ -679,9 +748,6 @@
                 document.documentElement.setAttribute('data-theme', savedTheme);
             }
         }
-        
-        // Save theme when changed
-        document.querySelector('.theme-toggle').addEventListener('click', saveTheme);
         
         // Load theme when page loads
         window.addEventListener('DOMContentLoaded', loadTheme);
