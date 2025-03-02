@@ -440,6 +440,25 @@ function setLanguage(lang) {
             option.classList.remove('active');
         }
     });
+    
+    // Update UI to show the selected language's content
+    const allLangElements = document.querySelectorAll('[data-lang]');
+    allLangElements.forEach(el => {
+        if (el.getAttribute('data-lang') === lang) {
+            el.style.display = 'block';
+        } else {
+            el.style.display = 'none';
+        }
+    });
+    
+    // Set RTL direction for Arabic
+    if (lang === 'ar') {
+        document.body.style.direction = 'rtl';
+        document.body.style.textAlign = 'right';
+    } else {
+        document.body.style.direction = 'ltr';
+        document.body.style.textAlign = 'left';
+    }
 }
 
 function loadLanguage() {
@@ -455,6 +474,25 @@ function loadLanguage() {
                 option.classList.remove('active');
             }
         });
+        
+        // Apply language-specific display settings
+        const allLangElements = document.querySelectorAll('[data-lang]');
+        allLangElements.forEach(el => {
+            if (el.getAttribute('data-lang') === savedLanguage) {
+                el.style.display = 'block';
+            } else {
+                el.style.display = 'none';
+            }
+        });
+        
+        // Set RTL direction for Arabic
+        if (savedLanguage === 'ar') {
+            document.body.style.direction = 'rtl';
+            document.body.style.textAlign = 'right';
+        } else {
+            document.body.style.direction = 'ltr';
+            document.body.style.textAlign = 'left';
+        }
     }
 }
 

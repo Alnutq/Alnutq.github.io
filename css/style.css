@@ -957,16 +957,10 @@ footer {
 }
 
 /* Multi-language support */
-[lang="en"] [data-lang]:not([data-lang="en"]) {
-    display: none;
-}
-
-[lang="ml"] [data-lang]:not([data-lang="ml"]) {
-    display: none;
-}
-
+[lang="en"] [data-lang]:not([data-lang="en"]),
+[lang="ml"] [data-lang]:not([data-lang="ml"]),
 [lang="ar"] [data-lang]:not([data-lang="ar"]) {
-    display: none;
+    display: none !important;
 }
 
 [lang="ar"] {
