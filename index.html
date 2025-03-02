@@ -69,8 +69,9 @@
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s;
+            transition: width 0.2s, height 0.2s, opacity 0.5s;
             mix-blend-mode: difference;
+            opacity: 0;
         }
         
         .cursor-follower {
@@ -82,8 +83,9 @@
             pointer-events: none;
             z-index: 9998;
             transform: translate(-50%, -50%);
-            transition: 0.1s ease;
+            transition: 0.1s ease, opacity 0.5s;
             mix-blend-mode: difference;
+            opacity: 0;
         }
         
         a, button, .nav-item, .social-btn {
@@ -100,10 +102,135 @@
             border: 2px solid var(--cursor-color);
         }
         
-        .theme-toggle {
+        /* Side Menu */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--surface);
+            z-index: 9999;
+            transition: left 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+        }
+        
+        .side-menu.active {
+            left: 0;
+        }
+        
+        .side-menu-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .side-menu-close {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+        }
+        
+        .side-menu-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .side-menu-logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: url('Logo.svg') center/cover no-repeat;
+        }
+        
+        .side-menu-logo-text {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .side-menu-content {
+            padding: 20px;
+        }
+        
+        .side-menu-section {
+            margin-bottom: 30px;
+        }
+        
+        .side-menu-section-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .theme-options, .language-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .theme-option, .language-option {
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            cursor: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .theme-option.active, .language-option.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .theme-option:hover, .language-option:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .side-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 0;
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .side-menu-item:hover {
+            color: var(--primary);
+        }
+        
+        .side-menu-item i {
+            width: 24px;
+            text-align: center;
+        }
+        
+        .side-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            display: none;
+        }
+        
+        .side-menu-overlay.active {
+            display: block;
+        }
+        
+        .menu-toggle {
             position: fixed;
             top: 20px;
-            right: 20px;
+            left: 20px;
             z-index: 999;
             width: 50px;
             height: 50px;
@@ -119,24 +246,8 @@
             transition: transform 0.3s ease, background-color 0.3s ease;
         }
         
-        .theme-toggle:hover {
+        .menu-toggle:hover {
             transform: scale(1.1);
-        }
-        
-        [data-theme="dark"] .light-icon {
-            display: block;
-        }
-        
-        [data-theme="dark"] .dark-icon {
-            display: none;
-        }
-        
-        [data-theme="light"] .light-icon {
-            display: none;
-        }
-        
-        [data-theme="light"] .dark-icon {
-            display: block;
         }
         
         header {
@@ -331,68 +442,6 @@
             padding: 60px 0;
         }
         
-        /* Social Section */
-        #social {
-            padding: 60px 0;
-            text-align: center;
-        }
-        
-        .social-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .social-card {
-            background-color: var(--surface);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .social-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 30px rgba(79, 155, 255, 0.3);
-        }
-        
-        .social-card .card-image {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .social-card .card-content {
-            padding: 20px;
-        }
-        
-        .social-card h3 {
-            margin-bottom: 10px;
-            color: var(--text);
-        }
-        
-        .social-card p {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-        }
-        
-        .social-btn-card {
-            display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
-            cursor: none;
-        }
-        
-        .social-btn-card:hover {
-            background-color: var(--primary-variant);
-        }
-        
         .section-title {
             font-size: 2.2rem;
             margin-bottom: 25px;
@@ -410,6 +459,15 @@
             height: 4px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             border-radius: 2px;
+        }
+        
+        .description {
+            margin-top: 20px;
+            color: var(--text-secondary);
+        }
+        
+        .description p {
+            margin-bottom: 15px;
         }
         
         footer {
@@ -445,6 +503,74 @@
         .social-btn:hover {
             transform: scale(1.1);
             background-color: var(--primary);
+        }
+        
+        /* Install App Banner */
+        .install-banner {
+            background-color: var(--surface);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 40px auto;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            display: none;
+            align-items: center;
+            position: relative;
+        }
+        
+        .install-banner.show {
+            display: flex;
+        }
+        
+        .install-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .install-text {
+            flex: 1;
+        }
+        
+        .install-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .install-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .install-button {
+            padding: 8px 16px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            margin-left: 15px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .install-button:hover {
+            background-color: var(--primary-variant);
+        }
+        
+        .install-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1rem;
         }
         
         /* Scroll to top button */
@@ -493,8 +619,8 @@
                 height: 60px;
             }
             
-            .social-grid {
-                grid-template-columns: 1fr;
+            .side-menu {
+                width: 280px;
             }
         }
         
@@ -524,37 +650,213 @@
             .nav-item i {
                 font-size: 1.3rem;
             }
+            
+            .side-menu {
+                width: 260px;
+            }
+        }
+        
+        /* Multi-language support */
+        [lang="en"] [data-lang]:not([data-lang="en"]) {
+            display: none;
+        }
+        
+        [lang="ml"] [data-lang]:not([data-lang="ml"]) {
+            display: none;
+        }
+        
+        [lang="ar"] [data-lang]:not([data-lang="ar"]) {
+            display: none;
+        }
+        
+        [lang="ar"] {
+            direction: rtl;
+            text-align: right;
+        }
+        
+        [lang="ar"] .side-menu {
+            left: auto;
+            right: -300px;
+        }
+        
+        [lang="ar"] .side-menu.active {
+            left: auto;
+            right: 0;
+        }
+        
+        [lang="ar"] .menu-toggle {
+            left: auto;
+            right: 20px;
         }
     </style>
 </head>
-<body>
+<body lang="en">
     <!-- Custom cursor elements -->
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
     
-    <button class="theme-toggle" onclick="toggleTheme()">
-        <i class="fas fa-sun light-icon"></i>
-        <i class="fas fa-moon dark-icon"></i>
+    <!-- Side Menu Toggle Button -->
+    <button class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
     </button>
+    
+    <!-- Side Menu -->
+    <div class="side-menu" id="side-menu">
+        <div class="side-menu-header">
+            <div class="side-menu-logo">
+                <div class="side-menu-logo-img"></div>
+                <div class="side-menu-logo-text">Mallu Muslim Club</div>
+            </div>
+            <button class="side-menu-close" id="side-menu-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="side-menu-content">
+            <div class="side-menu-section">
+                <div class="side-menu-section-title" data-lang="en">Theme</div>
+                <div class="side-menu-section-title" data-lang="ml">തീം</div>
+                <div class="side-menu-section-title" data-lang="ar">السمة</div>
+                <div class="theme-options">
+                    <button class="theme-option" data-theme="light">
+                        <span data-lang="en">Light</span>
+                        <span data-lang="ml">ലൈറ്റ്</span>
+                        <span data-lang="ar">فاتح</span>
+                    </button>
+                    <button class="theme-option active" data-theme="dark">
+                        <span data-lang="en">Dark</span>
+                        <span data-lang="ml">ഡാർക്ക്</span>
+                        <span data-lang="ar">داكن</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="side-menu-section">
+                <div class="side-menu-section-title" data-lang="en">Language</div>
+                <div class="side-menu-section-title" data-lang="ml">ഭാഷ</div>
+                <div class="side-menu-section-title" data-lang="ar">اللغة</div>
+                <div class="language-options">
+                    <button class="language-option active" data-lang="en">English</button>
+                    <button class="language-option" data-lang="ml">മലയാളം</button>
+                    <button class="language-option" data-lang="ar">العربية</button>
+                </div>
+            </div>
+            
+            <div class="side-menu-section">
+                <div class="side-menu-section-title" data-lang="en">Navigate</div>
+                <div class="side-menu-section-title" data-lang="ml">നാവിഗേറ്റ്</div>
+                <div class="side-menu-section-title" data-lang="ar">التنقل</div>
+                
+                <a href="#home" class="side-menu-item">
+                    <i class="fas fa-home"></i>
+                    <span data-lang="en">Home</span>
+                    <span data-lang="ml">ഹോം</span>
+                    <span data-lang="ar">الرئيسية</span>
+                </a>
+                
+                <a href="playlists.html" class="side-menu-item">
+                    <i class="fas fa-music"></i>
+                    <span data-lang="en">Playlists</span>
+                    <span data-lang="ml">പ്ലേലിസ്റ്റുകൾ</span>
+                    <span data-lang="ar">قوائم التشغيل</span>
+                </a>
+                
+                <a href="#about" class="side-menu-item">
+                    <i class="fas fa-info-circle"></i>
+                    <span data-lang="en">About</span>
+                    <span data-lang="ml">ഞങ്ങളെക്കുറിച്ച്</span>
+                    <span data-lang="ar">حول</span>
+                </a>
+                
+                <a href="https://instagram.com/MalluMuslimClub" class="side-menu-item" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                    <span data-lang="en">Instagram</span>
+                    <span data-lang="ml">ഇൻസ്റ്റാഗ്രാം</span>
+                    <span data-lang="ar">إنستاغرام</span>
+                </a>
+                
+                <a href="https://wa.me/919656331391" class="side-menu-item" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    <span data-lang="en">WhatsApp</span>
+                    <span data-lang="ml">വാട്സ്ആപ്പ്</span>
+                    <span data-lang="ar">واتساب</span>
+                </a>
+            </div>
+            
+            <div class="side-menu-section">
+                <div class="side-menu-section-title" data-lang="en">Install App</div>
+                <div class="side-menu-section-title" data-lang="ml">ആപ്പ് ഇൻസ്റ്റാൾ ചെയ്യുക</div>
+                <div class="side-menu-section-title" data-lang="ar">تثبيت التطبيق</div>
+                
+                <button id="install-btn" class="side-menu-item">
+                    <i class="fas fa-download"></i>
+                    <span data-lang="en">Install Website</span>
+                    <span data-lang="ml">വെബ്സൈറ്റ് ഇൻസ്റ്റാൾ ചെയ്യുക</span>
+                    <span data-lang="ar">تثبيت الموقع</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Side Menu Overlay -->
+    <div class="side-menu-overlay" id="side-menu-overlay"></div>
     
     <!-- Scroll to top button -->
     <button class="scroll-top" onclick="scrollToTop()">
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- Install App Banner -->
+    <div class="install-banner" id="install-banner">
+        <div class="install-icon">
+            <i class="fas fa-download"></i>
+        </div>
+        <div class="install-text">
+            <div class="install-title" data-lang="en">Install Mallu Muslim Club</div>
+            <div class="install-title" data-lang="ml">മല്ലു മുസ്ലിം ക്ലബ് ഇൻസ്റ്റാൾ ചെയ്യുക</div>
+            <div class="install-title" data-lang="ar">تثبيت نادي مالو المسلم</div>
+            
+            <div class="install-description" data-lang="en">Install this app on your device for easy access</div>
+            <div class="install-description" data-lang="ml">എളുപ്പത്തിൽ ആക്സസ് ചെയ്യുന്നതിന് നിങ്ങളുടെ ഉപകരണത്തിൽ ഈ ആപ്പ് ഇൻസ്റ്റാൾ ചെയ്യുക</div>
+            <div class="install-description" data-lang="ar">قم بتثبيت هذا التطبيق على جهازك للوصول السهل</div>
+        </div>
+        <button class="install-button" id="install-banner-btn">
+            <span data-lang="en">Install</span>
+            <span data-lang="ml">ഇൻസ്റ്റാൾ</span>
+            <span data-lang="ar">تثبيت</span>
+        </button>
+        <button class="install-close" id="install-close">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
     <div class="container">
         <header class="animate__animated animate__fadeIn" id="home">
             <div class="logo animate__animated animate__zoomIn"></div>
-            <h1 class="animate__animated animate__zoomIn">Mallu Muslim Club</h1>
+            <h1 class="animate__animated animate__zoomIn">
+                <span data-lang="en">Mallu Muslim Club</span>
+                <span data-lang="ml">മല്ലു മുസ്ലിം ക്ലബ്</span>
+                <span data-lang="ar">نادي مالو المسلم</span>
+            </h1>
             <p class="header-description animate__animated animate__fadeIn" style="animation-delay: 0.2s">
-                A vibrant community dedicated to celebrating the rich cultural heritage of Kerala Muslims, bringing together people who share an appreciation for Malayalam culture and Islamic traditions.
+                <span data-lang="en">A vibrant community dedicated to celebrating the rich cultural heritage of Kerala Muslims, bringing together people who share an appreciation for Malayalam culture and Islamic traditions.</span>
+                <span data-lang="ml">കേരള മുസ്ലിംകളുടെ സമ്പന്നമായ സാംസ്കാരിക പൈതൃകം ആഘോഷിക്കുന്നതിനായി സമർപ്പിതമായ ഒരു ജീവസുറ്റ സമൂഹം, മലയാള സംസ്കാരത്തോടും ഇസ്ലാമിക പാരമ്പര്യങ്ങളോടും ആദരവ് പങ്കിടുന്ന ആളുകളെ ഒരുമിച്ച് കൊണ്ടുവരുന്നു.</span>
+                <span data-lang="ar">مجتمع نابض بالحياة مكرس للاحتفال بالتراث الثقافي الغني للمسلمين في كيرالا، يجمع الأشخاص الذين يشتركون في تقدير الثقافة الملايالامية والتقاليد الإسلامية.</span>
             </p>
         </header>
 
         <div class="ramadan-campaign animate__animated animate__fadeInUp" style="animation-delay: 0.3s">
             <div class="ramadan-logo"></div>
-            <div class="ramadan-text">Ramadan Vibes</div>
-            <p>Join us in celebrating the holy month with special events and gatherings</p>
+            <div class="ramadan-text">
+                <span data-lang="en">Ramadan Vibes</span>
+                <span data-lang="ml">റമദാൻ വൈബ്സ്</span>
+                <span data-lang="ar">أجواء رمضان</span>
+            </div>
+            <p>
+                <span data-lang="en">Join us in celebrating the holy month with special events and gatherings</span>
+                <span data-lang="ml">പ്രത്യേക ഇവന്റുകളും സമ്മേളനങ്ങളുമായി വിശുദ്ധ മാസം ആഘോഷിക്കാൻ ഞങ്ങളോടൊപ്പം ചേരുക</span>
+                <span data-lang="ar">انضم إلينا للاحتفال بالشهر المبارك مع فعاليات وتجمعات خاصة</span>
+            </p>
             
             <div class="ramadan-list animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
                 <ol>
@@ -572,31 +874,36 @@
 
         <!-- About Section -->
         <section id="about" class="animate__animated animate__fadeInUp" style="animation-delay: 0.5s">
-            <h2 class="section-title">About Us</h2>
+            <h2 class="section-title">
+                <span data-lang="en">About Us</span>
+                <span data-lang="ml">ഞങ്ങളെക്കുറിച്ച്</span>
+                <span data-lang="ar">عن الموقع</span>
+            </h2>
             <div class="description">
-                <p>The Mallu Muslim Club is a community-driven organization established to celebrate and promote the rich cultural heritage of Kerala Muslims. Our mission is to create a space where people can connect, learn, and share experiences that honor both Malayalam culture and Islamic traditions.</p>
+                <p data-lang="en">The Mallu Muslim Club is a community-driven organization established to celebrate and promote the rich cultural heritage of Kerala Muslims. Our mission is to create a space where people can connect, learn, and share experiences that honor both Malayalam culture and Islamic traditions.</p>
+                <p data-lang="ml">മല്ലു മുസ്‌ലിം ക്ലബ്ബ് കേരള മുസ്‌ലിങ്ങളുടെ സമ്പന്നമായ സാംസ്‌കാരിക പൈതൃകം ആഘോഷിക്കുന്നതിനും പ്രോത്സാഹിപ്പിക്കുന്നതിനുമായി സ്ഥാപിതമായ ഒരു സമൂഹ നേതൃത്വത്തിലുള്ള സംഘടനയാണ്. മലയാളം സംസ്‌കാരവും ഇസ്‌ലാമിക പാരമ്പര്യങ്ങളും രണ്ടും ആദരിക്കുന്ന അനുഭവങ്ങൾ ജനങ്ങൾക്ക് ബന്ധിപ്പിക്കാനും പഠിക്കാനും പങ്കിടാനും കഴിയുന്ന ഒരു ഇടം സൃഷ്ടിക്കുക എന്നതാണ് ഞങ്ങളുടെ ദൗത്യം.</p>
+                <p data-lang="ar">نادي مالو المسلم هو منظمة مجتمعية تأسست للاحتفاء وتعزيز التراث الثقافي الغني لمسلمي كيرالا. مهمتنا هي خلق مساحة يمكن للناس من خلالها التواصل والتعلم ومشاركة التجارب التي تكرم كلاً من الثقافة الملايالامية والتقاليد الإسلامية.</p>
                 
-                <p>Founded in 2023, our club has grown rapidly, bringing together members from across the globe who share a common interest in preserving and celebrating our unique cultural identity. We organize regular events, educational programs, and social gatherings that allow our members to forge meaningful connections while exploring aspects of our heritage.</p>
+                <p data-lang="en">Founded in 2023, our club has grown rapidly, bringing together members from across the globe who share a common interest in preserving and celebrating our unique cultural identity. We organize regular events, educational programs, and social gatherings that allow our members to forge meaningful connections while exploring aspects of our heritage.</p>
+                <p data-lang="ml">2023-ൽ സ്ഥാപിതമായ ഞങ്ങളുടെ ക്ലബ്ബ് വളരെ വേഗം വളർന്നു, ഞങ്ങളുടെ തനതായ സാംസ്‌കാരിക വ്യക്തിത്വം സംരക്ഷിക്കുന്നതിലും ആഘോഷിക്കുന്നതിലും പൊതുവായ താൽപ്പര്യം പങ്കിടുന്ന ലോകമെമ്പാടുമുള്ള അംഗങ്ങളെ ഒരുമിച്ച് കൊണ്ടുവന്നു. ഞങ്ങളുടെ പൈതൃകത്തിന്റെ വശങ്ങൾ പര്യവേക്ഷണം ചെയ്യുമ്പോൾ ഞങ്ങളുടെ അംഗങ്ങൾക്ക് അർത്ഥവത്തായ ബന്ധങ്ങൾ രൂപപ്പെടുത്താൻ അനുവദിക്കുന്ന ക്രമമായ ഇവന്റുകൾ, വിദ്യാഭ്യാസ പരിപാടികൾ, സാമൂഹിക സമ്മേളനങ്ങൾ എന്നിവ ഞങ്ങൾ സംഘടിപ്പിക്കുന്നു.</p>
+                <p data-lang="ar">تأسس نادينا في عام 2023، ونما بسرعة، حيث جمع أعضاء من جميع أنحاء العالم يشتركون في اهتمام مشترك بالحفاظ على هويتنا الثقافية الفريدة والاحتفال بها. نقوم بتنظيم فعاليات منتظمة وبرامج تعليمية واجتماعات اجتماعية تسمح لأعضائنا بتكوين روابط ذات معنى أثناء استكشاف جوانب تراثنا.</p>
                 
-                <p>Through various initiatives like our Ramadan Vibes program, we aim to foster a deeper understanding of Islamic principles while embracing the colorful tapestry of Malayalam culture that makes our community so special.</p>
+                <p data-lang="en">Through various initiatives like our Ramadan Vibes program, we aim to foster a deeper understanding of Islamic principles while embracing the colorful tapestry of Malayalam culture that makes our community so special.</p>
+                <p data-lang="ml">ഞങ്ങളുടെ റമദാൻ വൈബ്സ് പ്രോഗ്രാം പോലുള്ള വിവിധ സംരംഭങ്ങളിലൂടെ, ഞങ്ങളുടെ സമൂഹത്തെ ഇത്ര പ്രത്യേകമാക്കുന്ന മലയാളം സംസ്‌കാരത്തിന്റെ വർണ്ണാഭമായ ടാപെസ്ട്രി ഉൾക്കൊള്ളുമ്പോൾ ഇസ്‌ലാമിക തത്വങ്ങളെക്കുറിച്ചുള്ള കൂടുതൽ ആഴത്തിലുള്ള ധാരണ വളർത്തുന്നതിന് ഞങ്ങൾ ലക്ഷ്യമിടുന്നു.</p>
+                <p data-lang="ar">من خلال مبادرات مختلفة مثل برنامج أجواء رمضان، نهدف إلى تعزيز فهم أعمق للمبادئ الإسلامية مع احتضان النسيج الملون للثقافة الملايالامية الذي يجعل مجتمعنا مميزًا للغاية.</p>
             </div>
         </section>
-
-        <div class="language-switcher">
-            <button onclick="changeLanguage('en')">English</button>
-            <button onclick="changeLanguage('ml')">മലയാളം</button>
-            <button onclick="changeLanguage('ar')">العربية</button>
-        </div>
-
-        <!-- Replace Add to Home with Install button -->
-        <button onclick="installWebsite()" data-translate="install">Install Website</button>
 
         <footer class="animate__animated animate__fadeInUp" style="animation-delay: 0.8s">
             <div class="social-links">
                 <a href="https://instagram.com/MalluMuslimClub" class="social-btn" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="https://wa.me/919656331391" class="social-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
-            <p>&copy; 2023 <a href="https://navarmp.github.io/" target="_blank">Muhammed Navar</a></p>
+            <p>
+                <span data-lang="en">© 2025 Developed by <a href="https://NavarMP.github.io/" target="_blank" style="color: var(--primary); text-decoration: none;">Muhammed Navar</a></span>
+                <span data-lang="ml">© 2025 വികസിപ്പിച്ചത് <a href="https://NavarMP.github.io/" target="_blank" style="color: var(--primary); text-decoration: none;">മുഹമ്മദ് നവാർ</a></span>
+                <span data-lang="ar">© 2025 طوره <a href="https://NavarMP.github.io/" target="_blank" style="color: var(--primary); text-decoration: none;">محمد نوار</a></span>
+            </p>
         </footer>
     </div>
 
@@ -604,99 +911,335 @@
     <nav class="bottom-nav">
         <div class="nav-items">
             <div class="nav-item active" onclick="navigateTo('home')">
-                <span>Home</span>
+                <span data-lang="en">Home</span>
+                <span data-lang="ml">ഹോം</span>
+                <span data-lang="ar">الرئيسية</span>
                 <i class="fas fa-home"></i>
             </div>
-            <div class="nav-item" onclick="window.location.href='Playlists.html';">
-                <span>Playlist</span>
+            <div class="nav-item" onclick="navigateTo('playlist')">
+                <span data-lang="en">Playlist</span>
+                <span data-lang="ml">പ്ലേലിസ്റ്റ്</span>
+                <span data-lang="ar">قائمة التشغيل</span>
                 <i class="fas fa-music"></i>
             </div>
             <div class="nav-item" onclick="navigateTo('about')">
-                <span>About</span>
+                <span data-lang="en">About</span>
+                <span data-lang="ml">ഞങ്ങളെക്കുറിച്ച്</span>
+                <span data-lang="ar">حول</span>
                 <i class="fas fa-info-circle"></i>
-            </div>
-            <div class="nav-item" onclick="navigateTo('social')">
-                <span>Social</span>
-                <i class="fas fa-users"></i>
             </div>
         </div>
     </nav>
 
+    <!-- PWA and Music player shared code -->
     <script>
+        // PWA variables
+        let deferredPrompt = null;
+        const installBanner = document.getElementById('install-banner');
+        const installBannerBtn = document.getElementById('install-banner-btn');
+        const installBtn = document.getElementById('install-btn');
+        const installClose = document.getElementById('install-close');
+        
         // Custom cursor
         const cursor = document.querySelector('.cursor');
         const cursorFollower = document.querySelector('.cursor-follower');
+        let cursorVisible = false;
+        let cursorTimeout;
         
-        document.addEventListener('mousemove', function(e) {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+        // Side menu elements
+        const menuToggle = document.getElementById('menu-toggle');
+        const sideMenu = document.getElementById('side-menu');
+        const sideMenuClose = document.getElementById('side-menu-close');
+        const sideMenuOverlay = document.getElementById('side-menu-overlay');
+        const themeOptions = document.querySelectorAll('.theme-option');
+        const languageOptions = document.querySelectorAll('.language-option');
+        
+        // Music player variables - shared between pages
+        let audioElement = null;
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved settings
+            loadTheme();
+            loadLanguage();
+            initCursor();
+            setupSideMenu();
+            setupPWA();
+            checkForActiveAudio();
+            startRandomMusicIfFirstVisit();
             
-            // Add slight delay to follower for nice effect
-            setTimeout(function() {
-                cursorFollower.style.left = e.clientX + 'px';
-                cursorFollower.style.top = e.clientY + 'px';
-            }, 50);
+            // Hide navbar when scrolling down, show when scrolling up
+            setupScrollBehavior();
         });
         
-        document.addEventListener('mousedown', function() {
-            cursor.style.transform = 'translate(-50%, -50%) scale(0.7)';
-            cursorFollower.style.transform = 'translate(-50%, -50%) scale(0.7)';
-        });
-        
-        document.addEventListener('mouseup', function() {
-            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
-        });
-        
-        // Make cursor disappear when leaving the window
-        document.addEventListener('mouseleave', function() {
-            cursor.style.opacity = '0';
-            cursorFollower.style.opacity = '0';
-        });
-        
-        document.addEventListener('mouseenter', function() {
-            cursor.style.opacity = '1';
-            cursorFollower.style.opacity = '1';
-        });
-        
-        // Hide navbar when scrolling down, show when scrolling up
-        let lastScrollTop = 0;
-        const navbar = document.querySelector('.bottom-nav');
-        const scrollTopBtn = document.querySelector('.scroll-top');
-        
-        window.addEventListener('scroll', function() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        // Initialize the custom cursor
+        function initCursor() {
+            // Show cursor initially when the mouse moves
+            document.addEventListener('mousemove', function(e) {
+                if (!cursorVisible) {
+                    cursor.style.opacity = '1';
+                    cursorFollower.style.opacity = '1';
+                    cursorVisible = true;
+                }
+                
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                
+                // Add slight delay to follower for nice effect
+                setTimeout(function() {
+                    cursorFollower.style.left = e.clientX + 'px';
+                    cursorFollower.style.top = e.clientY + 'px';
+                }, 50);
+                
+                // Hide cursor after 3 seconds of inactivity
+                clearTimeout(cursorTimeout);
+                cursorTimeout = setTimeout(function() {
+                    cursor.style.opacity = '0';
+                    cursorFollower.style.opacity = '0';
+                    cursorVisible = false;
+                }, 3000);
+            });
             
-            // Hide/show navbar
-            if (scrollTop > lastScrollTop && scrollTop > 200) {
-                // Scrolling down
-                navbar.classList.add('hidden');
-            } else {
-                // Scrolling up
-                navbar.classList.remove('hidden');
+            // Support for touch devices to hide cursor
+            document.addEventListener('touchstart', function() {
+                cursor.style.opacity = '0';
+                cursorFollower.style.opacity = '0';
+                cursorVisible = false;
+            });
+            
+            // Cursor interactions
+            document.addEventListener('mousedown', function() {
+                cursor.style.transform = 'translate(-50%, -50%) scale(0.7)';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(0.7)';
+            });
+            
+            document.addEventListener('mouseup', function() {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+            
+            // Make cursor disappear when leaving the window
+            document.addEventListener('mouseleave', function() {
+                cursor.style.opacity = '0';
+                cursorFollower.style.opacity = '0';
+                cursorVisible = false;
+            });
+            
+            document.addEventListener('mouseenter', function() {
+                cursor.style.opacity = '1';
+                cursorFollower.style.opacity = '1';
+                cursorVisible = true;
+                
+                // Reset the inactivity timer
+                clearTimeout(cursorTimeout);
+                cursorTimeout = setTimeout(function() {
+                    cursor.style.opacity = '0';
+                    cursorFollower.style.opacity = '0';
+                    cursorVisible = false;
+                }, 3000);
+            });
+        }
+        
+        // Setup the side menu functionality
+        function setupSideMenu() {
+            menuToggle.addEventListener('click', openSideMenu);
+            sideMenuClose.addEventListener('click', closeSideMenu);
+            sideMenuOverlay.addEventListener('click', closeSideMenu);
+            
+            // Theme options
+            themeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const theme = this.getAttribute('data-theme');
+                    setTheme(theme);
+                    
+                    // Update active state
+                    themeOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Language options
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    setLanguage(lang);
+                    
+                    // Update active state
+                    languageOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        }
+        
+        function openSideMenu() {
+            sideMenu.classList.add('active');
+            sideMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeSideMenu() {
+            sideMenu.classList.remove('active');
+            sideMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Setup PWA functionality
+        function setupPWA() {
+            // Check if the app is already installed
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                return; // Already installed, exit function
             }
             
-            // Show/hide scroll to top button
-            if (scrollTop > 500) {
-                scrollTopBtn.classList.add('visible');
-            } else {
-                scrollTopBtn.classList.remove('visible');
-            }
+            // Handle beforeinstallprompt event
+            window.addEventListener('beforeinstallprompt', (e) => {
+                // Prevent Chrome 67 and earlier from automatically showing the prompt
+                e.preventDefault();
+                // Stash the event so it can be triggered later
+                deferredPrompt = e;
+                // Show the install banner
+                installBanner.classList.add('show');
+            });
             
-            lastScrollTop = scrollTop;
-        });
+            // Install banner button click
+            installBannerBtn.addEventListener('click', () => {
+                installApp();
+            });
+            
+            // Side menu install button click
+            installBtn.addEventListener('click', () => {
+                installApp();
+                closeSideMenu();
+            });
+            
+            // Close install banner
+            installClose.addEventListener('click', () => {
+                installBanner.classList.remove('show');
+            });
+            
+            // Successfully installed
+            window.addEventListener('appinstalled', (evt) => {
+                installBanner.classList.remove('show');
+                deferredPrompt = null;
+            });
+        }
         
+        function installApp() {
+            if (!deferredPrompt) return;
+            
+            // Show the install prompt
+            deferredPrompt.prompt();
+            
+            // Wait for the user to respond to the prompt
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                } else {
+                    console.log('User dismissed the install prompt');
+                }
+                deferredPrompt = null;
+                installBanner.classList.remove('show');
+            });
+        }
+        
+        // Scroll behavior for navigation and scroll-to-top button
+        function setupScrollBehavior() {
+            let lastScrollTop = 0;
+            const navbar = document.querySelector('.bottom-nav');
+            const scrollTopBtn = document.querySelector('.scroll-top');
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Hide/show navbar
+                if (scrollTop > lastScrollTop && scrollTop > 200) {
+                    // Scrolling down
+                    navbar.classList.add('hidden');
+                } else {
+                    // Scrolling up
+                    navbar.classList.remove('hidden');
+                }
+                
+                // Show/hide scroll to top button
+                if (scrollTop > 500) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        }
+        
+        // Theme management
         function toggleTheme() {
             const html = document.documentElement;
-            if (html.getAttribute('data-theme') === 'dark') {
-                html.setAttribute('data-theme', 'light');
-                localStorage.setItem('theme', 'light');
-            } else {
-                html.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+        }
+        
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            
+            // Update active state in side menu
+            document.querySelectorAll('.theme-option').forEach(option => {
+                if (option.getAttribute('data-theme') === theme) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+            });
+        }
+        
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                
+                // Update active state in side menu
+                document.querySelectorAll('.theme-option').forEach(option => {
+                    if (option.getAttribute('data-theme') === savedTheme) {
+                        option.classList.add('active');
+                    } else {
+                        option.classList.remove('active');
+                    }
+                });
             }
         }
         
+        // Language management
+        function setLanguage(lang) {
+            document.body.setAttribute('lang', lang);
+            localStorage.setItem('language', lang);
+            
+            // Update active state in side menu
+            document.querySelectorAll('.language-option').forEach(option => {
+                if (option.getAttribute('data-lang') === lang) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+            });
+        }
+        
+        function loadLanguage() {
+            const savedLanguage = localStorage.getItem('language');
+            if (savedLanguage) {
+                document.body.setAttribute('lang', savedLanguage);
+                
+                // Update active state in side menu
+                document.querySelectorAll('.language-option').forEach(option => {
+                    if (option.getAttribute('data-lang') === savedLanguage) {
+                        option.classList.add('active');
+                    } else {
+                        option.classList.remove('active');
+                    }
+                });
+            }
+        }
+        
+        // Navigation functions
         function navigateTo(target) {
             // Set active nav item
             const navItems = document.querySelectorAll('.nav-item');
@@ -714,9 +1257,6 @@
             } else if (target === 'about') {
                 navItems[2].classList.add('active');
                 document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
-            } else if (target === 'social') {
-                navItems[3].classList.add('active');
-                document.getElementById('social').scrollIntoView({ behavior: 'smooth' });
             }
         }
         
@@ -724,16 +1264,27 @@
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
         
-        // Load theme from localStorage
-        function loadTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                document.documentElement.setAttribute('data-theme', savedTheme);
+        // Check if music is already playing across pages
+        function checkForActiveAudio() {
+            const musicState = JSON.parse(localStorage.getItem('musicState'));
+            if (musicState && musicState.isPlaying) {
+                // If we came from the playlist page with music playing, we don't need to do anything
+                // The music will keep playing as it's managed by the playlist page
+                console.log('Music is playing from playlist page');
             }
         }
         
-        // Load theme when page loads
-        window.addEventListener('DOMContentLoaded', loadTheme);
+        // Start random music when website is launched for the first time
+        function startRandomMusicIfFirstVisit() {
+            const hasVisited = localStorage.getItem('hasVisited');
+            if (!hasVisited) {
+                localStorage.setItem('hasVisited', 'true');
+                
+                // Redirect to playlist page with a parameter to play random music
+                localStorage.setItem('playRandomOnLoad', 'true');
+                window.location.href = 'playlists.html';
+            }
+        }
     </script>
 </body>
 </html>

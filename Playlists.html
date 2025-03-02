@@ -1,4 +1,1119 @@
-<!DOCTYPE html>
+<span data-lang="en">Music Playlists</span>
+                <span data-lang="ml">സംഗീത പ്ലേലിസ്റ്റുകൾ</span>
+                <span data-lang="ar">قوائم تشغيل الموسيقى</span>
+            </h1>
+            <p class="header-description animate__animated animate__fadeIn" style="animation-delay: 0.2s">
+                <span data-lang="en">Enjoy our curated collection of halal music that uplifts the soul and celebrates our cultural heritage.</span>
+                <span data-lang="ml">ആത്മാവിനെ ഉയർത്തുകയും നമ്മുടെ സാംസ്കാരിക പൈതൃകത്തെ ആഘോഷിക്കുകയും ചെയ്യുന്ന ഹലാൽ സംഗീതത്തിന്റെ ക്യുറേറ്റ് ചെയ്ത ശേഖരം ആസ്വദിക്കൂ.</span>
+                <span data-lang="ar">استمتع بمجموعتنا المختارة من الموسيقى الحلال التي ترفع الروح وتحتفل بتراثنا الثقافي.</span>
+            </p>
+        </header>
+
+        <div class="playlist-section">
+            <div class="playlist-nav">
+                <div class="playlist-tab active" onclick="switchPlaylist(this, 'arabic-nasheeds')">
+                    <span data-lang="en">Arabic Nasheeds</span>
+                    <span data-lang="ml">അറബിക് നശീദുകൾ</span>
+                    <span data-lang="ar">الأناشيد العربية</span>
+                </div>
+                <div class="playlist-tab" onclick="switchPlaylist(this, 'malayalam-songs')">
+                    <span data-lang="en">Malayalam Songs</span>
+                    <span data-lang="ml">മലയാളം ഗാനങ്ങൾ</span>
+                    <span data-lang="ar">الأغاني المالايالامية</span>
+                </div>
+                <div class="playlist-tab" onclick="switchPlaylist(this, 'gym-nasheeds')">
+                    <span data-lang="en">Gym Nasheeds</span>
+                    <span data-lang="ml">ജിം നശീദുകൾ</span>
+                    <span data-lang="ar">أناشيد الجيم</span>
+                </div>
+            </div>
+            
+            <!-- Arabic Nasheeds Playlist -->
+            <div class="playlist-content active" id="arabic-nasheeds">
+                <div class="song-item" onclick="playSong('playlists/arabic nasheeds/1.mp3', 'Arabic Nasheed 1', 'Various Artists')">
+                    <div class="song-number">1</div>
+                    <div class="song-info">
+                        <div class="song-title">Arabic Nasheed 1</div>
+                        <div class="song-artist">Various Artists</div>
+                    </div>
+                    <div class="song-actions">
+                        <a href="playlists/arabic nasheeds/1.mp3" download class="song-download" title="Download">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="song-duration" id="duration-an-1">--:--</div>
+                </div>
+                
+                <div class="song-item" onclick="playSong('playlists/arabic nasheeds/2.mp3', 'Arabic Nasheed 2', 'Various Artists')">
+                    <div class="song-number">2</div>
+                    <div class="song-info">
+                        <div class="song-title">Arabic Nasheed 2</div>
+                        <div class="song-artist">Various Artists</div>
+                    </div>
+                    <div class="song-actions">
+                        <a href="playlists/arabic nasheeds/2.mp3" download class="song-download" title="Download">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="song-duration" id="duration-an-2">--:--</div>
+                </div>
+                
+                <div class="song-item" onclick="playSong('playlists/arabic nasheeds/3.mp3', 'Arabic Nasheed 3', 'Various Artists')">
+                    <div class="song-number">3</div>
+                    <div class="song-info">
+                        <div class="song-title">Arabic Nasheed 3</div>
+                        <div class="song-artist">Various Artists</div>
+                    </div>
+                    <div class="song-actions">
+                        <a href="playlists/arabic nasheeds/3.mp3" download class="song-download" title="Download">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="song-duration" id="duration-an-3">--:--</div>
+                </div>
+                
+                <div class="song-item" onclick="playSong('playlists/arabic nasheeds/4.mp3', 'Arabic Nasheed 4', 'Various Artists')">
+                    <div class="song-number">4</div>
+                    <div class="song-info">
+                        <div class="song-title">Arabic Nasheed 4</div>
+                        <div class="song-artist">Various Artists</div>
+                    </div>
+                    <div class="song-actions">
+                        <a href="playlists/arabic nasheeds/4.mp3" download class="song-download" title="Download">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="song-duration" id="duration-an-4">--:--</div>
+                </div>
+                
+                <div class="song-item" onclick="playSong('playlists/arabic nasheeds/5.mp3', 'Arabic Nasheed 5', 'Various Artists')">
+                    <div class="song-number">5</div>
+                    <div class="song-info">
+                        <div class="song-title">Arabic Nasheed 5</div>
+                        <div class="song-artist">Various Artists</div>
+                    </div>
+                    <div class="song-actions">
+                        <a href="playlists/arabic nasheeds/5.mp3" download class="song-download" title="Download">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="song-duration" id="duration-an-5">--:--</div>
+                </div>
+                
+                <div class="song-item" onclick="playSong('playlists/arabic nasheeds/6.mp3', 'Arabic Nasheed 6', 'Various Artists')">
+                    <div class="song-number">6</div>
+                    <div class="song-info">
+                        <div class="song-title">Arabic Nasheed 6</div>
+                        <div class="song-artist">Various Artists</div>
+                    </div>
+                    <div class="song-actions">
+                        <a href="playlists/arabic nasheeds/6.mp3" download class="song-download" title="Download">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="song-duration" id="duration-an-6">--:--</div>
+                </div>
+                
+                <div class="song-item" onclick="playSong('playlists/arabic nasheeds/7.mp3', 'Arabic Nasheed 7', 'Various Artists')">
+                    <div class="song-number">7</div>
+                    <div class="song-info">
+                        <div class="song-title">Arabic Nasheed 7</div>
+                        <div class="song-artist">Various Artists</div>
+                    </div>
+                    <div class="song-actions">
+                        <a href="playlists/arabic nasheeds/7.mp3" download class="song-download" title="Download">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="song-duration" id="duration-an-7">--:--</div>
+                </div>
+            </div>
+            
+            <!-- Malayalam Songs Playlist -->
+            <div class="playlist-content" id="malayalam-songs">
+                <div class="song-item" onclick="playSong('playlists/malayalam songs/1.mp3', 'Malayalam Song 1', 'Malayalam Artist')">
+                    <div class="song-number">1</div>
+                    <div class="song-info">
+                        <div class="song-title">Malayalam Song 1</div>
+                        <div class="song-artist">Malayalam Artist</div>
+                    </div>
+                    <div class="song-actions">
+                        <a href="playlists/malayalam songs/1.mp3" download class="song-download" title="Download">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="song-duration" id="duration-ms-1">--:--</div>
+                </div>
+                
+                <div class="song-item" onclick="playSong('playlists/malayalam songs/2.mp3', 'Malayalam Song 2', 'Malayalam Artist')">
+                    <div class="song-number">2</div>
+                    <div class="song-info">
+                        <div class="song-title">Malayalam Song 2</div>
+                        <div class="song-artist">Malayalam Artist</div>
+                    </div>
+                    <div class="song-actions">
+                        <a href="playlists/malayalam songs/2.mp3" download class="song-download" title="Download">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="song-duration" id="duration-ms-2">--:--</div>
+                </div>
+            </div>
+            
+            <!-- Gym Nasheeds Playlist -->
+            <div class="playlist-content" id="gym-nasheeds">
+                <div class="song-item" onclick="playSong('playlists/gym nasheeds/1.mp3', 'Gym Nasheed 1', 'Workout Nasheed')">
+                    <div class="song-number">1</div>
+                    <div class="song-info">
+                        <div class="song-title">Gym Nasheed 1</div>
+                        <div class="song-artist">Workout Nasheed</div>
+                    </div>
+                    <div class="song-actions">
+                        <a href="playlists/gym nasheeds/1.mp3" download class="song-download" title="Download">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="song-duration" id="duration-gn-1">--:--</div>
+                </div>
+                
+                <div class="song-item" onclick="playSong('playlists/gym nasheeds/2.mp3', 'Gym Nasheed 2', 'Workout Nasheed')">
+                    <div class="song-number">2</div>
+                    <div class="song-info">
+                        <div class="song-title">Gym Nasheed 2</div>
+                        <div class="song-artist">Workout Nasheed</div>
+                    </div>
+                    <div class="song-actions">
+                        <a href="playlists/gym nasheeds/2.mp3" download class="song-download" title="Download">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="song-duration" id="duration-gn-2">--:--</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Music Player -->
+        <div class="music-player">
+            <div class="music-player-info">
+                <div class="music-player-cover" id="song-cover">
+                    <i class="fas fa-music"></i>
+                </div>
+                <div class="music-player-details">
+                    <div class="music-player-title" id="song-title">
+                        <span data-lang="en">Select a song to play</span>
+                        <span data-lang="ml">പ്ലേ ചെയ്യാൻ ഒരു ഗാനം തിരഞ്ഞെടുക്കുക</span>
+                        <span data-lang="ar">اختر أغنية للتشغيل</span>
+                    </div>
+                    <div class="music-player-artist" id="song-artist"></div>
+                </div>
+            </div>
+            
+            <div class="music-player-controls">
+                <button class="control-button" onclick="playPrevious()"><i class="fas fa-step-backward"></i></button>
+                <div class="play-pause-button" id="play-pause-btn" onclick="togglePlayPause()">
+                    <i class="fas fa-play" id="play-icon"></i>
+                </div>
+                <button class="control-button" onclick="playNext()"><i class="fas fa-step-forward"></i></button>
+            </div>
+            
+            <div class="progress-container" id="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            
+            <div class="time-display">
+                <div id="current-time">00:00</div>
+                <div id="duration">00:00</div>
+            </div>
+            
+            <audio id="audio-player"></audio>
+        </div>
+
+        <footer class="animate__animated animate__fadeInUp" style="animation-delay: 0.8s">
+            <div class="social-links">
+                <a href="https://instagram.com/MalluMuslimClub" class="social-btn" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/919656331391" class="social-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p>
+                <span data-lang="en">© 2025 Developed by <a href="https://NavarMP.github.io/" target="_blank" style="color: var(--primary); text-decoration: none;">Muhammed Navar</a></span>
+                <span data-lang="ml">© 2025 വികസിപ്പിച്ചത് <a href="https://NavarMP.github.io/" target="_blank" style="color: var(--primary); text-decoration: none;">മുഹമ്മദ് നവാർ</a></span>
+                <span data-lang="ar">© 2025 طوره <a href="https://NavarMP.github.io/" target="_blank" style="color: var(--primary); text-decoration: none;">محمد نوار</a></span>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Floating Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-items">
+            <div class="nav-item" onclick="navigateTo('home')">
+                <span data-lang="en">Home</span>
+                <span data-lang="ml">ഹോം</span>
+                <span data-lang="ar">الرئيسية</span>
+                <i class="fas fa-home"></i>
+            </div>
+            <div class="nav-item active" onclick="navigateTo('playlist')">
+                <span data-lang="en">Playlist</span>
+                <span data-lang="ml">പ്ലേലിസ്റ്റ്</span>
+                <span data-lang="ar">قائمة التشغيل</span>
+                <i class="fas fa-music"></i>
+            </div>
+            <div class="nav-item" onclick="navigateTo('about')">
+                <span data-lang="en">About</span>
+                <span data-lang="ml">ഞങ്ങളെക്കുറിച്ച്</span>
+                <span data-lang="ar">حول</span>
+                <i class="fas fa-info-circle"></i>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        // PWA variables
+        let deferredPrompt = null;
+        const installBtn = document.getElementById('install-btn');
+        
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        let cursorVisible = false;
+        let cursorTimeout;
+        
+        // Side menu elements
+        const menuToggle = document.getElementById('menu-toggle');
+        const sideMenu = document.getElementById('side-menu');
+        const sideMenuClose = document.getElementById('side-menu-close');
+        const sideMenuOverlay = document.getElementById('side-menu-overlay');
+        const themeOptions = document.querySelectorAll('.theme-option');
+        const languageOptions = document.querySelectorAll('.language-option');
+        
+        // Music player variables
+        let isPlaying = false;
+        let currentPlaylist = 'arabic-nasheeds';
+        let currentSongIndex = -1;
+        const audioPlayer = document.getElementById('audio-player');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const playIcon = document.getElementById('play-icon');
+        const progressBar = document.getElementById('progress-bar');
+        const currentTimeEl = document.getElementById('current-time');
+        const durationEl = document.getElementById('duration');
+        const progressContainer = document.getElementById('progress-container');
+        
+        // Playlists configuration
+        let playlists = {
+            'arabic-nasheeds': [
+                { path: 'playlists/arabic nasheeds/1.mp3', title: 'Arabic Nasheed 1', artist: 'Various Artists' },
+                { path: 'playlists/arabic nasheeds/2.mp3', title: 'Arabic Nasheed 2', artist: 'Various Artists' },
+                { path: 'playlists/arabic nasheeds/3.mp3', title: 'Arabic Nasheed 3', artist: 'Various Artists' },
+                { path: 'playlists/arabic nasheeds/4.mp3', title: 'Arabic Nasheed 4', artist: 'Various Artists' },
+                { path: 'playlists/arabic nasheeds/5.mp3', title: 'Arabic Nasheed 5', artist: 'Various Artists' },
+                { path: 'playlists/arabic nasheeds/6.mp3', title: 'Arabic Nasheed 6', artist: 'Various Artists' },
+                { path: 'playlists/arabic nasheeds/7.mp3', title: 'Arabic Nasheed 7', artist: 'Various Artists' }
+            ],
+            'malayalam-songs': [
+                { path: 'playlists/malayalam songs/1.mp3', title: 'Malayalam Song 1', artist: 'Malayalam Artist' },
+                { path: 'playlists/malayalam songs/2.mp3', title: 'Malayalam Song 2', artist: 'Malayalam Artist' }
+            ],
+            'gym-nasheeds': [
+                { path: 'playlists/gym nasheeds/1.mp3', title: 'Gym Nasheed 1', artist: 'Workout Nasheed' },
+                { path: 'playlists/gym nasheeds/2.mp3', title: 'Gym Nasheed 2', artist: 'Workout Nasheed' }
+            ]
+        };
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved settings
+            loadTheme();
+            loadLanguage();
+            initCursor();
+            setupSideMenu();
+            setupPWA();
+            
+            // Initialize audio player
+            initAudioPlayer();
+            
+            // Check if we need to play a random song on load
+            checkPlayRandomOnLoad();
+            
+            // Check if we should continue playing previously playing song
+            checkContinuePlayback();
+            
+            // Hide navbar when scrolling down, show when scrolling up
+            setupScrollBehavior();
+        });
+        
+        // Initialize the custom cursor
+        function initCursor() {
+            // Show cursor initially when the mouse moves
+            document.addEventListener('mousemove', function(e) {
+                if (!cursorVisible) {
+                    cursor.style.opacity = '1';
+                    cursorFollower.style.opacity = '1';
+                    cursorVisible = true;
+                }
+                
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                
+                // Add slight delay to follower for nice effect
+                setTimeout(function() {
+                    cursorFollower.style.left = e.clientX + 'px';
+                    cursorFollower.style.top = e.clientY + 'px';
+                }, 50);
+                
+                // Hide cursor after 3 seconds of inactivity
+                clearTimeout(cursorTimeout);
+                cursorTimeout = setTimeout(function() {
+                    cursor.style.opacity = '0';
+                    cursorFollower.style.opacity = '0';
+                    cursorVisible = false;
+                }, 3000);
+            });
+            
+            // Support for touch devices to hide cursor
+            document.addEventListener('touchstart', function() {
+                cursor.style.opacity = '0';
+                cursorFollower.style.opacity = '0';
+                cursorVisible = false;
+            });
+            
+            // Cursor interactions
+            document.addEventListener('mousedown', function() {
+                cursor.style.transform = 'translate(-50%, -50%) scale(0.7)';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(0.7)';
+            });
+            
+            document.addEventListener('mouseup', function() {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+            
+            // Make cursor disappear when leaving the window
+            document.addEventListener('mouseleave', function() {
+                cursor.style.opacity = '0';
+                cursorFollower.style.opacity = '0';
+                cursorVisible = false;
+            });
+            
+            document.addEventListener('mouseenter', function() {
+                cursor.style.opacity = '1';
+                cursorFollower.style.opacity = '1';
+                cursorVisible = true;
+                
+                // Reset the inactivity timer
+                clearTimeout(cursorTimeout);
+                cursorTimeout = setTimeout(function() {
+                    cursor.style.opacity = '0';
+                    cursorFollower.style.opacity = '0';
+                    cursorVisible = false;
+                }, 3000);
+            });
+        }
+        
+        // Setup the side menu functionality
+        function setupSideMenu() {
+            menuToggle.addEventListener('click', openSideMenu);
+            sideMenuClose.addEventListener('click', closeSideMenu);
+            sideMenuOverlay.addEventListener('click', closeSideMenu);
+            
+            // Theme options
+            themeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const theme = this.getAttribute('data-theme');
+                    setTheme(theme);
+                    
+                    // Update active state
+                    themeOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Language options
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    setLanguage(lang);
+                    
+                    // Update active state
+                    languageOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        }
+        
+        function openSideMenu() {
+            sideMenu.classList.add('active');
+            sideMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeSideMenu() {
+            sideMenu.classList.remove('active');
+            sideMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Setup PWA functionality
+        function setupPWA() {
+            // Check if the app is already installed
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                return; // Already installed, exit function
+            }
+            
+            // Handle beforeinstallprompt event
+            window.addEventListener('beforeinstallprompt', (e) => {
+                // Prevent Chrome 67 and earlier from automatically showing the prompt
+                e.preventDefault();
+                // Stash the event so it can be triggered later
+                deferredPrompt = e;
+            });
+            
+            // Side menu install button click
+            installBtn.addEventListener('click', () => {
+                installApp();
+                closeSideMenu();
+            });
+            
+            // Successfully installed
+            window.addEventListener('appinstalled', (evt) => {
+                deferredPrompt = null;
+            });
+        }
+        
+        function installApp() {
+            if (!deferredPrompt) return;
+            
+            // Show the install prompt
+            deferredPrompt.prompt();
+            
+            // Wait for the user to respond to the prompt
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                } else {
+                    console.log('User dismissed the install prompt');
+                }
+                deferredPrompt = null;
+            });
+        }
+        
+        // Scroll behavior for navigation and scroll-to-top button
+        function setupScrollBehavior() {
+            let lastScrollTop = 0;
+            const navbar = document.querySelector('.bottom-nav');
+            const scrollTopBtn = document.querySelector('.scroll-top');
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Hide/show navbar
+                if (scrollTop > lastScrollTop && scrollTop > 200) {
+                    // Scrolling down
+                    navbar.classList.add('hidden');
+                } else {
+                    // Scrolling up
+                    navbar.classList.remove('hidden');
+                }
+                
+                // Show/hide scroll to top button
+                if (scrollTop > 500) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        }
+        
+        // Theme management
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            
+            // Update active state in side menu
+            document.querySelectorAll('.theme-option').forEach(option => {
+                if (option.getAttribute('data-theme') === theme) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+            });
+        }
+        
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                
+                // Update active state in side menu
+                document.querySelectorAll('.theme-option').forEach(option => {
+                    if (option.getAttribute('data-theme') === savedTheme) {
+                        option.classList.add('active');
+                    } else {
+                        option.classList.remove('active');
+                    }
+                });
+            }
+        }
+        
+        // Language management
+        function setLanguage(lang) {
+            document.body.setAttribute('lang', lang);
+            localStorage.setItem('language', lang);
+            
+            // Update active state in side menu
+            document.querySelectorAll('.language-option').forEach(option => {
+                if (option.getAttribute('data-lang') === lang) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+            });
+        }
+        
+        function loadLanguage() {
+            const savedLanguage = localStorage.getItem('language');
+            if (savedLanguage) {
+                document.body.setAttribute('lang', savedLanguage);
+                
+                // Update active state in side menu
+                document.querySelectorAll('.language-option').forEach(option => {
+                    if (option.getAttribute('data-lang') === savedLanguage) {
+                        option.classList.add('active');
+                    } else {
+                        option.classList.remove('active');
+                    }
+                });
+            }
+        }
+        
+        // Initialize audio player
+        function initAudioPlayer() {
+            // Load song durations
+            loadSongDurations();
+            
+            // Set up audio player events
+            audioPlayer.addEventListener('timeupdate', updateProgress);
+            audioPlayer.addEventListener('ended', songEnded);
+            audioPlayer.addEventListener('canplay', updateDuration);
+            
+            // Enable progress bar seeking
+            progressContainer.addEventListener('click', seek);
+            
+            // Initialize the correct playlist tab
+            const defaultPlaylistTab = document.querySelector('.playlist-tab.active');
+            const defaultPlaylistId = defaultPlaylistTab.onclick.toString().match(/switchPlaylist\(this, ['"](.+)['"]\)/)[1];
+            currentPlaylist = defaultPlaylistId;
+        }
+        
+        // Load song durations (this loads metadata without playing the songs)
+        function loadSongDurations() {
+            for (const playlistId in playlists) {
+                playlists[playlistId].forEach((song, index) => {
+                    const audio = new Audio();
+                    audio.src = song.path;
+                    const durationId = `duration-${playlistId.replace('-', '-')}-${index+1}`;
+                    
+                    audio.addEventListener('loadedmetadata', function() {
+                        const minutes = Math.floor(audio.duration / 60);
+                        const seconds = Math.floor(audio.duration % 60);
+                        const durationElement = document.getElementById(durationId);
+                        if (durationElement) {
+                            durationElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                        }
+                    });
+                    
+                    // Just load metadata, don't play
+                    audio.preload = 'metadata';
+                });
+            }
+        }
+        
+        // Check if we should play a random song on load
+        function checkPlayRandomOnLoad() {
+            const playRandom = localStorage.getItem('playRandomOnLoad');
+            if (playRandom === 'true') {
+                // Clear the flag
+                localStorage.removeItem('playRandomOnLoad');
+                
+                // Play a random song
+                playRandomSong();
+            }
+        }
+        
+        // Play a random song from any playlist
+        function playRandomSong() {
+            // Select a random playlist
+            const playlistKeys = Object.keys(playlists);
+            const randomPlaylistKey = playlistKeys[Math.floor(Math.random() * playlistKeys.length)];
+            
+            // Select a random song from the playlist
+            const randomPlaylist = playlists[randomPlaylistKey];
+            const randomSongIndex = Math.floor(Math.random() * randomPlaylist.length);
+            const randomSong = randomPlaylist[randomSongIndex];
+            
+            // Play the random song
+            playSong(randomSong.path, randomSong.title, randomSong.artist);
+        }
+        
+        // Check if we should continue playing a song from before navigation
+        function checkContinuePlayback() {
+            const musicState = JSON.parse(localStorage.getItem('musicState'));
+            if (musicState && musicState.isPlaying) {
+                // Find the playlist and song index
+                for (const playlistId in playlists) {
+                    const songIndex = playlists[playlistId].findIndex(song => song.path === musicState.songPath);
+                    if (songIndex !== -1) {
+                        // Switch to the correct playlist
+                        const playlistTab = document.querySelector(`.playlist-tab[onclick*="${playlistId}"]`);
+                        switchPlaylist(playlistTab, playlistId);
+                        
+                        // Play the song at the saved position
+                        const song = playlists[playlistId][songIndex];
+                        playSong(song.path, song.title, song.artist);
+                        
+                        // Set the current time if provided
+                        if (musicState.currentTime) {
+                            audioPlayer.currentTime = musicState.currentTime;
+                        }
+                        
+                        break;
+                    }
+                }
+            }
+        }
+        
+        // Play a song by path, title, and artist
+        function playSong(path, title, artist) {
+            // Find which playlist and index the song is in
+            for (const playlistId in playlists) {
+                const songIndex = playlists[playlistId].findIndex(song => song.path === path);
+                if (songIndex !== -1) {
+                    currentPlaylist = playlistId;
+                    currentSongIndex = songIndex;
+                    
+                    // Switch to the correct playlist tab if not already active
+                    const activeContent = document.querySelector('.playlist-content.active');
+                    if (activeContent.id !== currentPlaylist) {
+                        const playlistTab = document.querySelector(`.playlist-tab[onclick*="${currentPlaylist}"]`);
+                        switchPlaylist(playlistTab, currentPlaylist);
+                    }
+                    break;
+                }
+            }
+            
+            // Highlight the current song
+            highlightCurrentSong();
+            
+            // Set up the audio player
+            audioPlayer.src = path;
+            document.getElementById('song-title').innerHTML = title;
+            document.getElementById('song-artist').textContent = artist;
+            
+            // Start playing
+            audioPlayer.play()
+                .then(() => {
+                    // Successfully playing
+                    isPlaying = true;
+                    playIcon.classList.remove('fa-play');
+                    playIcon.classList.add('fa-pause');
+                    
+                    // Save the current playback state
+                    savePlaybackState();
+                })
+                .catch(error => {
+                    console.error('Error playing audio:', error);
+                });
+            
+            // Update cover icon based on playlist
+            updateCoverIcon();
+        }
+        
+        // Update the cover icon based on current playlist
+        function updateCoverIcon() {
+            const coverElement = document.getElementById('song-cover');
+            
+            if (currentPlaylist === 'arabic-nasheeds') {
+                coverElement.innerHTML = '<i class="fas fa-mosque"></i>';
+            } else if (currentPlaylist === 'malayalam-songs') {
+                coverElement.innerHTML = '<i class="fas fa-music"></i>';
+            } else if (currentPlaylist === 'gym-nasheeds') {
+                coverElement.innerHTML = '<i class="fas fa-dumbbell"></i>';
+            }
+        }
+        
+        // Toggle play/pause
+        function togglePlayPause() {
+            if (currentSongIndex === -1 && playlists[currentPlaylist].length > 0) {
+                // If no song is selected, play the first one
+                const firstSong = playlists[currentPlaylist][0];
+                playSong(firstSong.path, firstSong.title, firstSong.artist);
+                return;
+            }
+            
+            if (isPlaying) {
+                audioPlayer.pause();
+                playIcon.classList.remove('fa-pause');
+                playIcon.classList.add('fa-play');
+                isPlaying = false;
+            } else {
+                audioPlayer.play();
+                playIcon.classList.remove('fa-play');
+                playIcon.classList.add('fa-pause');
+                isPlaying = true;
+            }
+            
+            // Save the current playback state
+            savePlaybackState();
+        }
+        
+        // Play the next song in the playlist
+        function playNext() {
+            if (currentSongIndex === -1) return;
+            
+            let nextIndex = currentSongIndex + 1;
+            if (nextIndex >= playlists[currentPlaylist].length) {
+                nextIndex = 0; // Loop back to the beginning
+            }
+            
+            const nextSong = playlists[currentPlaylist][nextIndex];
+            playSong(nextSong.path, nextSong.title, nextSong.artist);
+        }
+        
+        // Play the previous song in the playlist
+        function playPrevious() {
+            if (currentSongIndex === -1) return;
+            
+            // If at the beginning of the song, go to previous song, otherwise restart current song
+            if (audioPlayer.currentTime > 3) {
+                audioPlayer.currentTime = 0;
+                return;
+            }
+            
+            let prevIndex = currentSongIndex - 1;
+            if (prevIndex < 0) {
+                prevIndex = playlists[currentPlaylist].length - 1; // Loop to the end
+            }
+            
+            const prevSong = playlists[currentPlaylist][prevIndex];
+            playSong(prevSong.path, prevSong.title, prevSong.artist);
+        }
+        
+        // When song ends, play the next one
+        function songEnded() {
+            playNext();
+        }
+        
+        // Update the progress bar
+        function updateProgress() {
+            const duration = audioPlayer.duration;
+            const currentTime = audioPlayer.currentTime;
+            
+            if (duration) {
+                // Update progress bar
+                const progressPercent = (currentTime / duration) * 100;
+                progressBar.style.width = `${progressPercent}%`;
+                
+                // Update time display
+                const currentMinutes = Math.floor(currentTime / 60);
+                const currentSeconds = Math.floor(currentTime % 60);
+                currentTimeEl.textContent = `${String(currentMinutes).padStart(2, '0')}:${String(currentSeconds).padStart(2, '0')}`;
+                
+                // Save the current playback state periodically (every 5 seconds)
+                if (Math.floor(currentTime) % 5 === 0) {
+                    savePlaybackState();
+                }
+            }
+        }
+        
+        // Update duration display when metadata loads
+        function updateDuration() {
+            const duration = audioPlayer.duration;
+            if (duration) {
+                const minutes = Math.floor(duration / 60);
+                const seconds = Math.floor(duration % 60);
+                durationEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            }
+        }
+        
+        // Seek to position in the song
+        function seek(e) {
+            if (!audioPlayer.duration) return;
+            
+            const width = this.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audioPlayer.duration;
+            
+            audioPlayer.currentTime = (clickX / width) * duration;
+            
+            // Save the updated playback state
+            savePlaybackState();
+        }
+        
+        // Save the current playback state to localStorage
+        function savePlaybackState() {
+            if (currentSongIndex === -1) return;
+            
+            const currentSong = playlists[currentPlaylist][currentSongIndex];
+            const musicState = {
+                isPlaying: isPlaying,
+                songPath: currentSong.path,
+                currentTime: audioPlayer.currentTime,
+                duration: audioPlayer.duration,
+                title: currentSong.title,
+                artist: currentSong.artist,
+                playlist: currentPlaylist
+            };
+            
+            localStorage.setItem('musicState', JSON.stringify(musicState));
+        }
+        
+        // Reset player display
+        function resetPlayer() {
+            audioPlayer.pause();
+            audioPlayer.src = '';
+            
+            // Reset HTML content with language support
+            const titleElement = document.getElementById('song-title');
+            titleElement.innerHTML = ''; // Clear current content
+            
+            // Add language-specific content
+            const enSpan = document.createElement('span');
+            enSpan.setAttribute('data-lang', 'en');
+            enSpan.textContent = 'Select a song to play';
+            
+            const mlSpan = document.createElement('span');
+            mlSpan.setAttribute('data-lang', 'ml');
+            mlSpan.textContent = 'പ്ലേ ചെയ്യാൻ ഒരു ഗാനം തിരഞ്ഞെടുക്കുക';
+            
+            const arSpan = document.createElement('span');
+            arSpan.setAttribute('data-lang', 'ar');
+            arSpan.textContent = 'اختر أغنية للتشغيل';
+            
+            titleElement.appendChild(enSpan);
+            titleElement.appendChild(mlSpan);
+            titleElement.appendChild(arSpan);
+            
+            document.getElementById('song-artist').textContent = '';
+            durationEl.textContent = '00:00';
+            currentTimeEl.textContent = '00:00';
+            progressBar.style.width = '0%';
+            playIcon.classList.remove('fa-pause');
+            playIcon.classList.add('fa-play');
+            isPlaying = false;
+            
+            // Remove highlights from all songs
+            const songItems = document.querySelectorAll('.song-item');
+            songItems.forEach(item => {
+                item.classList.remove('playing');
+            });
+            
+            // Clear saved playback state
+            localStorage.removeItem('musicState');
+        }
+        
+        // Highlight the currently playing song
+        function highlightCurrentSong() {
+            // Remove highlight from all songs
+            const songItems = document.querySelectorAll('.song-item');
+            songItems.forEach(item => {
+                item.classList.remove('playing');
+            });
+            
+            // Add highlight to current song
+            if (currentSongIndex !== -1) {
+                const playlistElement = document.getElementById(currentPlaylist);
+                if (playlistElement) {
+                    const songElements = playlistElement.querySelectorAll('.song-item');
+                    if (songElements[currentSongIndex]) {
+                        songElements[currentSongIndex].classList.add('playing');
+                    }
+                }
+            }
+        }
+        
+        // Switch between playlists
+        function switchPlaylist(element, playlistId) {
+            // Update active tab
+            const tabs = document.querySelectorAll('.playlist-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            element.classList.add('active');
+            
+            // Show selected playlist
+            const playlistContents = document.querySelectorAll('.playlist-content');
+            playlistContents.forEach(playlist => {
+                playlist.classList.remove('active');
+            });
+            document.getElementById(playlistId).classList.add('active');
+            
+            // Update current playlist
+            currentPlaylist = playlistId;
+            
+            // Highlight current song if it's in this playlist
+            highlightCurrentSong();
+        }
+        
+        // Navigation functions
+        function navigateTo(target) {
+            // Set active nav item
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Add active class based on target
+            if (target === 'home') {
+                navItems[0].classList.add('active');
+                window.location.href = 'index.html';
+            } else if (target === 'playlist') {
+                navItems[1].classList.add('active');
+                // Already on playlist page
+            } else if (target === 'about') {
+                navItems[2].classList.add('active');
+                window.location.href = 'index.html#about';
+            }
+        }
+        
+        function scrollToTop() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+        
+        // Before the page unloads, ensure we save the current playback state
+        window.addEventListener('beforeunload', function() {
+            if (isPlaying) {
+                savePlaybackState();
+            }
+        });
+    </script>
+</body>
+</html>
+</head>
+<body lang="en">
+    <!-- Custom cursor elements -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    
+    <!-- Side Menu Toggle Button -->
+    <button class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Side Menu -->
+    <div class="side-menu" id="side-menu">
+        <div class="side-menu-header">
+            <div class="side-menu-logo">
+                <div class="side-menu-logo-img"></div>
+                <div class="side-menu-logo-text">Mallu Muslim Club</div>
+            </div>
+            <button class="side-menu-close" id="side-menu-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="side-menu-content">
+            <div class="side-menu-section">
+                <div class="side-menu-section-title" data-lang="en">Theme</div>
+                <div class="side-menu-section-title" data-lang="ml">തീം</div>
+                <div class="side-menu-section-title" data-lang="ar">السمة</div>
+                <div class="theme-options">
+                    <button class="theme-option" data-theme="light">
+                        <span data-lang="en">Light</span>
+                        <span data-lang="ml">ലൈറ്റ്</span>
+                        <span data-lang="ar">فاتح</span>
+                    </button>
+                    <button class="theme-option active" data-theme="dark">
+                        <span data-lang="en">Dark</span>
+                        <span data-lang="ml">ഡാർക്ക്</span>
+                        <span data-lang="ar">داكن</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="side-menu-section">
+                <div class="side-menu-section-title" data-lang="en">Language</div>
+                <div class="side-menu-section-title" data-lang="ml">ഭാഷ</div>
+                <div class="side-menu-section-title" data-lang="ar">اللغة</div>
+                <div class="language-options">
+                    <button class="language-option active" data-lang="en">English</button>
+                    <button class="language-option" data-lang="ml">മലയാളം</button>
+                    <button class="language-option" data-lang="ar">العربية</button>
+                </div>
+            </div>
+            
+            <div class="side-menu-section">
+                <div class="side-menu-section-title" data-lang="en">Navigate</div>
+                <div class="side-menu-section-title" data-lang="ml">നാവിഗേറ്റ്</div>
+                <div class="side-menu-section-title" data-lang="ar">التنقل</div>
+                
+                <a href="index.html" class="side-menu-item">
+                    <i class="fas fa-home"></i>
+                    <span data-lang="en">Home</span>
+                    <span data-lang="ml">ഹോം</span>
+                    <span data-lang="ar">الرئيسية</span>
+                </a>
+                
+                <a href="playlists.html" class="side-menu-item">
+                    <i class="fas fa-music"></i>
+                    <span data-lang="en">Playlists</span>
+                    <span data-lang="ml">പ്ലേലിസ്റ്റുകൾ</span>
+                    <span data-lang="ar">قوائم التشغيل</span>
+                </a>
+                
+                <a href="index.html#about" class="side-menu-item">
+                    <i class="fas fa-info-circle"></i>
+                    <span data-lang="en">About</span>
+                    <span data-lang="ml">ഞങ്ങളെക്കുറിച്ച്</span>
+                    <span data-lang="ar">حول</span>
+                </a>
+                
+                <a href="https://instagram.com/MalluMuslimClub" class="side-menu-item" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                    <span data-lang="en">Instagram</span>
+                    <span data-lang="ml">ഇൻസ്റ്റാഗ്രാം</span>
+                    <span data-lang="ar">إنستاغرام</span>
+                </a>
+                
+                <a href="https://wa.me/919656331391" class="side-menu-item" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    <span data-lang="en">WhatsApp</span>
+                    <span data-lang="ml">വാട്സ്ആപ്പ്</span>
+                    <span data-lang="ar">واتساب</span>
+                </a>
+            </div>
+            
+            <div class="side-menu-section">
+                <div class="side-menu-section-title" data-lang="en">Install App</div>
+                <div class="side-menu-section-title" data-lang="ml">ആപ്പ് ഇൻസ്റ്റാൾ ചെയ്യുക</div>
+                <div class="side-menu-section-title" data-lang="ar">تثبيت التطبيق</div>
+                
+                <button id="install-btn" class="side-menu-item">
+                    <i class="fas fa-download"></i>
+                    <span data-lang="en">Install Website</span>
+                    <span data-lang="ml">വെബ്സൈറ്റ് ഇൻസ്റ്റാൾ ചെയ്യുക</span>
+                    <span data-lang="ar">تثبيت الموقع</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Side Menu Overlay -->
+    <div class="side-menu-overlay" id="side-menu-overlay"></div>
+    
+    <!-- Scroll to top button -->
+    <button class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <div class="container">
+        <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> 
+            <span data-lang="en">Back to Home</span>
+            <span data-lang="ml">ഹോമിലേക്ക് മടങ്ങുക</span>
+            <span data-lang="ar">العودة إلى الرئيسية</span>
+        </a>
+        
+        <header class="animate__animated animate__fadeIn">
+            <h1 class="animate__animated animate__zoomIn">
+                <span data-lang="en">Music Playlists<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
@@ -69,8 +1184,9 @@
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s;
+            transition: width 0.2s, height 0.2s, opacity 0.5s;
             mix-blend-mode: difference;
+            opacity: 0;
         }
         
         .cursor-follower {
@@ -82,8 +1198,9 @@
             pointer-events: none;
             z-index: 9998;
             transform: translate(-50%, -50%);
-            transition: 0.1s ease;
+            transition: 0.1s ease, opacity 0.5s;
             mix-blend-mode: difference;
+            opacity: 0;
         }
         
         a, button, .nav-item, .social-btn, .playlist-tab, .song-item, .play-pause-button, .control-button, .progress-container {
@@ -105,10 +1222,135 @@
             border: 2px solid var(--cursor-color);
         }
         
-        .theme-toggle {
+        /* Side Menu */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--surface);
+            z-index: 9999;
+            transition: left 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+        }
+        
+        .side-menu.active {
+            left: 0;
+        }
+        
+        .side-menu-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .side-menu-close {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+        }
+        
+        .side-menu-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .side-menu-logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: url('Logo.svg') center/cover no-repeat;
+        }
+        
+        .side-menu-logo-text {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .side-menu-content {
+            padding: 20px;
+        }
+        
+        .side-menu-section {
+            margin-bottom: 30px;
+        }
+        
+        .side-menu-section-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .theme-options, .language-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .theme-option, .language-option {
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            cursor: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .theme-option.active, .language-option.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .theme-option:hover, .language-option:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .side-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 0;
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .side-menu-item:hover {
+            color: var(--primary);
+        }
+        
+        .side-menu-item i {
+            width: 24px;
+            text-align: center;
+        }
+        
+        .side-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            display: none;
+        }
+        
+        .side-menu-overlay.active {
+            display: block;
+        }
+        
+        .menu-toggle {
             position: fixed;
             top: 20px;
-            right: 20px;
+            left: 20px;
             z-index: 999;
             width: 50px;
             height: 50px;
@@ -124,24 +1366,8 @@
             transition: transform 0.3s ease, background-color 0.3s ease;
         }
         
-        .theme-toggle:hover {
+        .menu-toggle:hover {
             transform: scale(1.1);
-        }
-        
-        [data-theme="dark"] .light-icon {
-            display: block;
-        }
-        
-        [data-theme="dark"] .dark-icon {
-            display: none;
-        }
-        
-        [data-theme="light"] .light-icon {
-            display: none;
-        }
-        
-        [data-theme="light"] .dark-icon {
-            display: block;
         }
         
         header {
@@ -366,8 +1592,25 @@
             font-size: 0.9rem;
         }
         
+        .song-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .song-download {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .song-download:hover {
+            color: var(--primary);
+        }
+        
         .song-duration {
             color: var(--text-secondary);
+            margin-left: 10px;
+            white-space: nowrap;
         }
         
         .music-player {
@@ -550,6 +1793,10 @@
                 width: 95%;
                 height: 60px;
             }
+            
+            .side-menu {
+                width: 280px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -574,606 +1821,42 @@
                 padding: 10px;
                 font-size: 0.9rem;
             }
+            
+            .side-menu {
+                width: 260px;
+            }
+        }
+        
+        /* Multi-language support */
+        [lang="en"] [data-lang]:not([data-lang="en"]) {
+            display: none;
+        }
+        
+        [lang="ml"] [data-lang]:not([data-lang="ml"]) {
+            display: none;
+        }
+        
+        [lang="ar"] [data-lang]:not([data-lang="ar"]) {
+            display: none;
+        }
+        
+        [lang="ar"] {
+            direction: rtl;
+            text-align: right;
+        }
+        
+        [lang="ar"] .side-menu {
+            left: auto;
+            right: -300px;
+        }
+        
+        [lang="ar"] .side-menu.active {
+            left: auto;
+            right: 0;
+        }
+        
+        [lang="ar"] .menu-toggle {
+            left: auto;
+            right: 20px;
         }
     </style>
-</head>
-<body>
-    <!-- Custom cursor elements -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-    
-    <button class="theme-toggle" onclick="toggleTheme()">
-        <i class="fas fa-sun light-icon"></i>
-        <i class="fas fa-moon dark-icon"></i>
-    </button>
-    
-    <!-- Scroll to top button -->
-    <button class="scroll-top" onclick="scrollToTop()">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <div class="container">
-        <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Home</a>
-        
-        <header class="animate__animated animate__fadeIn">
-            <h1 class="animate__animated animate__zoomIn">Music Playlists</h1>
-            <p class="header-description animate__animated animate__fadeIn" style="animation-delay: 0.2s">
-                Enjoy our curated collection of halal music that uplifts the soul and celebrates our cultural heritage.
-            </p>
-        </header>
-
-        <div class="language-switcher">
-            <button onclick="changeLanguage('en')">English</button>
-            <button onclick="changeLanguage('ml')">മലയാളം</button>
-            <button onclick="changeLanguage('ar')">العربية</button>
-        </div>
-
-        <button onclick="installWebsite()" data-translate="install">Install Website</button>
-
-        <div class="playlist-section">
-            <div class="playlist-nav">
-                <div class="playlist-tab active" onclick="switchPlaylist(this, 'arabic-nasheeds')">Arabic Nasheeds</div>
-                <div class="playlist-tab" onclick="switchPlaylist(this, 'malayalam-songs')">Malayalam Songs</div>
-                <div class="playlist-tab" onclick="switchPlaylist(this, 'gym-nasheeds')">Gym Nasheeds</div>
-            </div>
-            
-            <!-- Arabic Nasheeds Playlist -->
-            <div class="playlist-content active" id="arabic-nasheeds">
-                <div class="song-item" onclick="playSong('playlists/arabic nasheeds/1.mp3', 'Arabic Nasheed 1', 'Various Artists')">
-                    <div class="song-number">1</div>
-                    <div class="song-info">
-                        <div class="song-title">Arabic Nasheed 1</div>
-                        <div class="song-artist">Various Artists</div>
-                    </div>
-                    <div class="song-duration" id="duration-an-1">--:--</div>
-                </div>
-                
-                <div class="song-item" onclick="playSong('playlists/arabic nasheeds/2.mp3', 'Arabic Nasheed 2', 'Various Artists')">
-                    <div class="song-number">2</div>
-                    <div class="song-info">
-                        <div class="song-title">Arabic Nasheed 2</div>
-                        <div class="song-artist">Various Artists</div>
-                    </div>
-                    <div class="song-duration" id="duration-an-2">--:--</div>
-                </div>
-                
-                <div class="song-item" onclick="playSong('playlists/arabic nasheeds/3.mp3', 'Arabic Nasheed 3', 'Various Artists')">
-                    <div class="song-number">3</div>
-                    <div class="song-info">
-                        <div class="song-title">Arabic Nasheed 3</div>
-                        <div class="song-artist">Various Artists</div>
-                    </div>
-                    <div class="song-duration" id="duration-an-3">--:--</div>
-                </div>
-                
-                <div class="song-item" onclick="playSong('playlists/arabic nasheeds/4.mp3', 'Arabic Nasheed 4', 'Various Artists')">
-                    <div class="song-number">4</div>
-                    <div class="song-info">
-                        <div class="song-title">Arabic Nasheed 4</div>
-                        <div class="song-artist">Various Artists</div>
-                    </div>
-                    <div class="song-duration" id="duration-an-4">--:--</div>
-                </div>
-                
-                <div class="song-item" onclick="playSong('playlists/arabic nasheeds/5.mp3', 'Arabic Nasheed 5', 'Various Artists')">
-                    <div class="song-number">5</div>
-                    <div class="song-info">
-                        <div class="song-title">Arabic Nasheed 5</div>
-                        <div class="song-artist">Various Artists</div>
-                    </div>
-                    <div class="song-duration" id="duration-an-5">--:--</div>
-                </div>
-                
-                <div class="song-item" onclick="playSong('playlists/arabic nasheeds/6.mp3', 'Arabic Nasheed 6', 'Various Artists')">
-                    <div class="song-number">6</div>
-                    <div class="song-info">
-                        <div class="song-title">Arabic Nasheed 6</div>
-                        <div class="song-artist">Various Artists</div>
-                    </div>
-                    <div class="song-duration" id="duration-an-6">--:--</div>
-                </div>
-                
-                <div class="song-item" onclick="playSong('playlists/arabic nasheeds/7.mp3', 'Arabic Nasheed 7', 'Various Artists')">
-                    <div class="song-number">7</div>
-                    <div class="song-info">
-                        <div class="song-title">Arabic Nasheed 7</div>
-                        <div class="song-artist">Various Artists</div>
-                    </div>
-                    <div class="song-duration" id="duration-an-7">--:--</div>
-                </div>
-            </div>
-            
-            <!-- Malayalam Songs Playlist -->
-            <div class="playlist-content" id="malayalam-songs">
-                <div class="song-item" onclick="playSong('playlists/malayalam songs/1.mp3', 'Malayalam Song 1', 'Malayalam Artist')">
-                    <div class="song-number">1</div>
-                    <div class="song-info">
-                        <div class="song-title">Malayalam Song 1</div>
-                        <div class="song-artist">Malayalam Artist</div>
-                    </div>
-                    <div class="song-duration" id="duration-ms-1">--:--</div>
-                </div>
-                
-                <div class="song-item" onclick="playSong('playlists/malayalam songs/2.mp3', 'Malayalam Song 2', 'Malayalam Artist')">
-                    <div class="song-number">2</div>
-                    <div class="song-info">
-                        <div class="song-title">Malayalam Song 2</div>
-                        <div class="song-artist">Malayalam Artist</div>
-                    </div>
-                    <div class="song-duration" id="duration-ms-2">--:--</div>
-                </div>
-            </div>
-            
-            <!-- Gym Nasheeds Playlist -->
-            <div class="playlist-content" id="gym-nasheeds">
-                <div class="song-item" onclick="playSong('playlists/gym nasheeds/1.mp3', 'Gym Nasheed 1', 'Workout Nasheed')">
-                    <div class="song-number">1</div>
-                    <div class="song-info">
-                        <div class="song-title">Gym Nasheed 1</div>
-                        <div class="song-artist">Workout Nasheed</div>
-                    </div>
-                    <div class="song-duration" id="duration-gn-1">--:--</div>
-                </div>
-                
-                <div class="song-item" onclick="playSong('playlists/gym nasheeds/2.mp3', 'Gym Nasheed 2', 'Workout Nasheed')">
-                    <div class="song-number">2</div>
-                    <div class="song-info">
-                        <div class="song-title">Gym Nasheed 2</div>
-                        <div class="song-artist">Workout Nasheed</div>
-                    </div>
-                    <div class="song-duration" id="duration-gn-2">--:--</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Music Player -->
-        <div class="music-player">
-            <div class="music-player-info">
-                <div class="music-player-cover" id="song-cover">
-                    <i class="fas fa-music"></i>
-                </div>
-                <div class="music-player-details">
-                    <div class="music-player-title" id="song-title">Select a song to play</div>
-                    <div class="music-player-artist" id="song-artist"></div>
-                </div>
-            </div>
-            
-            <div class="music-player-controls">
-                <button class="control-button" onclick="playPrevious()"><i class="fas fa-step-backward"></i></button>
-                <div class="play-pause-button" id="play-pause-btn" onclick="togglePlayPause()">
-                    <i class="fas fa-play" id="play-icon"></i>
-                </div>
-                <button class="control-button" onclick="playNext()"><i class="fas fa-step-forward"></i></button>
-            </div>
-            
-            <div class="progress-container" id="progress-container">
-                <div class="progress-bar" id="progress-bar"></div>
-            </div>
-            
-            <div class="time-display">
-                <div id="current-time">00:00</div>
-                <div id="duration">00:00</div>
-            </div>
-            
-            <audio id="audio-player"></audio>
-        </div>
-
-        <footer class="animate__animated animate__fadeInUp" style="animation-delay: 0.8s">
-            <div class="social-links">
-                <a href="https://instagram.com/MalluMuslimClub" class="social-btn" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://wa.me/919656331391" class="social-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            </div>
-            <p>© 2025 Mallu Muslim Club. All rights reserved.</p>
-        </footer>
-
-        <footer>
-            <p>&copy; 2023 <a href="https://navarmp.github.io/" target="_blank">Muhammed Navar</a></p>
-        </footer>
-    </div>
-
-    <!-- Floating Bottom Navigation -->
-    <nav class="bottom-nav">
-        <div class="nav-items">
-            <div class="nav-item" onclick="window.location.href='index.html';">
-                <span>Home</span>
-                <i class="fas fa-home"></i>
-            </div>
-            <div class="nav-item active">
-                <span>Playlist</span>
-                <i class="fas fa-music"></i>
-            </div>
-            <div class="nav-item" onclick="window.location.href='index.html#about';">
-                <span>About</span>
-                <i class="fas fa-info-circle"></i>
-            </div>
-            <div class="nav-item" onclick="window.location.href='index.html#social';">
-                <span>Social</span>
-                <i class="fas fa-users"></i>
-            </div>
-        </div>
-    </nav>
-
-    <script>
-        // Custom cursor
-        const cursor = document.querySelector('.cursor');
-        const cursorFollower = document.querySelector('.cursor-follower');
-        
-        document.addEventListener('mousemove', function(e) {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            // Add slight delay to follower for nice effect
-            setTimeout(function() {
-                cursorFollower.style.left = e.clientX + 'px';
-                cursorFollower.style.top = e.clientY + 'px';
-            }, 50);
-        });
-        
-        document.addEventListener('mousedown', function() {
-            cursor.style.transform = 'translate(-50%, -50%) scale(0.7)';
-            cursorFollower.style.transform = 'translate(-50%, -50%) scale(0.7)';
-        });
-        
-        document.addEventListener('mouseup', function() {
-            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
-        });
-        
-        // Make cursor disappear when leaving the window
-        document.addEventListener('mouseleave', function() {
-            cursor.style.opacity = '0';
-            cursorFollower.style.opacity = '0';
-        });
-        
-        document.addEventListener('mouseenter', function() {
-            cursor.style.opacity = '1';
-            cursorFollower.style.opacity = '1';
-        });
-        
-        // Hide navbar when scrolling down, show when scrolling up
-        let lastScrollTop = 0;
-        const navbar = document.querySelector('.bottom-nav');
-        const scrollTopBtn = document.querySelector('.scroll-top');
-        
-        window.addEventListener('scroll', function() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            // Hide/show navbar
-            if (scrollTop > lastScrollTop && scrollTop > 200) {
-                // Scrolling down
-                navbar.classList.add('hidden');
-            } else {
-                // Scrolling up
-                navbar.classList.remove('hidden');
-            }
-            
-            // Show/hide scroll to top button
-            if (scrollTop > 500) {
-                scrollTopBtn.classList.add('visible');
-            } else {
-                scrollTopBtn.classList.remove('visible');
-            }
-            
-            lastScrollTop = scrollTop;
-        });
-        
-        function toggleTheme() {
-            const html = document.documentElement;
-            if (html.getAttribute('data-theme') === 'dark') {
-                html.setAttribute('data-theme', 'light');
-                localStorage.setItem('theme', 'light');
-            } else {
-                html.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-            }
-        }
-        
-        // Playlist management
-        let currentPlaylist = 'arabic-nasheeds';
-        let currentSongIndex = -1;
-        let playlists = {
-            'arabic-nasheeds': [
-                { path: 'playlists/arabic nasheeds/1.mp3', title: 'Arabic Nasheed 1', artist: 'Various Artists' },
-                { path: 'playlists/arabic nasheeds/2.mp3', title: 'Arabic Nasheed 2', artist: 'Various Artists' },
-                { path: 'playlists/arabic nasheeds/3.mp3', title: 'Arabic Nasheed 3', artist: 'Various Artists' },
-                { path: 'playlists/arabic nasheeds/4.mp3', title: 'Arabic Nasheed 4', artist: 'Various Artists' },
-                { path: 'playlists/arabic nasheeds/5.mp3', title: 'Arabic Nasheed 5', artist: 'Various Artists' },
-                { path: 'playlists/arabic nasheeds/6.mp3', title: 'Arabic Nasheed 6', artist: 'Various Artists' },
-                { path: 'playlists/arabic nasheeds/7.mp3', title: 'Arabic Nasheed 7', artist: 'Various Artists' }
-            ],
-            'malayalam-songs': [
-                { path: 'playlists/malayalam songs/1.mp3', title: 'Malayalam Song 1', artist: 'Malayalam Artist' },
-                { path: 'playlists/malayalam songs/2.mp3', title: 'Malayalam Song 2', artist: 'Malayalam Artist' }
-            ],
-            'gym-nasheeds': [
-                { path: 'playlists/gym nasheeds/1.mp3', title: 'Gym Nasheed 1', artist: 'Workout Nasheed' },
-                { path: 'playlists/gym nasheeds/2.mp3', title: 'Gym Nasheed 2', artist: 'Workout Nasheed' }
-            ]
-        };
-        
-        function switchPlaylist(element, playlistId) {
-            // Update active tab
-            const tabs = document.querySelectorAll('.playlist-tab');
-            tabs.forEach(tab => {
-                tab.classList.remove('active');
-            });
-            element.classList.add('active');
-            
-            // Show selected playlist
-            const playlistContents = document.querySelectorAll('.playlist-content');
-            playlistContents.forEach(playlist => {
-                playlist.classList.remove('active');
-            });
-            document.getElementById(playlistId).classList.add('active');
-            
-            // Update current playlist
-            currentPlaylist = playlistId;
-            
-            // Reset current song if playlist changes
-            if (audioPlayer.src && audioPlayer.src.includes(currentPlaylist)) {
-                // Keep playing if in same playlist
-            } else {
-                resetPlayer();
-                currentSongIndex = -1;
-            }
-        }
-        
-        // Music player functionality
-        let isPlaying = false;
-        const audioPlayer = document.getElementById('audio-player');
-        const playPauseBtn = document.getElementById('play-pause-btn');
-        const playIcon = document.getElementById('play-icon');
-        const progressBar = document.getElementById('progress-bar');
-        const currentTimeEl = document.getElementById('current-time');
-        const durationEl = document.getElementById('duration');
-        const progressContainer = document.getElementById('progress-container');
-        
-        // Initialize audio player
-        function initAudioPlayer() {
-            // Load song durations
-            loadSongDurations();
-            
-            // Set up audio player events
-            audioPlayer.addEventListener('timeupdate', updateProgress);
-            audioPlayer.addEventListener('ended', songEnded);
-            audioPlayer.addEventListener('canplay', updateDuration);
-            
-            // Enable progress bar seeking
-            progressContainer.addEventListener('click', seek);
-        }
-        
-        // Load song durations (this loads metadata without playing the songs)
-        function loadSongDurations() {
-            for (const playlistId in playlists) {
-                playlists[playlistId].forEach((song, index) => {
-                    const audio = new Audio();
-                    audio.src = song.path;
-                    const durationId = `duration-${playlistId.replace('-', '-')}-${index+1}`;
-                    
-                    audio.addEventListener('loadedmetadata', function() {
-                        const minutes = Math.floor(audio.duration / 60);
-                        const seconds = Math.floor(audio.duration % 60);
-                        const durationElement = document.getElementById(durationId);
-                        if (durationElement) {
-                            durationElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-                        }
-                    });
-                    
-                    // Just load metadata, don't play
-                    audio.preload = 'metadata';
-                });
-            }
-        }
-        
-        // Play a song by path, title, and artist
-        function playSong(path, title, artist) {
-            // Find which playlist and index the song is in
-            for (const playlistId in playlists) {
-                const songIndex = playlists[playlistId].findIndex(song => song.path === path);
-                if (songIndex !== -1) {
-                    currentPlaylist = playlistId;
-                    currentSongIndex = songIndex;
-                    
-                    // Switch to the correct playlist tab if not already active
-                    const activeContent = document.querySelector('.playlist-content.active');
-                    if (activeContent.id !== currentPlaylist) {
-                        const playlistTab = document.querySelector(`.playlist-tab[onclick*="${currentPlaylist}"]`);
-                        switchPlaylist(playlistTab, currentPlaylist);
-                    }
-                    break;
-                }
-            }
-            
-            // Highlight the current song
-            highlightCurrentSong();
-            
-            // Set up the audio player
-            audioPlayer.src = path;
-            document.getElementById('song-title').textContent = title;
-            document.getElementById('song-artist').textContent = artist;
-            
-            // Start playing
-            audioPlayer.play();
-            isPlaying = true;
-            playIcon.classList.remove('fa-play');
-            playIcon.classList.add('fa-pause');
-            
-            // Update cover icon based on playlist
-            updateCoverIcon();
-        }
-        
-        // Update the cover icon based on current playlist
-        function updateCoverIcon() {
-            const coverElement = document.getElementById('song-cover');
-            
-            if (currentPlaylist === 'arabic-nasheeds') {
-                coverElement.innerHTML = '<i class="fas fa-mosque"></i>';
-            } else if (currentPlaylist === 'malayalam-songs') {
-                coverElement.innerHTML = '<i class="fas fa-music"></i>';
-            } else if (currentPlaylist === 'gym-nasheeds') {
-                coverElement.innerHTML = '<i class="fas fa-dumbbell"></i>';
-            }
-        }
-        
-        // Toggle play/pause
-        function togglePlayPause() {
-            if (currentSongIndex === -1 && playlists[currentPlaylist].length > 0) {
-                // If no song is selected, play the first one
-                const firstSong = playlists[currentPlaylist][0];
-                playSong(firstSong.path, firstSong.title, firstSong.artist);
-                return;
-            }
-            
-            if (isPlaying) {
-                audioPlayer.pause();
-                playIcon.classList.remove('fa-pause');
-                playIcon.classList.add('fa-play');
-            } else {
-                audioPlayer.play();
-                playIcon.classList.remove('fa-play');
-                playIcon.classList.add('fa-pause');
-            }
-            
-            isPlaying = !isPlaying;
-        }
-        
-        // Play the next song in the playlist
-        function playNext() {
-            if (currentSongIndex === -1) return;
-            
-            let nextIndex = currentSongIndex + 1;
-            if (nextIndex >= playlists[currentPlaylist].length) {
-                nextIndex = 0; // Loop back to the beginning
-            }
-            
-            const nextSong = playlists[currentPlaylist][nextIndex];
-            playSong(nextSong.path, nextSong.title, nextSong.artist);
-        }
-        
-        // Play the previous song in the playlist
-        function playPrevious() {
-            if (currentSongIndex === -1) return;
-            
-            // If at the beginning of the song, go to previous song, otherwise restart current song
-            if (audioPlayer.currentTime > 3) {
-                audioPlayer.currentTime = 0;
-                return;
-            }
-            
-            let prevIndex = currentSongIndex - 1;
-            if (prevIndex < 0) {
-                prevIndex = playlists[currentPlaylist].length - 1; // Loop to the end
-            }
-            
-            const prevSong = playlists[currentPlaylist][prevIndex];
-            playSong(prevSong.path, prevSong.title, prevSong.artist);
-        }
-        
-        // When song ends, play the next one
-        function songEnded() {
-            playNext();
-        }
-        
-        // Update the progress bar
-        function updateProgress() {
-            const duration = audioPlayer.duration;
-            const currentTime = audioPlayer.currentTime;
-            
-            if (duration) {
-                // Update progress bar
-                const progressPercent = (currentTime / duration) * 100;
-                progressBar.style.width = `${progressPercent}%`;
-                
-                // Update time display
-                const currentMinutes = Math.floor(currentTime / 60);
-                const currentSeconds = Math.floor(currentTime % 60);
-                currentTimeEl.textContent = `${String(currentMinutes).padStart(2, '0')}:${String(currentSeconds).padStart(2, '0')}`;
-            }
-        }
-        
-        // Update duration display when metadata loads
-        function updateDuration() {
-            const duration = audioPlayer.duration;
-            if (duration) {
-                const minutes = Math.floor(duration / 60);
-                const seconds = Math.floor(duration % 60);
-                durationEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-            }
-        }
-        
-        // Seek to position in the song
-        function seek(e) {
-            if (!audioPlayer.duration) return;
-            
-            const width = this.clientWidth;
-            const clickX = e.offsetX;
-            const duration = audioPlayer.duration;
-            
-            audioPlayer.currentTime = (clickX / width) * duration;
-        }
-        
-        // Reset player display
-        function resetPlayer() {
-            audioPlayer.pause();
-            audioPlayer.src = '';
-            document.getElementById('song-title').textContent = 'Select a song to play';
-            document.getElementById('song-artist').textContent = '';
-            durationEl.textContent = '00:00';
-            currentTimeEl.textContent = '00:00';
-            progressBar.style.width = '0%';
-            playIcon.classList.remove('fa-pause');
-            playIcon.classList.add('fa-play');
-            isPlaying = false;
-            
-            // Remove highlights from all songs
-            const songItems = document.querySelectorAll('.song-item');
-            songItems.forEach(item => {
-                item.classList.remove('playing');
-            });
-        }
-        
-        // Highlight the currently playing song
-        function highlightCurrentSong() {
-            // Remove highlight from all songs
-            const songItems = document.querySelectorAll('.song-item');
-            songItems.forEach(item => {
-                item.classList.remove('playing');
-            });
-            
-            // Add highlight to current song
-            if (currentSongIndex !== -1) {
-                const playlistElement = document.getElementById(currentPlaylist);
-                if (playlistElement) {
-                    const songElements = playlistElement.querySelectorAll('.song-item');
-                    if (songElements[currentSongIndex]) {
-                        songElements[currentSongIndex].classList.add('playing');
-                    }
-                }
-            }
-        }
-        
-        function scrollToTop() {
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
-        
-        // Load theme from localStorage
-        function loadTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                document.documentElement.setAttribute('data-theme', savedTheme);
-            }
-        }
-        
-        // Initialize when the page loads
-        window.addEventListener('DOMContentLoaded', function() {
-            loadTheme();
-            initAudioPlayer();
-            
-            // Initialize the correct playlist tab
-            const defaultPlaylistTab = document.querySelector('.playlist-tab.active');
-            const defaultPlaylistId = defaultPlaylistTab.onclick.toString().match(/switchPlaylist\(this, ['"](.+)['"]\)/)[1];
-            currentPlaylist = defaultPlaylistId;
-        });
-    </script>
-</body>
-</html>
