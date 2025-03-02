@@ -54,6 +54,12 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Initialize elements
     initElements();
     
+    // Register service worker
+    registerServiceWorker();
+    
+    // Load ID3 tag reader script
+    await loadScript('js/metadata-reader.js');
+    
     // Load translations
     await loadTranslations();
     
@@ -83,6 +89,32 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Always play random music when launching the website
     playRandomSong();
 });
+
+// Register service worker for PWA
+function registerServiceWorker() {
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(registration => {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                })
+                .catch(error => {
+                    console.error('ServiceWorker registration failed: ', error);
+                });
+        });
+    }
+}
+
+// Load external script
+function loadScript(src) {
+    return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
+        document.head.appendChild(script);
+    });
+}
 
 // Initialize global element references
 function initElements() {
@@ -296,31 +328,54 @@ function closeSideMenu() {
 function setupPWA() {
     // Check if the app is already installed
     if (window.matchMedia('(display-mode: standalone)').matches) {
+        console.log('App is already installed');
         return; // Already installed, exit function
     }
+    
+    // Get install button elements
+    const installBtn = document.getElementById('install-btn');
+    const installBannerBtn = document.getElementById('install-banner-btn');
+    const installBanner = document.getElementById('install-banner');
+    const installClose = document.getElementById('install-close');
+    
+    // Disable install buttons initially
+    if (installBtn) installBtn.disabled = true;
+    if (installBannerBtn) installBannerBtn.disabled = true;
+    
+    // Variable to store the install prompt event
+    let deferredPrompt;
     
     // Handle beforeinstallprompt event
     window.addEventListener('beforeinstallprompt', (e) => {
         // Prevent Chrome 67 and earlier from automatically showing the prompt
         e.preventDefault();
-        // Stash the event so it can be triggered later
+        
+        // Store the event for later use
         deferredPrompt = e;
         
-        // Show the install banner if it exists
-        const installBanner = document.getElementById('install-banner');
+        console.log('Install prompt available');
+        
+        // Enable install buttons
+        if (installBtn) {
+            installBtn.disabled = false;
+            installBtn.addEventListener('click', () => {
+                installApp(deferredPrompt);
+                closeSideMenu();
+            });
+        }
+        
+        // Show install banner
         if (installBanner) {
             installBanner.classList.add('show');
             
-            // Install banner button click
-            const installBannerBtn = document.getElementById('install-banner-btn');
             if (installBannerBtn) {
+                installBannerBtn.disabled = false;
                 installBannerBtn.addEventListener('click', () => {
-                    installApp();
+                    installApp(deferredPrompt);
                 });
             }
             
-            // Close install banner
-            const installClose = document.getElementById('install-close');
+            // Close install banner button
             if (installClose) {
                 installClose.addEventListener('click', () => {
                     installBanner.classList.remove('show');
@@ -329,17 +384,30 @@ function setupPWA() {
         }
     });
     
-    // Successfully installed
+    // Successfully installed event
     window.addEventListener('appinstalled', (evt) => {
-        if (document.getElementById('install-banner')) {
-            document.getElementById('install-banner').classList.remove('show');
+        console.log('App was installed');
+        
+        // Hide the install banner if it exists
+        if (installBanner) {
+            installBanner.classList.remove('show');
         }
+        
+        // Clear the deferred prompt
         deferredPrompt = null;
+        
+        // Disable install buttons
+        if (installBtn) installBtn.disabled = true;
+        if (installBannerBtn) installBannerBtn.disabled = true;
     });
 }
 
-function installApp() {
-    if (!deferredPrompt) return;
+// Function to trigger the install prompt
+function installApp(deferredPrompt) {
+    if (!deferredPrompt) {
+        console.error('Install prompt not available');
+        return;
+    }
     
     // Show the install prompt
     deferredPrompt.prompt();
@@ -350,13 +418,6 @@ function installApp() {
             console.log('User accepted the install prompt');
         } else {
             console.log('User dismissed the install prompt');
-        }
-        deferredPrompt = null;
-        
-        // Hide the install banner if it exists
-        const installBanner = document.getElementById('install-banner');
-        if (installBanner) {
-            installBanner.classList.remove('show');
         }
     });
 }
@@ -721,7 +782,7 @@ function playRandomSong() {
 }
 
 // Play a specific song
-function playSong(path, title, artist) {
+async function playSong(path, title, artist) {
     if (!floatingAudioPlayer || !floatingPlayer) return;
     
     // Show the player if it's hidden
@@ -736,6 +797,24 @@ function playSong(path, title, artist) {
             currentSongIndex = songIndex;
             break;
         }
+    }
+
+    // Try to read metadata from file if available
+    try {
+        if (window.id3TagReader) {
+            const metadata = await id3TagReader.readTags(path);
+            // Only use metadata if it's not "Unknown"
+            if (metadata.title !== "Unknown Title") title = metadata.title;
+            if (metadata.artist !== "Unknown Artist") artist = metadata.artist;
+            
+            // Update the playlist entry with the metadata
+            if (currentPlaylist && currentSongIndex !== -1) {
+                playlists[currentPlaylist][currentSongIndex].title = title;
+                playlists[currentPlaylist][currentSongIndex].artist = artist;
+            }
+        }
+    } catch (error) {
+        console.error('Error reading MP3 metadata:', error);
     }
     
     // Set up the audio player
