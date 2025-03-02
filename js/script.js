@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     setupPWA();
     setupScrollBehavior();
     setupFloatingMusicPlayer();
+    setupScrollAnimations();
     
     // Check if we're on the read page and set up filters
     if (document.querySelector('.article-filters')) {
@@ -79,8 +80,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         initFloatingMusicPlayer();
     }
 
-    // Auto play random music if first time visiting
-    checkFirstVisit();
+    // Always play random music when launching the website
+    playRandomSong();
 });
 
 // Initialize global element references
@@ -616,30 +617,14 @@ function stopDragging() {
     document.body.style.cursor = '';
 }
 
-// Check if this is the first visit to auto-play music
-function checkFirstVisit() {
-    const hasVisited = localStorage.getItem('hasVisited');
-    if (!hasVisited) {
-        localStorage.setItem('hasVisited', 'true');
-        
-        // Auto-play random music
-        if (floatingAudioPlayer) {
-            // If we're already on a page with a music player, play random music
-            playRandomSong();
-        } else {
-            // Set a flag to play music on playlist page
-            localStorage.setItem('playRandomOnLoad', 'true');
-        }
+// Always play random music when the website is launched
+function playRandomMusic() {
+    if (floatingAudioPlayer) {
+        // If we're already on a page with a music player, play random music
+        playRandomSong();
     } else {
-        // Check if we should play random music after redirect
-        const playRandom = localStorage.getItem('playRandomOnLoad');
-        if (playRandom === 'true' && floatingAudioPlayer) {
-            // Clear the flag
-            localStorage.removeItem('playRandomOnLoad');
-            
-            // Play a random song
-            playRandomSong();
-        }
+        // Set a flag to play music on playlist page
+        localStorage.setItem('playRandomOnLoad', 'true');
     }
 }
 
@@ -949,5 +934,59 @@ function setupArticleFilters() {
                 }
             });
         });
+    });
+}
+
+// Setup scroll animations
+function setupScrollAnimations() {
+    // Add scroll-animate class to elements we want to animate
+    const sections = document.querySelectorAll('section, .ramadan-campaign, .playlist-section, .articles-section');
+    sections.forEach(section => {
+        section.classList.add('scroll-animate');
+    });
+    
+    const headings = document.querySelectorAll('h1, h2, h3');
+    headings.forEach(heading => {
+        heading.classList.add('scroll-animate');
+        heading.classList.add('fade-in-up');
+    });
+    
+    const cards = document.querySelectorAll('.article-card, .song-item');
+    cards.forEach((card, index) => {
+        card.classList.add('scroll-animate');
+        // Alternate between left and right animations
+        if (index % 2 === 0) {
+            card.classList.add('fade-in-left');
+        } else {
+            card.classList.add('fade-in-right');
+        }
+    });
+    
+    const logos = document.querySelectorAll('.logo, .ramadan-logo');
+    logos.forEach(logo => {
+        logo.classList.add('scroll-animate');
+        logo.classList.add('zoom-in');
+    });
+    
+    // Check elements visibility on page load
+    checkVisibility();
+    
+    // Check elements visibility on scroll
+    window.addEventListener('scroll', checkVisibility);
+}
+
+// Check if elements are visible in viewport
+function checkVisibility() {
+    const animatedElements = document.querySelectorAll('.scroll-animate');
+    
+    animatedElements.forEach(element => {
+        // Calculate element position relative to viewport
+        const rect = element.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        
+        // If element is in viewport
+        if (rect.top <= windowHeight * 0.85) {
+            element.classList.add('visible');
+        }
     });
 }
