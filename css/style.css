@@ -70,14 +70,15 @@ body {
     border: 2px solid var(--cursor-color);
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9998;
+    z-index: 9999;
     transform: translate(-50%, -50%);
     transition: 0.1s ease, opacity 0.5s;
     mix-blend-mode: difference;
     opacity: 0;
 }
 
-a, button, .nav-item, .social-btn, .playlist-tab, .song-item, .play-pause-button, .control-button, .progress-container {
+a, button, .nav-item, .social-btn, .playlist-tab, .song-item, .play-pause-button, 
+.control-button, .progress-container, .side-menu-item, .side-menu-close, .menu-toggle {
     cursor: none;
 }
 
@@ -89,7 +90,10 @@ button:hover ~ .cursor,
 .song-item:hover ~ .cursor,
 .play-pause-button:hover ~ .cursor,
 .control-button:hover ~ .cursor,
-.progress-container:hover ~ .cursor {
+.progress-container:hover ~ .cursor,
+.side-menu-item:hover ~ .cursor,
+.side-menu-close:hover ~ .cursor,
+.menu-toggle:hover ~ .cursor {
     width: 50px;
     height: 50px;
     background-color: transparent;
@@ -104,7 +108,7 @@ button:hover ~ .cursor,
     width: 300px;
     height: 100vh;
     background-color: var(--surface);
-    z-index: 9999;
+    z-index: 9997; /* Update z-index to be below cursor */
     transition: left 0.3s ease;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     overflow-y: auto;
@@ -863,6 +867,70 @@ footer {
 [lang="ar"] .menu-toggle {
     left: auto;
     right: 20px;
+}
+
+/* Install button styling */
+#install-btn.side-menu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    background-color: var(--primary);
+    color: var(--bg);
+    border-radius: 8px;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+}
+
+#install-btn.side-menu-item:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+#install-btn.side-menu-item i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+/* Language options styling */
+.language-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.language-option {
+    padding: 8px 12px;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    background: none;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+.language-option.active {
+    background-color: var(--primary);
+    color: var(--bg);
+    border-color: var(--primary);
+}
+
+.language-option:hover:not(.active) {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* RTL support for Arabic */
+[lang="ar"] .side-menu-content {
+    direction: rtl;
+    text-align: right;
+}
+
+[lang="ar"] .side-menu-item i {
+    margin-left: 10px;
+    margin-right: 0;
 }
 
 /* Responsive adjustments */

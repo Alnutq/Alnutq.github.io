@@ -193,8 +193,8 @@ function initCursor() {
         }, 3000);
     });
     
-    // Add hover effect for clickable elements
-    const clickables = document.querySelectorAll('a, button, .nav-item, .song-item, .theme-option, .language-option');
+    // Add hover effect for clickable elements - Update this section
+    const clickables = document.querySelectorAll('a, button, .nav-item, .song-item, .theme-option, .language-option, .side-menu-item, .side-menu-close, .menu-toggle');
     clickables.forEach(element => {
         element.addEventListener('mouseenter', function() {
             cursor.classList.add('cursor-hover');
@@ -382,20 +382,21 @@ function setTheme(theme) {
     });
 }
 
+// Function to load theme - Update this section
 function loadTheme() {
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        
-        // Update active state in side menu
-        document.querySelectorAll('.theme-option').forEach(option => {
-            if (option.getAttribute('data-theme') === savedTheme) {
-                option.classList.add('active');
-            } else {
-                option.classList.remove('active');
-            }
-        });
-    }
+    const theme = savedTheme || 'dark'; // Set dark as default if no theme is saved
+    
+    document.documentElement.setAttribute('data-theme', theme);
+    
+    // Update active state in side menu
+    document.querySelectorAll('.theme-option').forEach(option => {
+        if (option.getAttribute('data-theme') === theme) {
+            option.classList.add('active');
+        } else {
+            option.classList.remove('active');
+        }
+    });
 }
 
 // Language management
