@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mallu Muslim Club</title>
-    <link rel="icon" href="Logo.svg" type="image/svg+xml">
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
@@ -28,9 +28,6 @@
                 <div class="side-menu-logo-img"></div>
                 <div class="side-menu-logo-text">Mallu Muslim Club</div>
             </div>
-            <button class="side-menu-close" id="side-menu-close">
-                <i class="fas fa-times"></i>
-            </button>
         </div>
         
         <div class="side-menu-content">
@@ -82,11 +79,11 @@
                     <span data-lang="ar">قوائم التشغيل</span>
                 </a>
                 
-                <a href="#about" class="side-menu-item">
-                    <i class="fas fa-info-circle"></i>
-                    <span data-lang="en">About</span>
-                    <span data-lang="ml">ഞങ്ങളെക്കുറിച്ച്</span>
-                    <span data-lang="ar">حول</span>
+                <a href="read.html" class="side-menu-item">
+                    <i class="fas fa-book"></i>
+                    <span data-lang="en">Read</span>
+                    <span data-lang="ml">വായിക്കുക</span>
+                    <span data-lang="ar">اقرأ</span>
                 </a>
                 
                 <a href="https://instagram.com/MalluMuslimClub" class="side-menu-item" target="_blank">
@@ -149,6 +146,35 @@
         <button class="install-close" id="install-close">
             <i class="fas fa-times"></i>
         </button>
+    </div>
+
+    <!-- Floating Music Player -->
+    <div class="floating-music-player" id="floating-music-player">
+        <div class="player-header">
+            <div class="player-title">Now Playing</div>
+            <div class="player-controls">
+                <button class="minimize-player"><i class="fas fa-minus"></i></button>
+                <button class="close-player"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="player-content">
+            <div class="player-cover">
+                <i class="fas fa-music"></i>
+            </div>
+            <div class="player-info">
+                <div class="player-song-title" id="floating-song-title">Loading...</div>
+                <div class="player-song-artist" id="floating-song-artist"></div>
+            </div>
+            <div class="player-progress">
+                <div class="progress-bar" id="floating-progress-bar"></div>
+            </div>
+            <div class="player-buttons">
+                <button onclick="playPrevious()"><i class="fas fa-step-backward"></i></button>
+                <button class="play-pause-btn" onclick="togglePlayPause()"><i class="fas fa-play" id="floating-play-icon"></i></button>
+                <button onclick="playNext()"><i class="fas fa-step-forward"></i></button>
+            </div>
+        </div>
+        <audio id="floating-audio-player"></audio>
     </div>
 
     <div class="container">
@@ -275,11 +301,11 @@
                 <span data-lang="ar">قائمة التشغيل</span>
                 <i class="fas fa-music"></i>
             </div>
-            <div class="nav-item" onclick="navigateTo('about')">
-                <span data-lang="en">About</span>
-                <span data-lang="ml">ഞങ്ങളെക്കുറിച്ച്</span>
-                <span data-lang="ar">حول</span>
-                <i class="fas fa-info-circle"></i>
+            <div class="nav-item" onclick="navigateTo('read')">
+                <span data-lang="en">Read</span>
+                <span data-lang="ml">വായിക്കുക</span>
+                <span data-lang="ar">اقرأ</span>
+                <i class="fas fa-book"></i>
             </div>
         </div>
     </nav>

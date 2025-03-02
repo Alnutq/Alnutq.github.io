@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mallu Muslim Club - Playlists</title>
-    <link rel="icon" href="Logo.svg" type="image/svg+xml">
+    <title>Mallu Muslim Club - Halal Musics</title>
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
@@ -28,9 +28,6 @@
                 <div class="side-menu-logo-img"></div>
                 <div class="side-menu-logo-text">Mallu Muslim Club</div>
             </div>
-            <button class="side-menu-close" id="side-menu-close">
-                <i class="fas fa-times"></i>
-            </button>
         </div>
         
         <div class="side-menu-content">
@@ -82,11 +79,11 @@
                     <span data-lang="ar">قوائم التشغيل</span>
                 </a>
                 
-                <a href="index.html#about" class="side-menu-item">
-                    <i class="fas fa-info-circle"></i>
-                    <span data-lang="en">About</span>
-                    <span data-lang="ml">ഞങ്ങളെക്കുറിച്ച്</span>
-                    <span data-lang="ar">حول</span>
+                <a href="read.html" class="side-menu-item">
+                    <i class="fas fa-book"></i>
+                    <span data-lang="en">Read</span>
+                    <span data-lang="ml">വായിക്കുക</span>
+                    <span data-lang="ar">اقرأ</span>
                 </a>
                 
                 <a href="https://instagram.com/MalluMuslimClub" class="side-menu-item" target="_blank">
@@ -127,6 +124,35 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- Floating Music Player -->
+    <div class="floating-music-player" id="floating-music-player">
+        <div class="player-header">
+            <div class="player-title">Now Playing</div>
+            <div class="player-controls">
+                <button class="minimize-player"><i class="fas fa-minus"></i></button>
+                <button class="close-player"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="player-content">
+            <div class="player-cover">
+                <i class="fas fa-music"></i>
+            </div>
+            <div class="player-info">
+                <div class="player-song-title" id="floating-song-title">Loading...</div>
+                <div class="player-song-artist" id="floating-song-artist"></div>
+            </div>
+            <div class="player-progress">
+                <div class="progress-bar" id="floating-progress-bar"></div>
+            </div>
+            <div class="player-buttons">
+                <button onclick="playPrevious()"><i class="fas fa-step-backward"></i></button>
+                <button class="play-pause-btn" onclick="togglePlayPause()"><i class="fas fa-play" id="floating-play-icon"></i></button>
+                <button onclick="playNext()"><i class="fas fa-step-forward"></i></button>
+            </div>
+        </div>
+        <audio id="floating-audio-player"></audio>
+    </div>
+
     <div class="container">
         <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> 
             <span data-lang="en">Back to Home</span>
@@ -136,9 +162,9 @@
         
         <header class="animate__animated animate__fadeIn">
             <h1 class="animate__animated animate__zoomIn">
-                <span data-lang="en">Music Playlists</span>
-                <span data-lang="ml">സംഗീത പ്ലേലിസ്റ്റുകൾ</span>
-                <span data-lang="ar">قوائم تشغيل الموسيقى</span>
+                <span data-lang="en">Halal Musics</span>
+                <span data-lang="ml">ഹലാൽ സംഗീതങ്ങൾ</span>
+                <span data-lang="ar">موسيقى حلال</span>
             </h1>
             <p class="header-description animate__animated animate__fadeIn" style="animation-delay: 0.2s">
                 <span data-lang="en">Enjoy our curated collection of halal music that uplifts the soul and celebrates our cultural heritage.</span>
@@ -159,10 +185,10 @@
                     <span data-lang="ml">മലയാളം ഗാനങ്ങൾ</span>
                     <span data-lang="ar">الأغاني المالايالامية</span>
                 </div>
-                <div class="playlist-tab" onclick="switchPlaylist(this, 'gym-nasheeds')">
-                    <span data-lang="en">Gym Nasheeds</span>
-                    <span data-lang="ml">ജിം നശീദുകൾ</span>
-                    <span data-lang="ar">أناشيد الجيم</span>
+                <div class="playlist-tab" onclick="switchPlaylist(this, 'workout-nasheeds')">
+                    <span data-lang="en">Workout Nasheeds</span>
+                    <span data-lang="ml">വർക്കൗട്ട് നശീദുകൾ</span>
+                    <span data-lang="ar">أناشيد التمرين</span>
                 </div>
             </div>
             
@@ -298,12 +324,12 @@
                 </div>
             </div>
             
-            <!-- Gym Nasheeds Playlist -->
-            <div class="playlist-content" id="gym-nasheeds">
-                <div class="song-item" onclick="playSong('playlists/gym nasheeds/1.mp3', 'Gym Nasheed 1', 'Workout Nasheed')">
+            <!-- Workout Nasheeds Playlist -->
+            <div class="playlist-content" id="workout-nasheeds">
+                <div class="song-item" onclick="playSong('playlists/gym nasheeds/1.mp3', 'Workout Nasheed 1', 'Workout Nasheed')">
                     <div class="song-number">1</div>
                     <div class="song-info">
-                        <div class="song-title">Gym Nasheed 1</div>
+                        <div class="song-title">Workout Nasheed 1</div>
                         <div class="song-artist">Workout Nasheed</div>
                     </div>
                     <div class="song-actions">
@@ -311,13 +337,13 @@
                             <i class="fas fa-download"></i>
                         </a>
                     </div>
-                    <div class="song-duration" id="duration-gn-1">--:--</div>
+                    <div class="song-duration" id="duration-wn-1">--:--</div>
                 </div>
                 
-                <div class="song-item" onclick="playSong('playlists/gym nasheeds/2.mp3', 'Gym Nasheed 2', 'Workout Nasheed')">
+                <div class="song-item" onclick="playSong('playlists/gym nasheeds/2.mp3', 'Workout Nasheed 2', 'Workout Nasheed')">
                     <div class="song-number">2</div>
                     <div class="song-info">
-                        <div class="song-title">Gym Nasheed 2</div>
+                        <div class="song-title">Workout Nasheed 2</div>
                         <div class="song-artist">Workout Nasheed</div>
                     </div>
                     <div class="song-actions">
@@ -325,45 +351,9 @@
                             <i class="fas fa-download"></i>
                         </a>
                     </div>
-                    <div class="song-duration" id="duration-gn-2">--:--</div>
+                    <div class="song-duration" id="duration-wn-2">--:--</div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Music Player -->
-        <div class="music-player">
-            <div class="music-player-info">
-                <div class="music-player-cover" id="song-cover">
-                    <i class="fas fa-music"></i>
-                </div>
-                <div class="music-player-details">
-                    <div class="music-player-title" id="song-title">
-                        <span data-lang="en">Select a song to play</span>
-                        <span data-lang="ml">പ്ലേ ചെയ്യാൻ ഒരു ഗാനം തിരഞ്ഞെടുക്കുക</span>
-                        <span data-lang="ar">اختر أغنية للتشغيل</span>
-                    </div>
-                    <div class="music-player-artist" id="song-artist"></div>
-                </div>
-            </div>
-            
-            <div class="music-player-controls">
-                <button class="control-button" onclick="playPrevious()"><i class="fas fa-step-backward"></i></button>
-                <div class="play-pause-button" id="play-pause-btn" onclick="togglePlayPause()">
-                    <i class="fas fa-play" id="play-icon"></i>
-                </div>
-                <button class="control-button" onclick="playNext()"><i class="fas fa-step-forward"></i></button>
-            </div>
-            
-            <div class="progress-container" id="progress-container">
-                <div class="progress-bar" id="progress-bar"></div>
-            </div>
-            
-            <div class="time-display">
-                <div id="current-time">00:00</div>
-                <div id="duration">00:00</div>
-            </div>
-            
-            <audio id="audio-player"></audio>
         </div>
 
         <footer class="animate__animated animate__fadeInUp" style="animation-delay: 0.8s">
@@ -394,11 +384,11 @@
                 <span data-lang="ar">قائمة التشغيل</span>
                 <i class="fas fa-music"></i>
             </div>
-            <div class="nav-item" onclick="navigateTo('about')">
-                <span data-lang="en">About</span>
-                <span data-lang="ml">ഞങ്ങളെക്കുറിച്ച്</span>
-                <span data-lang="ar">حول</span>
-                <i class="fas fa-info-circle"></i>
+            <div class="nav-item" onclick="navigateTo('read')">
+                <span data-lang="en">Read</span>
+                <span data-lang="ml">വായിക്കുക</span>
+                <span data-lang="ar">اقرأ</span>
+                <i class="fas fa-book"></i>
             </div>
         </div>
     </nav>

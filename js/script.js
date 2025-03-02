@@ -22,9 +22,9 @@ let playlists = {
         { path: 'playlists/malayalam songs/1.mp3', title: 'Malayalam Song 1', artist: 'Malayalam Artist' },
         { path: 'playlists/malayalam songs/2.mp3', title: 'Malayalam Song 2', artist: 'Malayalam Artist' }
     ],
-    'gym-nasheeds': [
-        { path: 'playlists/gym nasheeds/1.mp3', title: 'Gym Nasheed 1', artist: 'Workout Nasheed' },
-        { path: 'playlists/gym nasheeds/2.mp3', title: 'Gym Nasheed 2', artist: 'Workout Nasheed' }
+    'workout-nasheeds': [
+        { path: 'playlists/gym nasheeds/1.mp3', title: 'Workout Nasheed 1', artist: 'Workout Nasheed' },
+        { path: 'playlists/gym nasheeds/2.mp3', title: 'Workout Nasheed 2', artist: 'Workout Nasheed' }
     ]
 };
 
@@ -37,10 +37,17 @@ let cursorTimeout = null;
 // Side menu elements
 let menuToggle = null;
 let sideMenu = null;
-let sideMenuClose = null;
 let sideMenuOverlay = null;
 let themeOptions = null;
 let languageOptions = null;
+
+// Floating music player elements
+let floatingPlayer = null;
+let floatingAudioPlayer = null;
+let floatingPlayIcon = null;
+let isDragging = false;
+let dragOffsetX = 0;
+let dragOffsetY = 0;
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', async function() {
@@ -59,15 +66,21 @@ document.addEventListener('DOMContentLoaded', async function() {
     setupSideMenu();
     setupPWA();
     setupScrollBehavior();
+    setupFloatingMusicPlayer();
+    
+    // Check if we're on the read page and set up filters
+    if (document.querySelector('.article-filters')) {
+        setupArticleFilters();
+    }
     
     // Check if we're on the playlist page
-    if (document.getElementById('audio-player')) {
-        initMusicPlayer();
-    } else {
-        // Check for active audio (home page)
-        checkForActiveAudio();
-        startRandomMusicIfFirstVisit();
+    if (document.getElementById('floating-audio-player')) {
+        // We are on any page with a music player
+        initFloatingMusicPlayer();
     }
+
+    // Auto play random music if first time visiting
+    checkFirstVisit();
 });
 
 // Initialize global element references
@@ -77,15 +90,15 @@ function initElements() {
     cursorFollower = document.querySelector('.cursor-follower');
     menuToggle = document.getElementById('menu-toggle');
     sideMenu = document.getElementById('side-menu');
-    sideMenuClose = document.getElementById('side-menu-close');
     sideMenuOverlay = document.getElementById('side-menu-overlay');
     themeOptions = document.querySelectorAll('.theme-option');
     languageOptions = document.querySelectorAll('.language-option');
     
-    // Music player elements (playlist page only)
-    if (document.getElementById('audio-player')) {
-        audioPlayer = document.getElementById('audio-player');
-        playIcon = document.getElementById('play-icon');
+    // Floating music player elements
+    floatingPlayer = document.getElementById('floating-music-player');
+    if (floatingPlayer) {
+        floatingAudioPlayer = document.getElementById('floating-audio-player');
+        floatingPlayIcon = document.getElementById('floating-play-icon');
     }
 }
 
@@ -193,8 +206,8 @@ function initCursor() {
         }, 3000);
     });
     
-    // Add hover effect for clickable elements - Update this section
-    const clickables = document.querySelectorAll('a, button, .nav-item, .song-item, .theme-option, .language-option, .side-menu-item, .side-menu-close, .menu-toggle');
+    // Add hover effect for clickable elements
+    const clickables = document.querySelectorAll('a, button, .nav-item, .song-item, .theme-option, .language-option, .side-menu-item, .menu-toggle, .filter-btn');
     clickables.forEach(element => {
         element.addEventListener('mouseenter', function() {
             cursor.classList.add('cursor-hover');
@@ -212,10 +225,10 @@ function initCursor() {
 
 // Setup the side menu functionality
 function setupSideMenu() {
-    if (!menuToggle || !sideMenu || !sideMenuClose || !sideMenuOverlay) return;
+    if (!menuToggle || !sideMenu || !sideMenuOverlay) return;
     
-    menuToggle.addEventListener('click', openSideMenu);
-    sideMenuClose.addEventListener('click', closeSideMenu);
+    // Toggle menu on same button click (open and close)
+    menuToggle.addEventListener('click', toggleSideMenu);
     sideMenuOverlay.addEventListener('click', closeSideMenu);
     
     // Theme options
@@ -252,16 +265,30 @@ function setupSideMenu() {
     }
 }
 
+function toggleSideMenu() {
+    if (sideMenu.classList.contains('active')) {
+        closeSideMenu();
+    } else {
+        openSideMenu();
+    }
+}
+
 function openSideMenu() {
     sideMenu.classList.add('active');
     sideMenuOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
+    
+    // Change menu icon to X
+    menuToggle.innerHTML = '<i class="fas fa-times"></i>';
 }
 
 function closeSideMenu() {
     sideMenu.classList.remove('active');
     sideMenuOverlay.classList.remove('active');
     document.body.style.overflow = '';
+    
+    // Change X icon back to bars
+    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
 }
 
 // Setup PWA functionality
@@ -382,7 +409,7 @@ function setTheme(theme) {
     });
 }
 
-// Function to load theme - Update this section
+// Function to load theme
 function loadTheme() {
     const savedTheme = localStorage.getItem('theme');
     const theme = savedTheme || 'dark'; // Set dark as default if no theme is saved
@@ -432,32 +459,16 @@ function loadLanguage() {
 
 // Navigation functions
 function navigateTo(target) {
-    // Set active nav item
-    const navItems = document.querySelectorAll('.nav-item');
-    navItems.forEach(item => {
-        item.classList.remove('active');
-    });
-    
-    // Add active class based on target
-    if (target === 'home') {
-        navItems[0].classList.add('active');
-        if (window.location.pathname.includes('index.html') || !window.location.pathname.includes('.html')) {
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        } else {
+    switch(target) {
+        case 'home':
             window.location.href = 'index.html';
-        }
-    } else if (target === 'playlist') {
-        navItems[1].classList.add('active');
-        if (!window.location.pathname.includes('playlists.html')) {
-            window.location.href = 'playlists.html';
-        }
-    } else if (target === 'about') {
-        navItems[2].classList.add('active');
-        if (window.location.pathname.includes('index.html') || !window.location.pathname.includes('.html')) {
-            document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
-        } else {
-            window.location.href = 'index.html#about';
-        }
+            break;
+        case 'playlist':
+            window.location.href = 'Playlists.html';
+            break;
+        case 'read':
+            window.location.href = 'read.html';
+            break;
     }
 }
 
@@ -465,96 +476,213 @@ function scrollToTop() {
     window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
-function navigateTo(page) {
-    switch(page) {
-        case 'home':
-            window.location.href = 'index.html';
-            break;
-        case 'playlist':
-            window.location.href = 'Playlists.html';
-            break;
-        case 'about':
-            window.location.href = 'index.html#about';
-            break;
+// Set up the floating music player
+function setupFloatingMusicPlayer() {
+    if (!floatingPlayer) return;
+    
+    // Get control elements
+    const minimizeBtn = floatingPlayer.querySelector('.minimize-player');
+    const closeBtn = floatingPlayer.querySelector('.close-player');
+    const playerHeader = floatingPlayer.querySelector('.player-header');
+    
+    // Set up event listeners for controls
+    if (minimizeBtn) {
+        minimizeBtn.addEventListener('click', toggleMinimizePlayer);
+    }
+    
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closePlayer);
+    }
+    
+    // Make player draggable
+    if (playerHeader) {
+        playerHeader.addEventListener('mousedown', startDragging);
+        document.addEventListener('mousemove', dragPlayer);
+        document.addEventListener('mouseup', stopDragging);
+        
+        // For touch devices
+        playerHeader.addEventListener('touchstart', startDraggingTouch);
+        document.addEventListener('touchmove', dragPlayerTouch);
+        document.addEventListener('touchend', stopDragging);
+    }
+    
+    // Initially hide the player until music starts
+    floatingPlayer.classList.add('hidden');
+}
+
+function toggleMinimizePlayer() {
+    if (!floatingPlayer) return;
+    floatingPlayer.classList.toggle('minimized');
+}
+
+function closePlayer() {
+    if (!floatingPlayer || !floatingAudioPlayer) return;
+    
+    // Pause music and hide player
+    floatingAudioPlayer.pause();
+    isPlaying = false;
+    floatingPlayer.classList.add('hidden');
+    
+    // Update play icon
+    if (floatingPlayIcon) {
+        floatingPlayIcon.classList.remove('fa-pause');
+        floatingPlayIcon.classList.add('fa-play');
+    }
+    
+    // Clear the current song index
+    currentSongIndex = -1;
+    
+    // Remove from localStorage
+    localStorage.removeItem('musicState');
+}
+
+function startDragging(e) {
+    if (!floatingPlayer) return;
+    e.preventDefault();
+    
+    isDragging = true;
+    
+    // Get current player position
+    const rect = floatingPlayer.getBoundingClientRect();
+    
+    // Calculate the offset between mouse position and player top-left corner
+    dragOffsetX = e.clientX - rect.left;
+    dragOffsetY = e.clientY - rect.top;
+    
+    // Change cursor style
+    document.body.style.cursor = 'grabbing';
+}
+
+function startDraggingTouch(e) {
+    if (!floatingPlayer || e.touches.length !== 1) return;
+    
+    isDragging = true;
+    
+    // Get current player position
+    const rect = floatingPlayer.getBoundingClientRect();
+    
+    // Calculate the offset between touch position and player top-left corner
+    dragOffsetX = e.touches[0].clientX - rect.left;
+    dragOffsetY = e.touches[0].clientY - rect.top;
+}
+
+function dragPlayer(e) {
+    if (!isDragging || !floatingPlayer) return;
+    
+    // Calculate new position
+    const x = e.clientX - dragOffsetX;
+    const y = e.clientY - dragOffsetY;
+    
+    // Apply constraints to keep player within viewport
+    const maxX = window.innerWidth - floatingPlayer.offsetWidth;
+    const maxY = window.innerHeight - floatingPlayer.offsetHeight;
+    
+    const constrainedX = Math.max(0, Math.min(x, maxX));
+    const constrainedY = Math.max(0, Math.min(y, maxY));
+    
+    // Update player position
+    floatingPlayer.style.left = constrainedX + 'px';
+    floatingPlayer.style.top = constrainedY + 'px';
+    floatingPlayer.style.right = 'auto';
+    floatingPlayer.style.bottom = 'auto';
+}
+
+function dragPlayerTouch(e) {
+    if (!isDragging || !floatingPlayer || e.touches.length !== 1) return;
+    
+    // Calculate new position
+    const x = e.touches[0].clientX - dragOffsetX;
+    const y = e.touches[0].clientY - dragOffsetY;
+    
+    // Apply constraints to keep player within viewport
+    const maxX = window.innerWidth - floatingPlayer.offsetWidth;
+    const maxY = window.innerHeight - floatingPlayer.offsetHeight;
+    
+    const constrainedX = Math.max(0, Math.min(x, maxX));
+    const constrainedY = Math.max(0, Math.min(y, maxY));
+    
+    // Update player position
+    floatingPlayer.style.left = constrainedX + 'px';
+    floatingPlayer.style.top = constrainedY + 'px';
+    floatingPlayer.style.right = 'auto';
+    floatingPlayer.style.bottom = 'auto';
+    
+    // Prevent page scrolling
+    e.preventDefault();
+}
+
+function stopDragging() {
+    isDragging = false;
+    document.body.style.cursor = '';
+}
+
+// Check if this is the first visit to auto-play music
+function checkFirstVisit() {
+    const hasVisited = localStorage.getItem('hasVisited');
+    if (!hasVisited) {
+        localStorage.setItem('hasVisited', 'true');
+        
+        // Auto-play random music
+        if (floatingAudioPlayer) {
+            // If we're already on a page with a music player, play random music
+            playRandomSong();
+        } else {
+            // Set a flag to play music on playlist page
+            localStorage.setItem('playRandomOnLoad', 'true');
+        }
+    } else {
+        // Check if we should play random music after redirect
+        const playRandom = localStorage.getItem('playRandomOnLoad');
+        if (playRandom === 'true' && floatingAudioPlayer) {
+            // Clear the flag
+            localStorage.removeItem('playRandomOnLoad');
+            
+            // Play a random song
+            playRandomSong();
+        }
     }
 }
 
-// Music player functions (playlist page)
-function initMusicPlayer() {
-    // Check if audio player exists
-    if (!audioPlayer) return;
-    
-    // Load song durations
-    loadSongDurations();
+// Initialize floating music player
+function initFloatingMusicPlayer() {
+    // Check if we have the audio player
+    if (!floatingAudioPlayer) return;
     
     // Set up audio player events
-    audioPlayer.addEventListener('timeupdate', updateProgress);
-    audioPlayer.addEventListener('ended', songEnded);
-    audioPlayer.addEventListener('canplay', updateDuration);
+    floatingAudioPlayer.addEventListener('timeupdate', updateFloatingProgress);
+    floatingAudioPlayer.addEventListener('ended', songEnded);
     
-    // Enable progress bar seeking
-    const progressContainer = document.getElementById('progress-container');
-    if (progressContainer) {
-        progressContainer.addEventListener('click', seek);
-    }
-    
-    // Initialize the correct playlist tab
-    const defaultPlaylistTab = document.querySelector('.playlist-tab.active');
-    if (defaultPlaylistTab) {
-        const defaultPlaylistId = defaultPlaylistTab.onclick.toString().match(/switchPlaylist\(this, ['"](.+)['"]\)/)[1];
-        currentPlaylist = defaultPlaylistId;
-    }
-    
-    // Check if we need to play a random song on load
-    checkPlayRandomOnLoad();
-    
-    // Check if we should continue playing previously playing song
-    checkContinuePlayback();
-    
-    // Before the page unloads, ensure we save the current playback state
-    window.addEventListener('beforeunload', function() {
-        if (isPlaying) {
-            savePlaybackState();
-        }
-    });
+    // Continue playing previous song if any
+    restorePreviousPlayback();
 }
 
-// Load song durations (this loads metadata without playing the songs)
-function loadSongDurations() {
-    for (const playlistId in playlists) {
-        playlists[playlistId].forEach((song, index) => {
-            const audio = new Audio();
-            audio.src = song.path;
-            const durationId = `duration-${playlistId.replace('-', '-')}-${index+1}`;
-            
-            audio.addEventListener('loadedmetadata', function() {
-                const minutes = Math.floor(audio.duration / 60);
-                const seconds = Math.floor(audio.duration % 60);
-                const durationElement = document.getElementById(durationId);
-                if (durationElement) {
-                    durationElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+// Restore previous playback state
+function restorePreviousPlayback() {
+    const musicState = JSON.parse(localStorage.getItem('musicState'));
+    if (musicState && musicState.isPlaying) {
+        // Find the playlist and song index
+        for (const playlistId in playlists) {
+            const songIndex = playlists[playlistId].findIndex(song => song.path === musicState.songPath);
+            if (songIndex !== -1) {
+                // Play the song
+                currentPlaylist = playlistId;
+                currentSongIndex = songIndex;
+                
+                const song = playlists[playlistId][songIndex];
+                playSong(song.path, song.title, song.artist);
+                
+                // Set the current time if provided
+                if (musicState.currentTime) {
+                    floatingAudioPlayer.currentTime = musicState.currentTime;
                 }
-            });
-            
-            // Just load metadata, don't play
-            audio.preload = 'metadata';
-        });
+                
+                break;
+            }
+        }
     }
 }
 
-// Check if we should play a random song on load
-function checkPlayRandomOnLoad() {
-    const playRandom = localStorage.getItem('playRandomOnLoad');
-    if (playRandom === 'true') {
-        // Clear the flag
-        localStorage.removeItem('playRandomOnLoad');
-        
-        // Play a random song
-        playRandomSong();
-    }
-}
-
-// Play a random song from any playlist
+// Play a random song
 function playRandomSong() {
     // Select a random playlist
     const playlistKeys = Object.keys(playlists);
@@ -569,60 +697,13 @@ function playRandomSong() {
     playSong(randomSong.path, randomSong.title, randomSong.artist);
 }
 
-// Check if we should continue playing a song from before navigation
-function checkContinuePlayback() {
-    const musicState = JSON.parse(localStorage.getItem('musicState'));
-    if (musicState && musicState.isPlaying) {
-        // Find the playlist and song index
-        for (const playlistId in playlists) {
-            const songIndex = playlists[playlistId].findIndex(song => song.path === musicState.songPath);
-            if (songIndex !== -1) {
-                // Switch to the correct playlist
-                const playlistTab = document.querySelector(`.playlist-tab[onclick*="${playlistId}"]`);
-                if (playlistTab) {
-                    switchPlaylist(playlistTab, playlistId);
-                }
-                
-                // Play the song at the saved position
-                const song = playlists[playlistId][songIndex];
-                playSong(song.path, song.title, song.artist);
-                
-                // Set the current time if provided
-                if (musicState.currentTime) {
-                    audioPlayer.currentTime = musicState.currentTime;
-                }
-                
-                break;
-            }
-        }
-    }
-}
-
-// Check if music is already playing across pages (home page function)
-function checkForActiveAudio() {
-    const musicState = JSON.parse(localStorage.getItem('musicState'));
-    if (musicState && musicState.isPlaying) {
-        // If we came from the playlist page with music playing, we don't need to do anything
-        // The music will keep playing as it's managed by the playlist page
-        console.log('Music is playing from playlist page');
-    }
-}
-
-// Start random music when website is launched for the first time (home page function)
-function startRandomMusicIfFirstVisit() {
-    const hasVisited = localStorage.getItem('hasVisited');
-    if (!hasVisited) {
-        localStorage.setItem('hasVisited', 'true');
-        
-        // Redirect to playlist page with a parameter to play random music
-        localStorage.setItem('playRandomOnLoad', 'true');
-        window.location.href = 'playlists.html';
-    }
-}
-
-// Play a song by path, title, and artist
+// Play a specific song
 function playSong(path, title, artist) {
-    if (!audioPlayer) return;
+    if (!floatingAudioPlayer || !floatingPlayer) return;
+    
+    // Show the player if it's hidden
+    floatingPlayer.classList.remove('hidden');
+    floatingPlayer.classList.remove('minimized');
     
     // Find which playlist and index the song is in
     for (const playlistId in playlists) {
@@ -630,41 +711,34 @@ function playSong(path, title, artist) {
         if (songIndex !== -1) {
             currentPlaylist = playlistId;
             currentSongIndex = songIndex;
-            
-            // Switch to the correct playlist tab if not already active
-            const activeContent = document.querySelector('.playlist-content.active');
-            if (activeContent && activeContent.id !== currentPlaylist) {
-                const playlistTab = document.querySelector(`.playlist-tab[onclick*="${currentPlaylist}"]`);
-                if (playlistTab) {
-                    switchPlaylist(playlistTab, currentPlaylist);
-                }
-            }
             break;
         }
     }
     
-    // Highlight the current song
-    highlightCurrentSong();
-    
     // Set up the audio player
-    audioPlayer.src = path;
-    const titleElement = document.getElementById('song-title');
+    floatingAudioPlayer.src = path;
+    
+    // Update song title and artist in the player
+    const titleElement = document.getElementById('floating-song-title');
     if (titleElement) {
-        titleElement.innerHTML = title;
+        titleElement.textContent = title;
     }
     
-    const artistElement = document.getElementById('song-artist');
+    const artistElement = document.getElementById('floating-song-artist');
     if (artistElement) {
         artistElement.textContent = artist;
     }
     
     // Start playing
-    audioPlayer.play()
+    floatingAudioPlayer.play()
         .then(() => {
             // Successfully playing
             isPlaying = true;
-            playIcon.classList.remove('fa-play');
-            playIcon.classList.add('fa-pause');
+            
+            if (floatingPlayIcon) {
+                floatingPlayIcon.classList.remove('fa-play');
+                floatingPlayIcon.classList.add('fa-pause');
+            }
             
             // Save the current playback state
             savePlaybackState();
@@ -675,42 +749,52 @@ function playSong(path, title, artist) {
     
     // Update cover icon based on playlist
     updateCoverIcon();
+    
+    // Also update any song list UI if we're on the playlist page
+    highlightCurrentSong();
 }
 
 // Update the cover icon based on current playlist
 function updateCoverIcon() {
-    const coverElement = document.getElementById('song-cover');
+    const coverElement = document.querySelector('.player-cover');
     if (!coverElement) return;
     
     if (currentPlaylist === 'arabic-nasheeds') {
         coverElement.innerHTML = '<i class="fas fa-mosque"></i>';
     } else if (currentPlaylist === 'malayalam-songs') {
         coverElement.innerHTML = '<i class="fas fa-music"></i>';
-    } else if (currentPlaylist === 'gym-nasheeds') {
+    } else if (currentPlaylist === 'workout-nasheeds') {
         coverElement.innerHTML = '<i class="fas fa-dumbbell"></i>';
     }
 }
 
 // Toggle play/pause
 function togglePlayPause() {
-    if (!audioPlayer) return;
+    if (!floatingAudioPlayer) return;
     
-    if (currentSongIndex === -1 && playlists[currentPlaylist].length > 0) {
-        // If no song is selected, play the first one
-        const firstSong = playlists[currentPlaylist][0];
-        playSong(firstSong.path, firstSong.title, firstSong.artist);
+    if (currentSongIndex === -1 && Object.keys(playlists).length > 0) {
+        // If no song is selected, play a random one
+        playRandomSong();
         return;
     }
     
     if (isPlaying) {
-        audioPlayer.pause();
-        playIcon.classList.remove('fa-pause');
-        playIcon.classList.add('fa-play');
+        floatingAudioPlayer.pause();
+        
+        if (floatingPlayIcon) {
+            floatingPlayIcon.classList.remove('fa-pause');
+            floatingPlayIcon.classList.add('fa-play');
+        }
+        
         isPlaying = false;
     } else {
-        audioPlayer.play();
-        playIcon.classList.remove('fa-play');
-        playIcon.classList.add('fa-pause');
+        floatingAudioPlayer.play();
+        
+        if (floatingPlayIcon) {
+            floatingPlayIcon.classList.remove('fa-play');
+            floatingPlayIcon.classList.add('fa-pause');
+        }
+        
         isPlaying = true;
     }
     
@@ -720,7 +804,7 @@ function togglePlayPause() {
 
 // Play the next song in the playlist
 function playNext() {
-    if (currentSongIndex === -1) return;
+    if (currentSongIndex === -1 || !currentPlaylist) return;
     
     let nextIndex = currentSongIndex + 1;
     if (nextIndex >= playlists[currentPlaylist].length) {
@@ -733,11 +817,11 @@ function playNext() {
 
 // Play the previous song in the playlist
 function playPrevious() {
-    if (currentSongIndex === -1) return;
+    if (currentSongIndex === -1 || !currentPlaylist) return;
     
     // If at the beginning of the song, go to previous song, otherwise restart current song
-    if (audioPlayer.currentTime > 3) {
-        audioPlayer.currentTime = 0;
+    if (floatingAudioPlayer.currentTime > 3) {
+        floatingAudioPlayer.currentTime = 0;
         return;
     }
     
@@ -755,24 +839,20 @@ function songEnded() {
     playNext();
 }
 
-// Update the progress bar
-function updateProgress() {
-    const progressBar = document.getElementById('progress-bar');
-    const currentTimeEl = document.getElementById('current-time');
-    if (!progressBar || !currentTimeEl || !audioPlayer) return;
+// Update the progress bar in the floating player
+function updateFloatingProgress() {
+    if (!floatingAudioPlayer) return;
     
-    const duration = audioPlayer.duration;
-    const currentTime = audioPlayer.currentTime;
+    const progressBar = document.getElementById('floating-progress-bar');
+    if (!progressBar) return;
+    
+    const duration = floatingAudioPlayer.duration;
+    const currentTime = floatingAudioPlayer.currentTime;
     
     if (duration) {
         // Update progress bar
         const progressPercent = (currentTime / duration) * 100;
         progressBar.style.width = `${progressPercent}%`;
-        
-        // Update time display
-        const currentMinutes = Math.floor(currentTime / 60);
-        const currentSeconds = Math.floor(currentTime % 60);
-        currentTimeEl.textContent = `${String(currentMinutes).padStart(2, '0')}:${String(currentSeconds).padStart(2, '0')}`;
         
         // Save the current playback state periodically (every 5 seconds)
         if (Math.floor(currentTime) % 5 === 0) {
@@ -781,43 +861,16 @@ function updateProgress() {
     }
 }
 
-// Update duration display when metadata loads
-function updateDuration() {
-    const durationEl = document.getElementById('duration');
-    if (!durationEl || !audioPlayer) return;
-    
-    const duration = audioPlayer.duration;
-    if (duration) {
-        const minutes = Math.floor(duration / 60);
-        const seconds = Math.floor(duration % 60);
-        durationEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-    }
-}
-
-// Seek to position in the song
-function seek(e) {
-    if (!audioPlayer || !audioPlayer.duration) return;
-    
-    const width = this.clientWidth;
-    const clickX = e.offsetX;
-    const duration = audioPlayer.duration;
-    
-    audioPlayer.currentTime = (clickX / width) * duration;
-    
-    // Save the updated playback state
-    savePlaybackState();
-}
-
 // Save the current playback state to localStorage
 function savePlaybackState() {
-    if (currentSongIndex === -1 || !audioPlayer) return;
+    if (currentSongIndex === -1 || !floatingAudioPlayer || !currentPlaylist) return;
     
     const currentSong = playlists[currentPlaylist][currentSongIndex];
     const musicState = {
         isPlaying: isPlaying,
         songPath: currentSong.path,
-        currentTime: audioPlayer.currentTime,
-        duration: audioPlayer.duration,
+        currentTime: floatingAudioPlayer.currentTime,
+        duration: floatingAudioPlayer.duration,
         title: currentSong.title,
         artist: currentSong.artist,
         playlist: currentPlaylist
@@ -826,83 +879,18 @@ function savePlaybackState() {
     localStorage.setItem('musicState', JSON.stringify(musicState));
 }
 
-// Reset player display
-function resetPlayer() {
-    if (!audioPlayer) return;
-    
-    audioPlayer.pause();
-    audioPlayer.src = '';
-    
-    // Reset HTML content with language support
-    const titleElement = document.getElementById('song-title');
-    if (titleElement) {
-        titleElement.innerHTML = ''; // Clear current content
-        
-        // Add language-specific content
-        const enSpan = document.createElement('span');
-        enSpan.setAttribute('data-lang', 'en');
-        enSpan.textContent = 'Select a song to play';
-        
-        const mlSpan = document.createElement('span');
-        mlSpan.setAttribute('data-lang', 'ml');
-        mlSpan.textContent = 'പ്ലേ ചെയ്യാൻ ഒരു ഗാനം തിരഞ്ഞെടുക്കുക';
-        
-        const arSpan = document.createElement('span');
-        arSpan.setAttribute('data-lang', 'ar');
-        arSpan.textContent = 'اختر أغنية للتشغيل';
-        
-        titleElement.appendChild(enSpan);
-        titleElement.appendChild(mlSpan);
-        titleElement.appendChild(arSpan);
-    }
-    
-    const artistElement = document.getElementById('song-artist');
-    if (artistElement) {
-        artistElement.textContent = '';
-    }
-    
-    const durationEl = document.getElementById('duration');
-    if (durationEl) {
-        durationEl.textContent = '00:00';
-    }
-    
-    const currentTimeEl = document.getElementById('current-time');
-    if (currentTimeEl) {
-        currentTimeEl.textContent = '00:00';
-    }
-    
-    const progressBar = document.getElementById('progress-bar');
-    if (progressBar) {
-        progressBar.style.width = '0%';
-    }
-    
-    if (playIcon) {
-        playIcon.classList.remove('fa-pause');
-        playIcon.classList.add('fa-play');
-    }
-    
-    isPlaying = false;
-    
-    // Remove highlights from all songs
-    const songItems = document.querySelectorAll('.song-item');
-    songItems.forEach(item => {
-        item.classList.remove('playing');
-    });
-    
-    // Clear saved playback state
-    localStorage.removeItem('musicState');
-}
-
-// Highlight the currently playing song
+// Highlight the currently playing song if on playlist page
 function highlightCurrentSong() {
     // Remove highlight from all songs
     const songItems = document.querySelectorAll('.song-item');
+    if (!songItems.length) return; // Not on playlist page
+    
     songItems.forEach(item => {
         item.classList.remove('playing');
     });
     
-    // Add highlight to current song
-    if (currentSongIndex !== -1) {
+    // Add highlight to current song if we're on the playlist page
+    if (currentSongIndex !== -1 && currentPlaylist) {
         const playlistElement = document.getElementById(currentPlaylist);
         if (playlistElement) {
             const songElements = playlistElement.querySelectorAll('.song-item');
@@ -934,4 +922,32 @@ function switchPlaylist(element, playlistId) {
     
     // Highlight current song if it's in this playlist
     highlightCurrentSong();
+}
+
+// Setup article filters on read page
+function setupArticleFilters() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const articleCards = document.querySelectorAll('.article-card');
+    
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all buttons
+            filterBtns.forEach(b => b.classList.remove('active'));
+            
+            // Add active class to clicked button
+            btn.classList.add('active');
+            
+            // Get filter value
+            const filter = btn.getAttribute('data-filter');
+            
+            // Filter articles
+            articleCards.forEach(card => {
+                if (filter === 'all' || card.classList.contains(filter)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
 }
