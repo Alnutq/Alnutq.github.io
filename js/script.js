@@ -106,14 +106,30 @@ async function loadTranslations() {
 
 // Initialize the custom cursor
 function initCursor() {
-    // Show cursor initially when the mouse moves
+    // Make sure cursor elements exist before proceeding
+    cursor = document.querySelector('.cursor');
+    cursorFollower = document.querySelector('.cursor-follower');
+    
+    if (!cursor || !cursorFollower) {
+        console.error('Cursor elements not found in the DOM');
+        return;
+    }
+    
+    // Set initial state - hidden until mouse moves
+    cursor.style.opacity = '0';
+    cursorFollower.style.opacity = '0';
+    cursorVisible = false;
+    
+    // Show cursor when the mouse moves
     document.addEventListener('mousemove', function(e) {
+        // Make cursor visible immediately
         if (!cursorVisible) {
             cursor.style.opacity = '1';
             cursorFollower.style.opacity = '1';
             cursorVisible = true;
         }
         
+        // Position the cursor elements
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
         
@@ -123,7 +139,7 @@ function initCursor() {
             cursorFollower.style.top = e.clientY + 'px';
         }, 50);
         
-        // Hide cursor after 3 seconds of inactivity
+        // Reset inactivity timer
         clearTimeout(cursorTimeout);
         cursorTimeout = setTimeout(function() {
             cursor.style.opacity = '0';
@@ -132,14 +148,14 @@ function initCursor() {
         }, 3000);
     });
     
-    // Support for touch devices to hide cursor
+    // Hide cursor on touch devices
     document.addEventListener('touchstart', function() {
         cursor.style.opacity = '0';
         cursorFollower.style.opacity = '0';
         cursorVisible = false;
     });
     
-    // Cursor interactions
+    // Cursor scaling for clicks
     document.addEventListener('mousedown', function() {
         cursor.style.transform = 'translate(-50%, -50%) scale(0.7)';
         cursorFollower.style.transform = 'translate(-50%, -50%) scale(0.7)';
@@ -150,17 +166,23 @@ function initCursor() {
         cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
     });
     
-    // Make cursor disappear when leaving the window
+    // Handle cursor when leaving/entering window
     document.addEventListener('mouseleave', function() {
         cursor.style.opacity = '0';
         cursorFollower.style.opacity = '0';
         cursorVisible = false;
     });
     
-    document.addEventListener('mouseenter', function() {
+    document.addEventListener('mouseenter', function(e) {
         cursor.style.opacity = '1';
         cursorFollower.style.opacity = '1';
         cursorVisible = true;
+        
+        // Position immediately on re-enter
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        cursorFollower.style.left = e.clientX + 'px';
+        cursorFollower.style.top = e.clientY + 'px';
         
         // Reset the inactivity timer
         clearTimeout(cursorTimeout);
@@ -170,6 +192,22 @@ function initCursor() {
             cursorVisible = false;
         }, 3000);
     });
+    
+    // Add hover effect for clickable elements
+    const clickables = document.querySelectorAll('a, button, .nav-item, .song-item, .theme-option, .language-option');
+    clickables.forEach(element => {
+        element.addEventListener('mouseenter', function() {
+            cursor.classList.add('cursor-hover');
+            cursorFollower.classList.add('cursor-hover');
+        });
+        
+        element.addEventListener('mouseleave', function() {
+            cursor.classList.remove('cursor-hover');
+            cursorFollower.classList.remove('cursor-hover');
+        });
+    });
+    
+    console.log('Cursor initialized successfully');
 }
 
 // Setup the side menu functionality
