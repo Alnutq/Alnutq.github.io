@@ -348,6 +348,41 @@ function setupPWA() {
     if (installBtn) installBtn.disabled = true;
     if (installBannerBtn) installBannerBtn.disabled = true;
     
+    // Check if we should show the banner based on previous dismissal
+    const lastDismissed = localStorage.getItem('installBannerDismissed');
+    let shouldShowBanner = true;
+    
+    if (lastDismissed) {
+        const dismissedTime = parseInt(lastDismissed);
+        const currentTime = Date.now();
+        // If it's been less than 1 day since dismissal, don't show the banner
+        if (currentTime - dismissedTime < 1 * 24 * 60 * 60 * 1000) {
+            shouldShowBanner = false;
+        }
+    }
+    
+    // Show install banner automatically when opening the website
+    if (shouldShowBanner && installBanner) {
+        // Show the banner with a slight delay for better user experience
+        setTimeout(() => {
+            installBanner.classList.add('show');
+        }, 2000);
+        
+        // Setup close button
+        if (installClose) {
+            // Remove any existing event listeners to prevent duplicates
+            const newInstallClose = installClose.cloneNode(true);
+            installClose.parentNode.replaceChild(newInstallClose, installClose);
+            
+            // Add event listener to the new button
+            newInstallClose.addEventListener('click', () => {
+                installBanner.classList.remove('show');
+                // Store preference in localStorage to not show again for a while
+                localStorage.setItem('installBannerDismissed', Date.now());
+            });
+        }
+    }
+    
     // Handle beforeinstallprompt event
     window.addEventListener('beforeinstallprompt', (e) => {
         // Prevent Chrome 67 and earlier from automatically showing the prompt
@@ -373,51 +408,20 @@ function setupPWA() {
             });
         }
         
-        // Show install banner
-        if (installBanner) {
-            installBanner.classList.add('show');
+        // Enable the install banner button
+        if (installBannerBtn) {
+            installBannerBtn.disabled = false;
             
-            if (installBannerBtn) {
-                installBannerBtn.disabled = false;
-                
-                // Remove any existing event listeners to prevent duplicates
-                const newInstallBannerBtn = installBannerBtn.cloneNode(true);
-                installBannerBtn.parentNode.replaceChild(newInstallBannerBtn, installBannerBtn);
-                
-                // Add event listener to the new button
-                newInstallBannerBtn.addEventListener('click', () => {
-                    installApp();
-                });
-            }
+            // Remove any existing event listeners to prevent duplicates
+            const newInstallBannerBtn = installBannerBtn.cloneNode(true);
+            installBannerBtn.parentNode.replaceChild(newInstallBannerBtn, installBannerBtn);
             
-            // Close install banner button
-            if (installClose) {
-                // Remove any existing event listeners to prevent duplicates
-                const newInstallClose = installClose.cloneNode(true);
-                installClose.parentNode.replaceChild(newInstallClose, installClose);
-                
-                // Add event listener to the new button
-                newInstallClose.addEventListener('click', () => {
-                    installBanner.classList.remove('show');
-                    // Store preference in localStorage to not show again for a while
-                    localStorage.setItem('installBannerDismissed', Date.now());
-                });
-            }
+            // Add event listener to the new button
+            newInstallBannerBtn.addEventListener('click', () => {
+                installApp();
+            });
         }
     });
-    
-    // Check if we should show the banner based on previous dismissal
-    const lastDismissed = localStorage.getItem('installBannerDismissed');
-    if (lastDismissed) {
-        const dismissedTime = parseInt(lastDismissed);
-        const currentTime = Date.now();
-        // If it's been less than 3 days since dismissal, don't show the banner
-        if (currentTime - dismissedTime < 3 * 24 * 60 * 60 * 1000) {
-            if (installBanner) {
-                installBanner.classList.remove('show');
-            }
-        }
-    }
     
     // Successfully installed event
     window.addEventListener('appinstalled', (evt) => {
