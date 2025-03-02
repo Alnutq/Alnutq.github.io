@@ -464,6 +464,20 @@ function scrollToTop() {
     window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
+function navigateTo(page) {
+    switch(page) {
+        case 'home':
+            window.location.href = 'index.html';
+            break;
+        case 'playlist':
+            window.location.href = 'Playlists.html';
+            break;
+        case 'about':
+            window.location.href = 'index.html#about';
+            break;
+    }
+}
+
 // Music player functions (playlist page)
 function initMusicPlayer() {
     // Check if audio player exists
