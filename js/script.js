@@ -1,6 +1,7 @@
 // Global variables
 let deferredPrompt = null;
 const translations = {};
+let isTouch = false; // Flag to detect touch devices
 
 // Music player variables - shared between pages
 let audioPlayer = null;
@@ -51,6 +52,9 @@ let dragOffsetY = 0;
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', async function() {
+    // Detect touch device
+    isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
     // Initialize elements
     initElements();
     
@@ -68,7 +72,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     loadLanguage();
     
     // Initialize features
-    initCursor();
+    if (!isTouch) {
+        initCursor(); // Only initialize cursor on non-touch devices
+    }
     setupSideMenu();
     setupPWA();
     setupScrollBehavior();
@@ -161,6 +167,13 @@ function initCursor() {
         return;
     }
     
+    // Skip cursor initialization on touch devices
+    if (isTouch) {
+        cursor.style.display = 'none';
+        cursorFollower.style.display = 'none';
+        return;
+    }
+    
     // Set initial state - hidden until mouse moves
     cursor.style.opacity = '0';
     cursorFollower.style.opacity = '0';
@@ -192,13 +205,6 @@ function initCursor() {
             cursorFollower.style.opacity = '0';
             cursorVisible = false;
         }, 3000);
-    });
-    
-    // Hide cursor on touch devices
-    document.addEventListener('touchstart', function() {
-        cursor.style.opacity = '0';
-        cursorFollower.style.opacity = '0';
-        cursorVisible = false;
     });
     
     // Cursor scaling for clicks
@@ -342,9 +348,6 @@ function setupPWA() {
     if (installBtn) installBtn.disabled = true;
     if (installBannerBtn) installBannerBtn.disabled = true;
     
-    // Variable to store the install prompt event
-    let deferredPrompt;
-    
     // Handle beforeinstallprompt event
     window.addEventListener('beforeinstallprompt', (e) => {
         // Prevent Chrome 67 and earlier from automatically showing the prompt
@@ -358,8 +361,14 @@ function setupPWA() {
         // Enable install buttons
         if (installBtn) {
             installBtn.disabled = false;
-            installBtn.addEventListener('click', () => {
-                installApp(deferredPrompt);
+            
+            // Remove any existing event listeners to prevent duplicates
+            const newInstallBtn = installBtn.cloneNode(true);
+            installBtn.parentNode.replaceChild(newInstallBtn, installBtn);
+            
+            // Add event listener to the new button
+            newInstallBtn.addEventListener('click', () => {
+                installApp();
                 closeSideMenu();
             });
         }
@@ -370,19 +379,45 @@ function setupPWA() {
             
             if (installBannerBtn) {
                 installBannerBtn.disabled = false;
-                installBannerBtn.addEventListener('click', () => {
-                    installApp(deferredPrompt);
+                
+                // Remove any existing event listeners to prevent duplicates
+                const newInstallBannerBtn = installBannerBtn.cloneNode(true);
+                installBannerBtn.parentNode.replaceChild(newInstallBannerBtn, installBannerBtn);
+                
+                // Add event listener to the new button
+                newInstallBannerBtn.addEventListener('click', () => {
+                    installApp();
                 });
             }
             
             // Close install banner button
             if (installClose) {
-                installClose.addEventListener('click', () => {
+                // Remove any existing event listeners to prevent duplicates
+                const newInstallClose = installClose.cloneNode(true);
+                installClose.parentNode.replaceChild(newInstallClose, installClose);
+                
+                // Add event listener to the new button
+                newInstallClose.addEventListener('click', () => {
                     installBanner.classList.remove('show');
+                    // Store preference in localStorage to not show again for a while
+                    localStorage.setItem('installBannerDismissed', Date.now());
                 });
             }
         }
     });
+    
+    // Check if we should show the banner based on previous dismissal
+    const lastDismissed = localStorage.getItem('installBannerDismissed');
+    if (lastDismissed) {
+        const dismissedTime = parseInt(lastDismissed);
+        const currentTime = Date.now();
+        // If it's been less than 3 days since dismissal, don't show the banner
+        if (currentTime - dismissedTime < 3 * 24 * 60 * 60 * 1000) {
+            if (installBanner) {
+                installBanner.classList.remove('show');
+            }
+        }
+    }
     
     // Successfully installed event
     window.addEventListener('appinstalled', (evt) => {
@@ -399,13 +434,23 @@ function setupPWA() {
         // Disable install buttons
         if (installBtn) installBtn.disabled = true;
         if (installBannerBtn) installBannerBtn.disabled = true;
+        
+        // Show a thank you message or notification
+        showInstallSuccessMessage();
     });
 }
 
 // Function to trigger the install prompt
-function installApp(deferredPrompt) {
+function installApp() {
     if (!deferredPrompt) {
         console.error('Install prompt not available');
+        
+        // If on iOS, show instructions for adding to home screen
+        if (isIOS()) {
+            showIOSInstallInstructions();
+        } else {
+            alert('Installation is not available at this time. Please try again later.');
+        }
         return;
     }
     
@@ -419,7 +464,148 @@ function installApp(deferredPrompt) {
         } else {
             console.log('User dismissed the install prompt');
         }
+        
+        // Clear the deferred prompt variable
+        deferredPrompt = null;
     });
+}
+
+// Function to check if device is iOS
+function isIOS() {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+}
+
+// Function to show iOS install instructions
+function showIOSInstallInstructions() {
+    const iosInstructions = document.createElement('div');
+    iosInstructions.className = 'ios-install-instructions';
+    iosInstructions.innerHTML = `
+        <div class="ios-install-modal">
+            <h3>Install on iOS</h3>
+            <p>To install this app on your iOS device:</p>
+            <ol>
+                <li>Tap the Share button <i class="fas fa-share-square"></i> at the bottom of the screen</li>
+                <li>Scroll down and tap "Add to Home Screen" <i class="fas fa-plus-square"></i></li>
+                <li>Tap "Add" in the top right corner</li>
+            </ol>
+            <button id="close-ios-instructions">Close</button>
+        </div>
+    `;
+    
+    document.body.appendChild(iosInstructions);
+    
+    // Add styles for the modal
+    const style = document.createElement('style');
+    style.textContent = `
+        .ios-install-instructions {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .ios-install-modal {
+            background-color: var(--surface);
+            border-radius: 16px;
+            padding: 20px;
+            max-width: 90%;
+            width: 350px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        .ios-install-modal h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+        .ios-install-modal ol {
+            text-align: left;
+            padding-left: 20px;
+        }
+        .ios-install-modal li {
+            margin-bottom: 10px;
+        }
+        #close-ios-instructions {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Add close button functionality
+    document.getElementById('close-ios-instructions').addEventListener('click', function() {
+        document.body.removeChild(iosInstructions);
+    });
+}
+
+// Function to show success message after installation
+function showInstallSuccessMessage() {
+    const successToast = document.createElement('div');
+    successToast.className = 'install-success-toast';
+    successToast.innerHTML = `
+        <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+        <div class="success-message">App installed successfully!</div>
+    `;
+    
+    document.body.appendChild(successToast);
+    
+    // Add styles for the toast
+    const style = document.createElement('style');
+    style.textContent = `
+        .install-success-toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 10000;
+            animation: fadeInUp 0.3s ease, fadeOut 0.3s ease 3s forwards;
+        }
+        .success-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, 20px);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Remove the toast after 3.5 seconds
+    setTimeout(() => {
+        if (document.body.contains(successToast)) {
+            document.body.removeChild(successToast);
+        }
+    }, 3500);
 }
 
 // Scroll behavior for navigation and scroll-to-top button
