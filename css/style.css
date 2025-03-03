@@ -50,8 +50,8 @@ body.light-theme {
 }
 
 .logo {
-    height: 40px;
-    margin-right: 20px;
+    height: 40dvh;
+    margin-right: 20dvh;
 }
 
 .search-bar input {
