@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Mentorship | Zawiya Al Nutq</title>
+    <meta name="description" content="Request personalized mentorship to help navigate away from Wahhabi ideology and understand authentic Islamic teachings">
+    <link rel="icon" href="assets/nutq logo.svg" type="image/x-icon">
+    <link rel="manifest" href="json/manifest.json">
+    
+    <!-- Font imports -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Anek+Malayalam:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Page specific styles */
+        .mentorship-hero {
+            padding: calc(80px + 3rem) 0 3rem;
+            background-image: url('/api/placeholder/1920/600');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .mentorship-hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(18, 26, 38, 0.8), rgba(18, 26, 38, 0.6));
+        }
+        
+        .light-theme .mentorship-hero:before {
+            background: linear-gradient(to bottom, rgba(245, 248, 250, 0.8), rgba(245, 248, 250, 0.6));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .mentorship-form-section {
+            padding: 4rem 0;
+        }
+        
+        .mentorship-form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2.5rem;
+            border-radius: 16px;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-col {
+            flex: 1;
+            min-width: 250px;
+            padding: 0 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: inherit;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+        
+        .light-theme .form-group input,
+        .light-theme .form-group select,
+        .light-theme .form-group textarea {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--light-blue);
+        }
+        
+        .form-group .help-text {
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            opacity: 0.7;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 2rem;
+        }
+        
+        .how-it-works {
+            padding: 4rem 0;
+            background-color: rgba(32, 40, 57, 0.3);
+        }
+        
+        .light-theme .how-it-works {
+            background-color: rgba(245, 248, 250, 0.5);
+        }
+        
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .step-card {
+            flex: 1;
+            min-width: 250px;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--dark-blue);
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .step-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .benefits-section {
+            padding: 4rem 0;
+        }
+        
+        .benefits-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .benefit-card {
+            padding: 2rem;
+            border-radius: 16px;
+            height: 100%;
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--light-blue);
+            margin-bottom: 1.5rem;
+        }
+        
+        .benefit-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .benefit-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .success-message {
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            display: none;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        .success-icon {
+            font-size: 3rem;
+            color: #4CAF50;
+            margin-bottom: 1.5rem;
+        }
+        
+        .success-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .success-description {
+            margin-bottom: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .mentorship-form-container {
+                padding: 1.5rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+            }
+            
+            .form-col {
+                margin-bottom: 0;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .form-actions .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body class="dark-theme">
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Header Section -->
+    <header class="glass-morphism">
+        <div class="container">
+            <div class="logo-container">
+                <img src="assets/nutq logo.svg" alt="Al Nutq Logo" class="logo">
+                <h1 class="logo-text arabic">زاوية النطق</h1>
+            </div>
+            <div class="header-controls">
+                <button id="search-toggle" class="icon-button" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div class="social-icons">
+                    <a href="https://instagram.com/al.nutq" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029Vb1AoYxLikgC6h3y5n0Y" target="_blank" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#" target="_blank" aria-label="Telegram">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="search-container glass-morphism" id="search-container">
+            <div class="container">
+                <input type="text" id="global-search" placeholder="Search by keyword or author..." aria-label="Search">
+                <button class="search-button" aria-label="Submit search">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mentorship Hero -->
+    <section class="mentorship-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title" data-translate="mentorship-page-title">Request Personalized Mentorship</h1>
+                <p class="hero-subtitle" data-translate="mentorship-page-subtitle">Our scholars provide guidance to help you navigate away from extremist ideologies and understand authentic Islamic teachings.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mentorship Form Section -->
+    <section class="mentorship-form-section">
+        <div class="container">
+            <div class="mentorship-form-container glass-morphism" id="mentorship-form-container">
+                <h2 data-translate="contact-form-title">Get in Touch</h2>
+                <p data-translate="contact-form-desc">Fill out the form below to request personalized mentorship. All information will be kept confidential.</p>
+                
+                <form id="mentorship-form" class="mentorship-form">
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="name" data-translate="name">Full Name*</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="email" data-translate="email">Email Address*</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="phone" data-translate="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                                <span class="help-text" data-translate="phone-help">Include country code (optional)</span>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="location" data-translate="location">Location</label>
+                                <input type="text" id="location" name="location" placeholder="City, Country">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="background" data-translate="background">Islamic Background*</label>
+                        <select id="background" name="background" required>
+                            <option value="" disabled selected data-translate="select-option">-- Select Option --</option>
+                            <option value="new-muslim" data-translate="new-muslim">New Muslim / Convert</option>
+                            <option value="born-muslim" data-translate="born-muslim">Born Muslim</option>
+                            <option value="studying" data-translate="studying">Currently Studying Islam</option>
+                            <option value="former-wahhabi" data-translate="former-wahhabi">Former Follower of Wahhabi Teachings</option>
+                            <option value="other" data-translate="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="concerns" data-translate="concerns">Primary Concerns or Questions*</label>
+                        <textarea id="concerns" name="concerns" required placeholder="Describe your current understanding, concerns, or specific topics you'd like guidance on..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="help-type" data-translate="help-type">Preferred Mentorship Format*</label>
+                        <select id="help-type" name="help-type" required>
+                            <option value="" disabled selected data-translate="select-option">-- Select Option --</option>
+                            <option value="one-on-one" data-translate="one-on-one">One-on-One Meetings</option>
+                            <option value="group" data-translate="group">Group Sessions</option>
+                            <option value="reading" data-translate="reading">Reading Materials</option>
+                            <option value="videos" data-translate="videos">Video Lectures</option>
+                            <option value="all" data-translate="all-formats">All Formats</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="language" data-translate="preferred-language">Preferred Language*</label>
+                        <select id="language" name="language" required>
+                            <option value="" disabled selected data-translate="select-option">-- Select Option --</option>
+                            <option value="english" data-translate="english">English</option>
+                            <option value="malayalam" data-translate="malayalam">Malayalam</option>
+                            <option value="arabic" data-translate="arabic">Arabic</option>
+                            <option value="other" data-translate="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="additional" data-translate="additional">Additional Information</label>
+                        <textarea id="additional" name="additional" placeholder="Any other information that might help us better understand your needs..."></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="reset" class="btn secondary" data-translate="reset">Reset Form</button>
+                        <button type="submit" class="btn primary" data-translate="submit">Submit Request</button>
+                    </div>
+                </form>
+                
+                <div id="success-message" class="success-message glass-morphism">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 class="success-title" data-translate="success-title">Request Submitted Successfully!</h3>
+                    <p class="success-description" data-translate="success-desc">Thank you for reaching out. Our team will review your request and contact you within 2-3 business days.</p>
+                    <a href="index.html" class="btn primary" data-translate="back-home">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title" data-translate="how-it-works">How Our Mentorship Works</h2>
+            
+            <div class="steps-container">
+                <div class="step-card glass-morphism">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title" data-translate="step1-title">Submit Your Request</h3>
+                    <p class="step-description" data-translate="step1-desc">Fill out the mentorship request form with your background, concerns, and preferred format.</p>
+                </div>
+                
+                <div class="step-card glass-morphism">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title" data-translate="step2-title">Initial Assessment</h3>
+                    <p class="step-description" data-translate="step2-desc">Our scholars will review your request and prepare a personalized mentorship plan.</p>
+                </div>
+                
+                <div class="step-card glass-morphism">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title" data-translate="step3-title">Connect With Mentor</h3>
+                    <p class="step-description" data-translate="step3-desc">We'll connect you with a knowledgeable mentor who specializes in your areas of concern.</p>
+                </div>
+                
+                <div class="step-card glass-morphism">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title" data-translate="step4-title">Ongoing Guidance</h3>
+                    <p class="step-description" data-translate="step4-desc">Receive regular guidance, resources, and support as you deepen your understanding.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 class="benefits-title" data-translate="mentorship-benefits">Benefits of Our Mentorship Program</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card glass-morphism">
+                    <div class="benefit-icon">
+                        <i class="fas fa-book-reader"></i>
+                    </div>
+                    <h3 class="benefit-title" data-translate="benefit1-title">Authentic Knowledge</h3>
+                    <p class="benefit-description" data-translate="benefit1-desc">Learn from scholars trained in traditional Islamic sciences with proper chains of narration (isnad).</p>
+                </div>
+                
+                <div class="benefit-card glass-morphism">
+                    <div class="benefit-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h3 class="benefit-title" data-translate="benefit2-title">Personalized Approach</h3>
+                    <p class="benefit-description" data-translate="benefit2-desc">Receive guidance tailored to your specific background, concerns, and learning style.</p>
+                </div>
+                
+                <div class="benefit-card glass-morphism">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="benefit-title" data-translate="benefit3-title">Protection from Extremism</h3>
+                    <p class="benefit-description" data-translate="benefit3-desc">Develop critical thinking skills to identify and avoid extremist interpretations of Islamic texts.</p>
+                </div>
+                
+                <div class="benefit-card glass-morphism">
+                    <div class="benefit-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3 class="benefit-title" data-translate="benefit4-title">Supportive Community</h3>
+                    <p class="benefit-description" data-translate="benefit4-desc">Join a community of seekers of knowledge who support each other on the path to authentic understanding.</p>
+                </div>
+                
+                <div class="benefit-card glass-morphism">
+                    <div class="benefit-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3 class="benefit-title" data-translate="benefit5-title">Clear Guidance</h3>
+                    <p class="benefit-description" data-translate="benefit5-desc">Follow a structured learning path with clear goals and milestones for your Islamic education.</p>
+                </div>
+                
+                <div class="benefit-card glass-morphism">
+                    <div class="benefit-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="benefit-title" data-translate="benefit6-title">Spiritual Growth</h3>
+                    <p class="benefit-description" data-translate="benefit6-desc">Develop a deeper connection with Allah through authentic worship and understanding.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="glass-morphism">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/nutq logo.svg" alt="Al Nutq Logo" class="logo">
+                    <h3 class="logo-text arabic">زاوية النطق</h3>
+                </div>
+                <div class="footer-links">
+                    <h4 data-translate="quick-links">Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html" data-translate="home">Home</a></li>
+                        <li><a href="index.html#articles" data-translate="articles">Articles</a></li>
+                        <li><a href="index.html#edified-ummah" data-translate="eu-short">Edified Ummah</a></li>
+                        <li><a href="index.html#mentorship" data-translate="mentorship-short">Mentorship</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4 data-translate="connect">Connect With Us</h4>
+                    <div class="social-icons">
+                        <a href="https://instagram.com/al.nutq" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://whatsapp.com/channel/0029Vb1AoYxLikgC6h3y5n0Y" target="_blank" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" target="_blank" aria-label="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2025 <a href="https://NavarMP.github.io" target="_blank">Muhammed Navar</a>. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Navigation -->
+    <nav class="floating-nav glass-morphism">
+        <a href="index.html" class="nav-item" aria-label="Home">
+            <i class="fas fa-home"></i>
+            <span data-translate="home">Home</span>
+        </a>
+        <a href="index.html#articles" class="nav-item" aria-label="Articles">
+            <i class="fas fa-book-open"></i>
+            <span data-translate="articles">Articles</span>
+        </a>
+        <a href="index.html#edified-ummah" class="nav-item" aria-label="Edified Ummah">
+            <i class="fas fa-users"></i>
+            <span data-translate="eu-short">EU</span>
+        </a>
+        <button id="lang-toggle" class="nav-item" aria-label="Change Language">
+            <i class="fas fa-language"></i>
+            <span data-translate="language-short">Lang</span>
+        </button>
+        <button id="theme-toggle" class="nav-item" aria-label="Toggle Theme">
+            <i class="fas fa-moon"></i>
+            <span data-translate="theme">Theme</span>
+        </button>
+    </nav>
+
+    <!-- Language Selector -->
+    <div class="language-selector glass-morphism" id="language-selector">
+        <button data-lang="en" class="lang-btn active">English</button>
+        <button data-lang="ml" class="lang-btn">മലയാളം</button>
+        <button data-lang="ar" class="lang-btn">العربية</button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // Form submission handling
+        document.getElementById('mentorship-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Normally you would send the form data to your server here
+            // For demonstration, we'll just show the success message
+            
+            // Hide the form
+            document.getElementById('mentorship-form').style.display = 'none';
+            
+            // Show success message
+            document.getElementById('success-message').classList.add('show');
+            
+            // For a real implementation, you would use fetch or XMLHttpRequest:
+            /*
+            const formData = new FormData(this);
+            
+            fetch('/api/mentorship-request', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('mentorship-form').style.display = 'none';
+                    document.getElementById('success-message').classList.add('show');
+                } else {
+                    // Handle error
+                    alert('There was an error submitting your request. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting your request. Please try again.');
+            });
+            */
+            
+            // If we're offline, store the form data for later submission
+            if (!navigator.onLine) {
+                // Store form data in IndexedDB for background sync
+                storeFormDataForSync(this);
+            }
+        });
+        
+        // Function to store form data for background sync
+        function storeFormDataForSync(form) {
+            const formData = new FormData(form);
+            const formObject = {};
+            
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+            
+            // Open IndexedDB
+            const request = indexedDB.open('alnutq-offline-storage', 1);
+            
+            request.onupgradeneeded = function(event) {
+                const db = event.target.result;
+                if (!db.objectStoreNames.contains('pending-requests')) {
+                    db.createObjectStore('pending-requests', { keyPath: 'id', autoIncrement: true });
+                }
+            };
+            
+            request.onsuccess = function(event) {
+                const db = event.target.result;
+                const transaction = db.transaction(['pending-requests'], 'readwrite');
+                const store = transaction.objectStore('pending-requests');
+                
+                // Add the form data to the store
+                const storeRequest = store.add({
+                    data: formObject,
+                    timestamp: new Date().getTime()
+                });
+                
+                storeRequest.onsuccess = function() {
+                    console.log('Form data stored for background sync');
+                    
+                    // Register for background sync if supported
+                    if ('serviceWorker' in navigator && 'SyncManager' in window) {
+                        navigator.serviceWorker.ready.then(registration => {
+                            registration.sync.register('post-mentorship-request');
+                        });
+                    }
+                };
+            };
+        }
+    </script>
+</body>
+</html>

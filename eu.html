@@ -3,44 +3,965 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edified Ummah - Community & Podcast</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Edified Ummah | Community & Podcast</title>
+    <meta name="description" content="Join the Edified Ummah community - a platform for authentic Islamic knowledge and spiritual growth">
+    <link rel="icon" href="assets/eu logo.svg" type="image/x-icon">
     <link rel="manifest" href="json/manifest.json">
-    <link rel="icon" href="assets/eu logo.svg" type="image/svg+xml">
+    
+    <!-- Font imports -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Anek+Malayalam:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* EU specific styles with green touches */
+        :root {
+            --eu-green: #2e7d32;
+            --eu-light-green: #81c784;
+            --eu-dark-green: #1b5e20;
+        }
+        
+        .eu-page .btn.primary {
+            background-color: var(--eu-green);
+        }
+        
+        .eu-page .btn.primary:hover {
+            background-color: var(--eu-dark-green);
+        }
+        
+        .eu-page .btn.secondary {
+            border-color: var(--eu-light-green);
+            color: var(--eu-light-green);
+        }
+        
+        .eu-page .btn.secondary:hover {
+            background-color: var(--eu-light-green);
+        }
+        
+        .eu-page .section-title:after {
+            background-color: var(--eu-light-green);
+        }
+        
+        .eu-hero {
+            padding: calc(80px + 3rem) 0 3rem;
+            background-image: url('/api/placeholder/1920/600');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .eu-hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(18, 26, 38, 0.8), rgba(18, 26, 38, 0.6));
+        }
+        
+        .light-theme .eu-hero:before {
+            background: linear-gradient(to bottom, rgba(245, 248, 250, 0.8), rgba(245, 248, 250, 0.6));
+        }
+        
+        .eu-hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .eu-hero-logo {
+            flex: 0 0 200px;
+        }
+        
+        .eu-logo-img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .eu-hero-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .eu-hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .eu-hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .eu-hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .about-eu {
+            padding: 5rem 0;
+        }
+        
+        .about-eu-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-eu-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-eu-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-eu-desc {
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        
+        .about-eu-image {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-eu-img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+        }
+        
+        .mission-section {
+            padding: 5rem 0;
+            background-color: rgba(32, 40, 57, 0.3);
+        }
+        
+        .light-theme .mission-section {
+            background-color: rgba(245, 248, 250, 0.5);
+        }
+        
+        .mission-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+        
+        .mission-card {
+            flex: 1;
+            min-width: 300px;
+            padding: 2rem;
+            border-radius: 16px;
+            height: 100%;
+        }
+        
+        .mission-icon {
+            font-size: 2.5rem;
+            color: var(--eu-light-green);
+            margin-bottom: 1.5rem;
+        }
+        
+        .mission-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .mission-desc {
+            line-height: 1.6;
+        }
+        
+        .podcast-section {
+            padding: 5rem 0;
+        }
+        
+        .podcast-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .podcast-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .podcast-subtitle {
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .podcast-platforms {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .platform-link {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            gap: 0.8rem;
+        }
+        
+        .platform-link:hover {
+            transform: translateY(-3px);
+        }
+        
+        .platform-link.spotify {
+            background-color: #1DB954;
+        }
+        
+        .platform-link.apple {
+            background-color: #A2AAAD;
+        }
+        
+        .platform-link.youtube {
+            background-color: #FF0000;
+        }
+        
+        .platform-link.google {
+            background-color: #4285F4;
+        }
+        
+        .platform-icon {
+            font-size: 1.2rem;
+        }
+        
+        .episodes-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .episode-card {
+            margin-bottom: 2rem;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .episode-header {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            gap: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .episode-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--eu-light-green);
+        }
+        
+        .episode-details {
+            flex: 1;
+        }
+        
+        .episode-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .episode-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .episode-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .play-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--eu-green);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .play-btn:hover {
+            background-color: var(--eu-dark-green);
+            transform: scale(1.1);
+        }
+        
+        .episode-content {
+            padding: 0 1.5rem 1.5rem;
+            display: none;
+        }
+        
+        .episode-content.active {
+            display: block;
+        }
+        
+        .episode-description {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .episode-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .episode-tag {
+            background-color: var(--eu-green);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .community-section {
+            padding: 5rem 0;
+            background-color: rgba(32, 40, 57, 0.3);
+        }
+        
+        .light-theme .community-section {
+            background-color: rgba(245, 248, 250, 0.5);
+        }
+        
+        .community-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .community-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .community-subtitle {
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .community-groups {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .group-card {
+            flex: 1;
+            min-width: 280px;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+        }
+        
+        .group-icon {
+            font-size: 2.5rem;
+            color: var(--eu-light-green);
+            margin-bottom: 1.5rem;
+        }
+        
+        .group-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .group-desc {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .upcoming-events {
+            padding: 5rem 0;
+        }
+        
+        .events-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .event-card {
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .event-date {
+            flex: 0 0 120px;
+            background-color: var(--eu-green);
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+        
+        .event-day {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        
+        .event-month {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        
+        .event-time {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .event-details {
+            flex: 1;
+            min-width: 250px;
+            padding: 1.5rem;
+        }
+        
+        .event-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+        
+        .event-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .event-desc {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .join-section {
+            padding: 5rem 0;
+            background-color: rgba(32, 40, 57, 0.3);
+            text-align: center;
+        }
+        
+        .light-theme .join-section {
+            background-color: rgba(245, 248, 250, 0.5);
+        }
+        
+        .join-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .join-desc {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        .join-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        @media (max-width: 768px) {
+            .eu-hero-title {
+                font-size: 2rem;
+            }
+            
+            .mission-content,
+            .community-groups {
+                flex-direction: column;
+            }
+            
+            .platform-link {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .event-date {
+                flex: 0 0 100%;
+                padding: 1rem;
+            }
+        }
+    </style>
 </head>
-<body class="eu-theme">
-    <nav class="floating-nav">
-        <img src="assets/eu logo.svg" alt="EU Logo" class="logo">
-        <ul>
-            <li><a href="index.html">Nutq</a></li>
-            <li><a href="#community">Community</a></li>
-            <li><a href="#podcast">Podcast</a></li>
-        </ul>
-        <div class="search-bar">
-            <input type="text" id="global-search" placeholder="Search...">
+<body class="dark-theme eu-page">
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Header Section -->
+    <header class="glass-morphism">
+        <div class="container">
+            <div class="logo-container">
+                <img src="assets/eu logo.svg" alt="Edified Ummah Logo" class="logo">
+                <h1 class="logo-text">Edified Ummah</h1>
+            </div>
+            <div class="header-controls">
+                <button id="search-toggle" class="icon-button" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div class="social-icons">
+                    <a href="https://instagram.com/al.nutq" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029Vb1AoYxLikgC6h3y5n0Y" target="_blank" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#" target="_blank" aria-label="Telegram">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                </div>
+            </div>
         </div>
-        <select id="language">
-            <option value="en">English</option>
-            <option value="ml">Malayalam</option>
-            <option value="ar">Arabic</option>
-        </select>
-        <button id="theme-toggle">Toggle Theme</button>
+        <div class="search-container glass-morphism" id="search-container">
+            <div class="container">
+                <input type="text" id="global-search" placeholder="Search episodes, topics, or speakers..." aria-label="Search">
+                <button class="search-button" aria-label="Submit search">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- EU Hero Section -->
+    <section class="eu-hero">
+        <div class="container">
+            <div class="eu-hero-content">
+                <div class="eu-hero-logo">
+                    <img src="assets/eu logo.svg" alt="Edified Ummah Logo" class="eu-logo-img">
+                </div>
+                <div class="eu-hero-text">
+                    <h1 class="eu-hero-title">Edified Ummah: Reviving Authentic Knowledge</h1>
+                    <p class="eu-hero-subtitle">A community and podcast dedicated to reviving authentic Islamic understanding based on the teachings of Ahlus Sunnah wal Jama'ah.</p>
+                    <div class="eu-hero-buttons">
+                        <a href="#podcast-section" class="btn primary">Listen to Podcast</a>
+                        <a href="#community-section" class="btn secondary">Join Community</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About EU Section -->
+    <section class="about-eu">
+        <div class="container">
+            <div class="about-eu-content">
+                <div class="about-eu-text">
+                    <h2 class="about-eu-title">About Edified Ummah</h2>
+                    <p class="about-eu-desc">Edified Ummah was established in 2020 as an initiative to provide authentic Islamic knowledge to Muslims worldwide. In an age of misinformation and extremist ideologies, we aim to be a beacon of traditional Islamic understanding based on sound scholarship and authentic sources.</p>
+                    <p class="about-eu-desc">Our name "Edified Ummah" reflects our mission: to build up (edify) the Muslim community (Ummah) through knowledge, wisdom, and spiritual growth. We believe that authentic knowledge is the foundation for a balanced approach to Islam that emphasizes both the letter and spirit of the religion.</p>
+                    <p class="about-eu-desc">Through our podcast, study circles, online courses, and community activities, we strive to make traditional Islamic knowledge accessible to everyone, regardless of their background or previous exposure to Islamic studies.</p>
+                </div>
+                <div class="about-eu-image">
+                    <img src="/api/placeholder/600/400" alt="Edified Ummah Community" class="about-eu-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container">
+            <h2 class="section-title">Our Mission & Vision</h2>
+            
+            <div class="mission-content">
+                <div class="mission-card glass-morphism">
+                    <div class="mission-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3 class="mission-title">Authentic Knowledge</h3>
+                    <p class="mission-desc">To revive and disseminate authentic Islamic knowledge through reliable sources and qualified scholars with proper chains of transmission (isnad), countering misinformation and baseless innovations.</p>
+                </div>
+                
+                <div class="mission-card glass-morphism">
+                    <div class="mission-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3 class="mission-title">Balanced Approach</h3>
+                    <p class="mission-desc">To promote a balanced understanding of Islam that integrates both the outward practices and inner dimensions of faith, avoiding extremes of rigid literalism and baseless innovation.</p>
+                </div>
+                
+                <div class="mission-card glass-morphism">
+                    <div class="mission-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="mission-title">Community Building</h3>
+                    <p class="mission-desc">To foster a supportive community of knowledge seekers who encourage each other in learning, practice, and spiritual growth, creating spaces for meaningful connections and collaboration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Podcast Section -->
+    <section id="podcast-section" class="podcast-section">
+        <div class="container">
+            <div class="podcast-header">
+                <h2 class="podcast-title">The Edified Ummah Podcast</h2>
+                <p class="podcast-subtitle">Conversations on Islamic scholarship, spirituality, and contemporary issues from an authentic traditional perspective.</p>
+                
+                <div class="podcast-platforms">
+                    <a href="#" class="platform-link spotify">
+                        <i class="fab fa-spotify platform-icon"></i>
+                        <span>Spotify</span>
+                    </a>
+                    <a href="#" class="platform-link apple">
+                        <i class="fab fa-apple platform-icon"></i>
+                        <span>Apple Podcasts</span>
+                    </a>
+                    <a href="#" class="platform-link youtube">
+                        <i class="fab fa-youtube platform-icon"></i>
+                        <span>YouTube</span>
+                    </a>
+                    <a href="#" class="platform-link google">
+                        <i class="fab fa-google platform-icon"></i>
+                        <span>Google Podcasts</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="episodes-container">
+                <!-- Episode 1 -->
+                <div class="episode-card glass-morphism">
+                    <div class="episode-header" onclick="toggleEpisode(this)">
+                        <div class="episode-number">01</div>
+                        <div class="episode-details">
+                            <h3 class="episode-title">Understanding the Madhabs: Why Following a School of Thought Matters</h3>
+                            <div class="episode-meta">
+                                <span><i class="far fa-calendar"></i> Mar 1, 2023</span>
+                                <span><i class="far fa-clock"></i> 45 min</span>
+                            </div>
+                        </div>
+                        <div class="episode-actions">
+                            <button class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="episode-content">
+                        <p class="episode-description">In this inaugural episode, we discuss the importance of following established schools of Islamic jurisprudence (madhabs) and why the idea of "following only the Quran and Sunnah" without a methodological framework can lead to misunderstandings and extremism.</p>
+                        <div class="episode-tags">
+                            <span class="episode-tag">Fiqh</span>
+                            <span class="episode-tag">Madhab</span>
+                            <span class="episode-tag">Ahlu Sunnah</span>
+                        </div>
+                        <audio controls class="episode-audio">
+                            <source src="#" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+                
+                <!-- Episode 2 -->
+                <div class="episode-card glass-morphism">
+                    <div class="episode-header" onclick="toggleEpisode(this)">
+                        <div class="episode-number">02</div>
+                        <div class="episode-details">
+                            <h3 class="episode-title">The Concept of Bid'ah: Innovation in Islam - What It Is and Isn't</h3>
+                            <div class="episode-meta">
+                                <span><i class="far fa-calendar"></i> Mar 15, 2023</span>
+                                <span><i class="far fa-clock"></i> 53 min</span>
+                            </div>
+                        </div>
+                        <div class="episode-actions">
+                            <button class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="episode-content">
+                        <p class="episode-description">We explore the nuanced understanding of bid'ah (innovation) in Islam, distinguishing between blameworthy innovations that contradict Islamic principles and beneficial developments that serve the religion's objectives. We challenge the oversimplified claim that "all innovation is misguidance."</p>
+                        <div class="episode-tags">
+                            <span class="episode-tag">Aqeedah</span>
+                            <span class="episode-tag">Bid'ah</span>
+                            <span class="episode-tag">Wahhabism</span>
+                        </div>
+                        <audio controls class="episode-audio">
+                            <source src="#" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+                
+                <!-- Episode 3 -->
+                <div class="episode-card glass-morphism">
+                    <div class="episode-header" onclick="toggleEpisode(this)">
+                        <div class="episode-number">03</div>
+                        <div class="episode-details">
+                            <h3 class="episode-title">The Role of Sufism in Traditional Islam: Spiritual Growth and Purification</h3>
+                            <div class="episode-meta">
+                                <span><i class="far fa-calendar"></i> Apr 1, 2023</span>
+                                <span><i class="far fa-clock"></i> 61 min</span>
+                            </div>
+                        </div>
+                        <div class="episode-actions">
+                            <button class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="episode-content">
+                        <p class="episode-description">In this episode, we discuss the authentic tradition of Sufism (Tasawwuf) as the inner dimension of Islam, focused on spiritual purification and ethical development. We address common misconceptions and distinguish between authentic Sufism and problematic practices sometimes associated with it.</p>
+                        <div class="episode-tags">
+                            <span class="episode-tag">Sufism</span>
+                            <span class="episode-tag">Spirituality</span>
+                            <span class="episode-tag">Tazkiyah</span>
+                        </div>
+                        <audio controls class="episode-audio">
+                            <source src="#" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community-section" class="community-section">
+        <div class="container">
+            <div class="community-header">
+                <h2 class="community-title">Join Our Community</h2>
+                <p class="community-subtitle">Connect with like-minded individuals seeking authentic knowledge and spiritual growth through our various community platforms and activities.</p>
+            </div>
+            
+            <div class="community-groups">
+                <div class="group-card glass-morphism">
+                    <div class="group-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3 class="group-title">WhatsApp Study Groups</h3>
+                    <p class="group-desc">Join our specialized WhatsApp groups focused on different topics such as Fiqh, Aqeedah, Tafsir, and Tasawwuf, with regular guidance from qualified scholars.</p>
+                    <a href="https://whatsapp.com/channel/0029Vb1AoYxLikgC6h3y5n0Y" class="btn primary">Join WhatsApp</a>
+                </div>
+                
+                <div class="group-card glass-morphism">
+                    <div class="group-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="group-title">Weekly Online Circles</h3>
+                    <p class="group-desc">Participate in our weekly online circles where we read and discuss classical Islamic texts under the guidance of traditional scholars.</p>
+                    <a href="#" class="btn primary">View Schedule</a>
+                </div>
+                
+                <div class="group-card glass-morphism">
+                    <div class="group-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3 class="group-title">Structured Courses</h3>
+                    <p class="group-desc">Enroll in our structured courses on various Islamic sciences, designed for different levels from beginners to advanced students.</p>
+                    <a href="#" class="btn primary">Browse Courses</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events -->
+    <section class="upcoming-events">
+        <div class="container">
+            <h2 class="section-title">Upcoming Events</h2>
+            
+            <div class="events-container">
+                <div class="event-card glass-morphism">
+                    <div class="event-date">
+                        <div class="event-month">May</div>
+                        <div class="event-day">15</div>
+                        <div class="event-time">7:00 PM</div>
+                    </div>
+                    <div class="event-details">
+                        <h3 class="event-title">Understanding the Divine Names & Attributes: Between Anthropomorphism and Denial</h3>
+                        <div class="event-location">
+                            <i class="fas fa-video"></i>
+                            <span>Online Webinar (Zoom)</span>
+                        </div>
+                        <p class="event-desc">Join us for a special webinar on the correct understanding of Allah's Names and Attributes, navigating between the extremes of anthropomorphism and complete denial of attributes.</p>
+                        <a href="#" class="btn primary">Register Now</a>
+                    </div>
+                </div>
+                
+                <div class="event-card glass-morphism">
+                    <div class="event-date">
+                        <div class="event-month">Jun</div>
+                        <div class="event-day">10</div>
+                        <div class="event-time">10:00 AM</div>
+                    </div>
+                    <div class="event-details">
+                        <h3 class="event-title">Intensive Weekend Course: Foundations of Islamic Jurisprudence (Usul al-Fiqh)</h3>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Islamic Center, Kochi</span>
+                        </div>
+                        <p class="event-desc">A two-day intensive course covering the essential principles of Islamic legal theory and methodology, taught by qualified scholars trained in traditional Islamic sciences.</p>
+                        <a href="#" class="btn primary">Register Now</a>
+                    </div>
+                </div>
+                
+                <div class="event-card glass-morphism">
+                    <div class="event-date">
+                        <div class="event-month">Jul</div>
+                        <div class="event-day">05</div>
+                        <div class="event-time">8:30 PM</div>
+                    </div>
+                    <div class="event-details">
+                        <h3 class="event-title">Q&A Session: Common Misconceptions About Traditional Islam</h3>
+                        <div class="event-location">
+                            <i class="fab fa-youtube"></i>
+                            <span>YouTube Live</span>
+                        </div>
+                        <p class="event-desc">An interactive session addressing common misconceptions about traditional Islam, including topics like madhabs, Sufism, celebration of the Prophet's birthday, and more.</p>
+                        <a href="#" class="btn primary">Set Reminder</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Section -->
+    <section class="join-section">
+        <div class="container">
+            <h2 class="join-title">Be Part of the Revival</h2>
+            <p class="join-desc">Join us in reviving authentic Islamic knowledge and building a community of seekers dedicated to embodying the beauty and depth of traditional Islam.</p>
+            
+            <div class="join-buttons">
+                <a href="#" class="btn primary">Subscribe to Newsletter</a>
+                <a href="mentorship.html" class="btn primary">Request Mentorship</a>
+                <a href="#" class="btn secondary">Support Our Work</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="glass-morphism">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/eu logo.svg" alt="Edified Ummah Logo" class="logo">
+                    <h3 class="logo-text">Edified Ummah</h3>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Al Nutq Home</a></li>
+                        <li><a href="index.html#articles">Articles</a></li>
+                        <li><a href="#podcast-section">Podcast</a></li>
+                        <li><a href="#community-section">Community</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Connect With Us</h4>
+                    <div class="social-icons">
+                        <a href="https://instagram.com/al.nutq" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://whatsapp.com/channel/0029Vb1AoYxLikgC6h3y5n0Y" target="_blank" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" target="_blank" aria-label="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2025 <a href="https://NavarMP.github.io" target="_blank">Muhammed Navar</a>. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Navigation -->
+    <nav class="floating-nav glass-morphism">
+        <a href="index.html" class="nav-item" aria-label="Al Nutq Home">
+            <i class="fas fa-home"></i>
+            <span>Al Nutq</span>
+        </a>
+        <a href="#podcast-section" class="nav-item" aria-label="Podcast">
+            <i class="fas fa-podcast"></i>
+            <span>Podcast</span>
+        </a>
+        <a href="#community-section" class="nav-item" aria-label="Community">
+            <i class="fas fa-users"></i>
+            <span>Community</span>
+        </a>
+        <button id="lang-toggle" class="nav-item" aria-label="Change Language">
+            <i class="fas fa-language"></i>
+            <span>Lang</span>
+        </button>
+        <button id="theme-toggle" class="nav-item" aria-label="Toggle Theme">
+            <i class="fas fa-moon"></i>
+            <span>Theme</span>
+        </button>
     </nav>
 
-    <section id="community">
-        <h1 data-lang="eu-welcome">Edified Ummah</h1>
-        <p data-lang="eu-mission">Building a strong Islamic community.</p>
-    </section>
+    <!-- Language Selector -->
+    <div class="language-selector glass-morphism" id="language-selector">
+        <button data-lang="en" class="lang-btn active">English</button>
+        <button data-lang="ml" class="lang-btn">മലയാളം</button>
+        <button data-lang="ar" class="lang-btn">العربية</button>
+    </div>
 
-    <section id="podcast">
-        <h2 data-lang="podcast">Podcast</h2>
-        <div class="socials">
-            <a href="#" class="social-icon youtube">YouTube</a>
-            <a href="#" class="social-icon whatsapp">WhatsApp</a>
-            <a href="#" class="social-icon spotify">Spotify</a>
-        </div>
-    </section>
-
+    <!-- Scripts -->
     <script src="script.js"></script>
+    <script>
+        // Episode toggle functionality
+        function toggleEpisode(element) {
+            const content = element.nextElementSibling;
+            const isActive = content.classList.contains('active');
+            
+            // Close all episode contents
+            document.querySelectorAll('.episode-content').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Toggle the clicked episode
+            if (!isActive) {
+                content.classList.add('active');
+            }
+        }
+        
+        // Initialize episode content
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show the first episode by default
+            const firstEpisode = document.querySelector('.episode-content');
+            if (firstEpisode) {
+                firstEpisode.classList.add('active');
+            }
+        });
+    </script>
 </body>
 </html>

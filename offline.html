@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're Offline - Al Nutq</title>
+    <link rel="icon" href="assets/nutq logo.svg" type="image/x-icon">
+    <style>
+        :root {
+            --dark-blue: #415a80;
+            --light-blue: #a5d4dc;
+            --white: #d7e2e9;
+            --dark-bg: #121a26;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--white);
+            line-height: 1.6;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .offline-container {
+            max-width: 500px;
+            padding: 40px;
+            background-color: rgba(32, 40, 57, 0.7);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .logo {
+            width: 80px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--light-blue);
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--dark-blue);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #354c6d;
+            transform: translateY(-3px);
+        }
+        
+        .wifi-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--light-blue);
+        }
+        
+        @keyframes pulse {
+            0% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0.5;
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <img src="assets/nutq logo.svg" alt="Al Nutq Logo" class="logo">
+        <div class="wifi-icon pulse">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+                <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+                <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                <line x1="12" y1="20" x2="12" y2="20"></line>
+            </svg>
+        </div>
+        <h1>You're Offline</h1>
+        <p>It seems you've lost your internet connection. Please check your connection and try again.</p>
+        <p>Don't worry, you can still access previously visited pages when you're back online.</p>
+        <button class="btn" onclick="window.location.reload()">Try Again</button>
+    </div>
+
+    <script>
+        // Check if the user comes back online
+        window.addEventListener('online', () => {
+            window.location.reload();
+        });
+        
+        // Add event listener to the retry button
+        document.querySelector('.btn').addEventListener('click', () => {
+            // Check if online before reloading
+            if (navigator.onLine) {
+                window.location.href = '/';
+            } else {
+                // Show a message that they're still offline
+                const offlineMsg = document.createElement('p');
+                offlineMsg.textContent = 'Still offline. Please check your connection.';
+                offlineMsg.style.color = '#ff6b6b';
+                offlineMsg.style.marginTop = '1rem';
+                
+                // Remove any previous message
+                const oldMsg = document.querySelector('.error-msg');
+                if (oldMsg) {
+                    oldMsg.remove();
+                }
+                
+                offlineMsg.classList.add('error-msg');
+                document.querySelector('.offline-container').appendChild(offlineMsg);
+            }
+        });
+    </script>
+</body>
+</html>

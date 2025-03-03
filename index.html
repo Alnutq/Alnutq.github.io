@@ -3,55 +3,356 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zawiyah Al-Nutq</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>زاوية النطق | Zawiyah Al Nutq</title>
+    <meta name="description" content="A refutation page targeting Wahhabi ideology and Bid'ah">
+    <link rel="icon" href="assets/nutq logo.svg" type="image/x-icon">
     <link rel="manifest" href="json/manifest.json">
-    <link rel="icon" href="assets/nutq logo.svg" type="image/svg+xml">
+    
+    <!-- Font imports -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Anek+Malayalam:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <nav class="floating-nav">
-        <img src="assets/nutq logo.svg" alt="Nutq Logo" class="logo">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#articles">Articles</a></li>
-            <li><a href="#mentorship">Mentorship</a></li>
-            <li><a href="tharaveeh.html">Edified Ummah</a></li>
-        </ul>
-        <div class="search-bar">
-            <input type="text" id="global-search" placeholder="Search...">
+<body class="dark-theme">
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Header Section -->
+    <header class="glass-morphism">
+        <div class="container">
+            <div class="logo-container">
+                <img src="assets/nutq logo.svg" alt="Al Nutq Logo" class="logo">
+                <h1 class="logo-text arabic">زاوية النطق</h1>
+            </div>
+            <div class="header-controls">
+                <button id="search-toggle" class="icon-button" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div class="social-icons">
+                    <a href="https://instagram.com/al.nutq" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029Vb1AoYxLikgC6h3y5n0Y" target="_blank" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#" target="_blank" aria-label="Telegram">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                </div>
+            </div>
         </div>
-        <select id="language">
-            <option value="en">English</option>
-            <option value="ml">Malayalam</option>
-            <option value="ar">Arabic</option>
-        </select>
-        <button id="theme-toggle">Toggle Theme</button>
+        <div class="search-container glass-morphism" id="search-container">
+            <div class="container">
+                <input type="text" id="global-search" placeholder="Search by keyword or author..." aria-label="Search">
+                <button class="search-button" aria-label="Submit search">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content glass-morphism">
+                <h2 class="hero-title" data-translate="hero-title">Zawiya Al Nutq</h2>
+                <p class="hero-subtitle" data-translate="hero-subtitle">A refutation page targeting Wahhabi ideology and Bid'ah</p>
+                <div class="hero-buttons">
+                    <a href="#articles" class="btn primary" data-translate="explore-articles">Explore Articles</a>
+                    <a href="#mentorship" class="btn secondary" data-translate="get-mentorship">Get Mentorship</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Article Section -->
+    <section class="featured-article">
+        <div class="container">
+            <h2 class="section-title" data-translate="featured-article">Featured Article</h2>
+            <div class="article-card glass-morphism">
+                <div class="article-image">
+                    <img src="/api/placeholder/800/400" alt="Taraweeh Prayers" class="featured-img">
+                </div>
+                <div class="article-content">
+                    <div class="article-tags">
+                        <span class="tag">Ramadan</span>
+                        <span class="tag">Prayer</span>
+                    </div>
+                    <h3 class="article-title" data-translate="taraweeh-title">The Correct Understanding of Taraweeh Prayer</h3>
+                    <p class="article-excerpt" data-translate="taraweeh-excerpt">An in-depth analysis of the Taraweeh prayer during the holy month of Ramadan, its historical context, and correct practices according to Ahlu Sunnah.</p>
+                    <div class="article-meta">
+                        <div class="author">
+                            <i class="fas fa-user-circle"></i>
+                            <span data-translate="author-name">Muhammed Navar</span>
+                        </div>
+                        <a href="articles/taraweeh.html" class="read-more" data-translate="read-more">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section id="articles" class="articles">
+        <div class="container">
+            <h2 class="section-title" data-translate="all-articles">All Articles</h2>
+            
+            <div class="filters glass-morphism">
+                <div class="filter-group">
+                    <label for="category-filter" data-translate="category">Category:</label>
+                    <select id="category-filter" aria-label="Filter by category">
+                        <option value="all" data-translate="all">All</option>
+                        <option value="allah" data-translate="allah">Allah</option>
+                        <option value="prophet" data-translate="prophet">Prophet</option>
+                        <option value="ahlu-sunnah" data-translate="ahlu-sunnah">Ahlu Sunnah</option>
+                        <option value="madhab" data-translate="madhab">Madhab</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="author-filter" data-translate="author">Author:</label>
+                    <select id="author-filter" aria-label="Filter by author">
+                        <option value="all" data-translate="all">All</option>
+                        <option value="muhammed-navar">Muhammed Navar</option>
+                        <option value="other-author">Other Authors</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="language-filter" data-translate="language">Language:</label>
+                    <select id="language-filter" aria-label="Filter by language">
+                        <option value="all" data-translate="all">All</option>
+                        <option value="english" data-translate="english">English</option>
+                        <option value="malayalam" data-translate="malayalam">Malayalam</option>
+                        <option value="arabic" data-translate="arabic">Arabic</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="articles-grid">
+                <!-- Article 1 -->
+                <div class="article-card small glass-morphism" data-category="ahlu-sunnah" data-author="muhammed-navar" data-language="malayalam">
+                    <div class="article-image">
+                        <img src="/api/placeholder/400/200" alt="Taraweeh Article" class="article-img">
+                    </div>
+                    <div class="article-content">
+                        <div class="article-tags">
+                            <span class="tag">Ramadan</span>
+                        </div>
+                        <h3 class="article-title">തറാവീഹ് നമസ്കാരം</h3>
+                        <div class="article-meta">
+                            <div class="author">
+                                <i class="fas fa-user-circle"></i>
+                                <span>Muhammed Navar</span>
+                            </div>
+                            <a href="articles/taraweeh.html" class="read-more">Read</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Article 2 -->
+                <div class="article-card small glass-morphism" data-category="madhab" data-author="muhammed-navar" data-language="english">
+                    <div class="article-image">
+                        <img src="/api/placeholder/400/200" alt="Madhab Article" class="article-img">
+                    </div>
+                    <div class="article-content">
+                        <div class="article-tags">
+                            <span class="tag">Fiqh</span>
+                        </div>
+                        <h3 class="article-title">The Importance of Following a Madhab</h3>
+                        <div class="article-meta">
+                            <div class="author">
+                                <i class="fas fa-user-circle"></i>
+                                <span>Muhammed Navar</span>
+                            </div>
+                            <a href="#" class="read-more">Read</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Article 3 -->
+                <div class="article-card small glass-morphism" data-category="prophet" data-author="other-author" data-language="english">
+                    <div class="article-image">
+                        <img src="/api/placeholder/400/200" alt="Prophet Article" class="article-img">
+                    </div>
+                    <div class="article-content">
+                        <div class="article-tags">
+                            <span class="tag">Seerah</span>
+                        </div>
+                        <h3 class="article-title">Understanding the Prophet's Approach to Dawah</h3>
+                        <div class="article-meta">
+                            <div class="author">
+                                <i class="fas fa-user-circle"></i>
+                                <span>Other Author</span>
+                            </div>
+                            <a href="#" class="read-more">Read</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- More articles can be added here -->
+            </div>
+            
+            <div class="pagination">
+                <button class="pagination-btn" aria-label="Previous page"><i class="fas fa-chevron-left"></i></button>
+                <span class="current-page">1</span>
+                <button class="pagination-btn" aria-label="Next page"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mentorship Section -->
+    <section id="mentorship" class="mentorship">
+        <div class="container">
+            <h2 class="section-title" data-translate="mentorship">Personalized Mentorship</h2>
+            <div class="mentorship-content glass-morphism">
+                <div class="mentorship-text">
+                    <h3 data-translate="mentorship-title">For Those Trapped in Wahhabism</h3>
+                    <p data-translate="mentorship-desc">We offer personalized guidance to help individuals understand the authentic teachings of Islam as preserved by Ahlu Sunnah Wal Jama'ah and to navigate away from extremist ideologies.</p>
+                    <a href="#" class="btn primary" data-translate="request-mentorship">Request Mentorship</a>
+                </div>
+                <div class="mentorship-image">
+                    <img src="/api/placeholder/500/300" alt="Mentorship" class="mentorship-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Edified Ummah Section -->
+    <section id="edified-ummah" class="edified-ummah">
+        <div class="container">
+            <div class="eu-header">
+                <img src="assets/eu logo.svg" alt="Edified Ummah Logo" class="eu-logo">
+                <h2 class="section-title" data-translate="edified-ummah">Edified Ummah</h2>
+            </div>
+            
+            <div class="eu-content glass-morphism">
+                <div class="eu-text">
+                    <h3 data-translate="eu-title">Community & Podcast</h3>
+                    <p data-translate="eu-desc">Join our growing community of knowledge seekers and contribute to the revival of authentic Islamic understanding.</p>
+                    <div class="eu-platforms">
+                        <a href="#" class="platform" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="platform" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="platform" aria-label="Spotify">
+                            <i class="fab fa-spotify"></i>
+                        </a>
+                        <a href="#" class="platform" aria-label="Apple Podcasts">
+                            <i class="fab fa-apple"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="eu-image">
+                    <img src="/api/placeholder/500/300" alt="Edified Ummah Community" class="eu-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="glass-morphism">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/nutq logo.svg" alt="Al Nutq Logo" class="logo">
+                    <h3 class="logo-text arabic">زاوية النطق</h3>
+                </div>
+                <div class="footer-links">
+                    <h4 data-translate="quick-links">Quick Links</h4>
+                    <ul>
+                        <li><a href="#" data-translate="home">Home</a></li>
+                        <li><a href="#articles" data-translate="articles">Articles</a></li>
+                        <li><a href="#edified-ummah" data-translate="eu-short">Edified Ummah</a></li>
+                        <li><a href="#mentorship" data-translate="mentorship-short">Mentorship</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4 data-translate="connect">Connect With Us</h4>
+                    <div class="social-icons">
+                        <a href="https://instagram.com/al.nutq" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://whatsapp.com/channel/0029Vb1AoYxLikgC6h3y5n0Y" target="_blank" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" target="_blank" aria-label="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2025 <a href="https://NavarMP.github.io" target="_blank">Muhammed Navar</a>. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Navigation -->
+    <nav class="floating-nav glass-morphism">
+        <a href="#" class="nav-item" aria-label="Home">
+            <i class="fas fa-home"></i>
+            <span data-translate="home">Home</span>
+        </a>
+        <a href="#articles" class="nav-item" aria-label="Articles">
+            <i class="fas fa-book-open"></i>
+            <span data-translate="articles">Articles</span>
+        </a>
+        <a href="#edified-ummah" class="nav-item" aria-label="Edified Ummah">
+            <i class="fas fa-users"></i>
+            <span data-translate="eu-short">EU</span>
+        </a>
+        <button id="lang-toggle" class="nav-item" aria-label="Change Language">
+            <i class="fas fa-language"></i>
+            <span data-translate="language-short">Lang</span>
+        </button>
+        <button id="theme-toggle" class="nav-item" aria-label="Toggle Theme">
+            <i class="fas fa-moon"></i>
+            <span data-translate="theme">Theme</span>
+        </button>
     </nav>
 
-    <section id="home">
-        <h1 data-lang="welcome">Zawiyah Al-Nutq</h1>
-        <p data-lang="mission">Refutation of Wahhabi Ideology</p>
-        <div class="socials">
-            <a href="#" class="social-icon instagram">Instagram</a>
-            <a href="#" class="social-icon whatsapp">WhatsApp</a>
-            <a href="#" class="social-icon telegram">Telegram</a>
-            <a href="#" class="social-icon youtube">YouTube</a>
+    <!-- Language Selector -->
+    <div class="language-selector glass-morphism" id="language-selector">
+        <button data-lang="en" class="lang-btn active">English</button>
+        <button data-lang="ml" class="lang-btn">മലയാളം</button>
+        <button data-lang="ar" class="lang-btn">العربية</button>
+    </div>
+
+    <!-- PWA Install Prompt -->
+    <div class="pwa-prompt glass-morphism" id="pwa-prompt">
+        <div class="pwa-content">
+            <div class="pwa-icon">
+                <img src="assets/nutq logo.svg" alt="Al Nutq Logo" class="pwa-logo">
+            </div>
+            <div class="pwa-text">
+                <h4 data-translate="pwa-title">Install Al Nutq App</h4>
+                <p data-translate="pwa-desc">Add to your home screen for a better experience</p>
+            </div>
         </div>
-    </section>
-
-    <section id="articles">
-        <h2 data-lang="articles">Articles</h2>
-        <div class="article-grid">
-            <!-- Dynamic article loading via JS -->
+        <div class="pwa-actions">
+            <button id="pwa-cancel" class="btn secondary" data-translate="later">Later</button>
+            <button id="pwa-install" class="btn primary" data-translate="install">Install</button>
         </div>
-    </section>
+    </div>
 
-    <section id="mentorship">
-        <h2 data-lang="mentorship">Personalized Mentorship</h2>
-        <p data-lang="mentorship-desc">Get guidance to overcome Wahhabi influences.</p>
-        <button data-lang="apply" onclick="applyMentorship()">Apply Now</button>
-    </section>
-
-    <script src="js/script.js"></script>
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+            .then(function(registration) {
+                console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch(function(error) {
+                console.log('Service Worker registration failed:', error);
+            });
+        }
+    </script>
 </body>
 </html>

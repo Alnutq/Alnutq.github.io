@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>തറാവീഹ് നമസ്കാരം | Zawiyah Al Nutq</title>
+    <meta name="description" content="വിശുദ്ധ റമളാനില്‍ സവിശേഷമായി ഈ ഉമ്മത്തിന്‌മാത്രമായി നാഥന്‍ നൽകിയതാണ്‌ നമസ്‌കാരം">
+    <link rel="icon" href="assets/nutq logo.svg" type="image/x-icon">
+    <link rel="manifest" href="json/manifest.json">
+    
+    <!-- Font imports -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Anek+Malayalam:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Article specific styles */
+        .article-header {
+            padding: calc(80px + 3rem) 0 2rem;
+            background-image: url('/api/placeholder/1920/600');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .article-header:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(18, 26, 38, 0.8), rgba(18, 26, 38, 0.6));
+        }
+        
+        .light-theme .article-header:before {
+            background: linear-gradient(to bottom, rgba(245, 248, 250, 0.8), rgba(245, 248, 250, 0.6));
+        }
+        
+        .article-header-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+            border-radius: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .article-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .article-meta-top {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .article-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .article-body {
+            padding: 3rem 0;
+            font-family: 'Anek Malayalam', sans-serif;
+        }
+        
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .article-content h2 {
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .article-content h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .article-content blockquote {
+            border-left: 4px solid var(--light-blue);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+        
+        .article-content ul, .article-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .article-content .arabic {
+            font-family: 'Monadi', serif;
+            direction: rtl;
+            text-align: right;
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+            line-height: 2;
+        }
+        
+        .article-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .light-theme .article-actions {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-share {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .share-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .share-btn.facebook {
+            background-color: #3b5998;
+        }
+        
+        .share-btn.twitter {
+            background-color: #1da1f2;
+        }
+        
+        .share-btn.whatsapp {
+            background-color: #25d366;
+        }
+        
+        .share-btn.copy {
+            background-color: var(--dark-blue);
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .article-navigation {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .nav-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: inherit;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .light-theme .nav-btn {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-btn:hover {
+            background-color: var(--dark-blue);
+            color: var(--white);
+        }
+        
+        .article-comments {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 0;
+        }
+        
+        .comments-title {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .comment-form {
+            margin-bottom: 3rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .comment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .comment {
+            padding: 1.5rem;
+            border-radius: 16px;
+        }
+        
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .comment-author {
+            font-weight: 600;
+        }
+        
+        .comment-date {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        
+        .comment-content {
+            line-height: 1.6;
+        }
+        
+        .related-articles {
+            padding: 3rem 0;
+            background-color: rgba(32, 40, 57, 0.3);
+        }
+        
+        .light-theme .related-articles {
+            background-color: rgba(245, 248, 250, 0.5);
+        }
+        
+        .related-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        @media (max-width: 992px) {
+            .article-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .article-header-content {
+                padding: 1.5rem;
+            }
+            
+            .article-title {
+                font-size: 1.8rem;
+            }
+            
+            .article-content {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .article-actions {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .social-share {
+                order: 2;
+            }
+            
+            .article-navigation {
+                order: 1;
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body class="dark-theme">
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Header Section -->
+    <header class="glass-morphism">
+        <div class="container">
+            <div class="logo-container">
+                <img src="assets/nutq logo.svg" alt="Al Nutq Logo" class="logo">
+                <h1 class="logo-text arabic">زاوية النطق</h1>
+            </div>
+            <div class="header-controls">
+                <button id="search-toggle" class="icon-button" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div class="social-icons">
+                    <a href="https://instagram.com/al.nutq" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029Vb1AoYxLikgC6h3y5n0Y" target="_blank" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#" target="_blank" aria-label="Telegram">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="search-container glass-morphism" id="search-container">
+            <div class="container">
+                <input type="text" id="global-search" placeholder="Search by keyword or author..." aria-label="Search">
+                <button class="search-button" aria-label="Submit search">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Article Header -->
+    <section class="article-header">
+        <div class="article-header-content glass-morphism">
+            <h1 class="article-title">തറാവീഹ് നമസ്കാരം</h1>
+            <div class="article-meta-top">
+                <div class="article-meta-item">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Muhammed Navar</span>
+                </div>
+                <div class="article-meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>March 3, 2023</span>
+                </div>
+                <div class="article-meta-item">
+                    <i class="fas fa-tag"></i>
+                    <span>Ramadan, Prayer</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Body -->
+    <section class="article-body">
+        <div class="container">
+            <article class="article-content">
+                <p>വിശുദ്ധ റമളാനില്‍ സവിശേഷമായി ഈ ഉമ്മത്തിന്‌മാത്രമായി നാഥന്‍ നൽകിയതാണ്‌ നമസ്‌കാരം. വിശ്വാസത്തോടും പ്രതിഫലമാഗ്രഹിച്ചും റമളാനില്‍ നമസ്‌കരിച്ചാല്‍ അവന്റെ കഴിഞ്ഞുപോയ പാപങ്ങള്‍ പൊറുക്കപ്പെടുമെന്ന ഹദീസുകൊണ്ടുദ്ദേശ്യം റമളാന്‍ മാസത്തിലെ ഈ തറാവീഹ്‌ നമസ്‌കാരമാണെന്നു പണ്ഡിതര്‍ വ്യക്തമാക്കുന്നുണ്ട്‌.</p>
+                
+                <p>ഇമാം നവവി رَحِمَهُ اللّه പറയുന്നു: "ഈ ഹദീസിലെ 'റമളാനിലെ നമസ്‌കാരം' കൊണ്ടുദ്ദേശിക്കുന്നത്‌ തറാവീഹ്‌ നമസ്‌കാരമാണ്‌. അതു സുന്നത്താണെന്നു പണ്ഡിതര്‍ യോജിച്ചിട്ടുണ്ട്‌". (ശര്‍ഹു മുസ്‌ലിം:1-259).</p>
+                
+                <p>ഇമാം കര്‍മാനി പറയുന്നു. "റമളാനിലെ നമസ്‌കാരം" കൊണ്ടുദ്ദേശിക്കുന്നത്‌ തറാവീഹ്‌ നമസ്‌കാരമാണ്‌. (കൗകബുദ്ദിറാറി:1-146). ഇതിലൊന്നും പണ്ഡിതന്മാര്‍ ആരും വിയോജിപ്പ് രേഖപ്പെടുത്തിയിട്ടില്ല.</p>
+                
+                <p>എന്നാല്‍, ഇന്ന്‌ ഈ തറാവീഹ്‌ നമസ്‌കാരം സംബന്ധമായി അനാവശ്യ വിവാദങ്ങളും ഉടലെടുത്തിട്ടുണ്ട്‌. തറാവീഹിന്റെ റക്‌അത്തുകളെ ചൊല്ലിയുള്ള വിവാദത്തിനുമപ്പുറം അത്തരമൊരു നമസ്‌കാരമേ ഇല്ലെന്നു പോലുമാണ്‌ കോലാഹലങ്ങളുയരുന്നത്‌.</p>
+                
+                <h2>തറാവീഹിന്റെ അടിസ്ഥാനം</h2>
+                
+                <p>യഥാര്‍ത്ഥത്തില്‍തറാവീഹ്‌ നബി ﷺ നമസ്കരിച്ച നമസ്‌കാരമാണെന്നും ആ നമസ്‌കാരത്തിന്‌ പ്രതിഫലമേറെയുണ്ടെന്നും ഹദീസുകളില്‍ നിന്നു സ്ഥിരപ്പെടുന്നു.</p>
+                
+                <blockquote>
+                    ആഇശ رضي اللّه عنها ഉദ്ധരിക്കുന്നു: നബി ﷺ റമളാനിലെ ഒരു രാത്രിയില്‍പള്ളിയില്‍ വന്നു നമസ്‌കരിച്ചു. ഇത്‌ ജനങ്ങളുടെ ഇടയില്‍സംസാര വിഷയമായി. പിറ്റേന്നു ജനങ്ങള്‍ കൂടുതലുണ്ടായി. മൂന്നാം ദിവസം പള്ളി നിറഞ്ഞു. അന്നും ജനങ്ങളോടൊപ്പം നബി ﷺ നമസ്‌കരിച്ചു. നാലാം ദിവസമായപ്പോള്‍ ആളുകളെ ഉള്‍കൊള്ളാന്‍ കഴിയാതെ വരികയും ചെയ്‌തു. അന്നാകട്ടെ, നബി ﷺ നമസ്‌കരിക്കാന്‍വന്നുമില്ല.
+                </blockquote>
+                
+                <p>പിറ്റേന്ന്‌ പ്രഭാതമായപ്പോള്‍ നബി ﷺ യോട്‌ ഉമര്‍ رضي اللّه عنه പറഞ്ഞു: "ഇന്നലെ രാത്രി ജനങ്ങള്‍ അവിടുത്തെ പ്രതീക്ഷിച്ചിരിക്കുകയായിരുന്നു." നബി ﷺ പറഞ്ഞു: "ജനങ്ങളുടെ കാര്യം എനിക്ക്‌ അവ്യക്തമല്ല. പക്ഷേ, അവര്‍ക്കത്‌ ഫര്‍ളാക്കപ്പെടുമോ എന്നു ഞാന്‍ ഭയന്നതാണ്‌." (മുസ്‌ലിം).</p>
+                
+                <h2>തറാവീഹ് എന്ന പേര്</h2>
+                
+                <p>നബി ﷺ നമസ്‌കരിച്ച ഈ നമസ്‌കാരം റമളാനിലായിരുന്നു. റമളാനിലെ പ്രത്യേക നമസ്‌കാരം തറാവീഹാണെന്ന്‌ നാം മുമ്പുദ്ധരിച്ചുവല്ലോ. മാത്രമല്ല, തറാവീഹെന്ന നാമം സ്വഹാബത്തിന്റെ കാലത്തു തന്നെ സുപരിചിതമായിരുന്നു.</p>
+                
+                <p>അബുല്ലൈസ്‌ സമര്‍ഖന്‍ദി ഉദ്ധരിക്കുന്നു: അലിയ്യുബ്‌നു അബീത്വാലിബ്‌ പറഞ്ഞു: "ഉമര്‍ رضي اللّه عنه നടപ്പാക്കിയ ഈ തറാവീഹിന്റെ അടിസ്ഥാനം അദ്ദേഹം എന്നില്‍നിന്ന്‌ കേട്ട ഒരു ഹദീസാണ്‌." (തന്‍ബീഹ്‌:124).</p>
+                
+                <p>അലി رضي اللّه عنه ഉപയോഗിച്ചിരിക്കുന്നത്‌ "തറാവീഹ്‌" എന്ന പദമാണ്‌. ഈ പദം സ്വഹാബത്തിന്റെ കാലത്തു തന്നെയുള്ളതാണെന്ന്‌ഇതില്‍ നിന്നു മനസ്സിലാകുന്നുണ്ട്‌.</p>
+                
+                <h3>തറാവീഹ് എന്ന വാക്കിന്റെ അർത്ഥം</h3>
+                
+                <p>"തറാവീഹ്‌" എന്ന വാക്കിന് വിശ്രമങ്ങള്‍ എന്നാണര്‍ത്ഥം. ഈ പേര്‌ ഈ നമസ്‌കാരത്തിനു വരാനുണ്ടായ കാരണം സംബന്ധമായി ഉദ്ധരിക്കപ്പെടുന്നത്‌ഇങ്ങനെയാണ്‌. തറാവീഹ്‌ എന്ന പദം "തര്‍വീഹതി" ന്റെ ബഹുവചനമാണ്‌. ഒരു പ്രാവശ്യം വിശ്രമിക്കുന്നതിനാണ്‌ "തര്‍വീഹത്‌" എന്ന് പറയുക.</p>
+                
+                <p>റമളാനിലെ രാത്രിയിലെ നമസ്‌കാരത്തിന്‌ തറാവീഹ്‌എന്ന് പറയപ്പെടാന്‍ കാരണം ഈ നമസ്‌കാരത്തിന്‌ ഒരുമിച്ച്‌ കൂടുന്നവര്‍എല്ലാ ഈരണ്ടു റക്‌അത്തുകള്‍ക്കിടയിലും വിശ്രമിച്ചിരുന്നതുകൊണ്ടാണ്‌. (ഫത്‌ഹുല്‍ മബാദി:2-165). നമസ്‌കാരം സുദീര്‍ഘമായതിനാലാണ്‌ എല്ലാ രണ്ട്‌, നാല് റക്അത്തുകള്‍ക്കിടയിലും അവര്‍ വിശ്രമിച്ചിരുന്നത്‌. (തുഹ്‌ഫ:2-241).</p>
+                
+                <h2>തറാവീഹിന്റെ റക്‌അത്തുകൾ</h2>
+                
+                <p>ഇനി തറാവീഹിന്റെ എണ്ണത്തെക്കുറിച്ച്‌ നോക്കാം. നബി ﷺ യുടെ കാലത്ത്‌ നബി ﷺ യുടെ നേതൃത്വത്തില്‍ സംഘടിതമായി തറാവീഹ്‌അല്ലെങ്കില്‍ "ഖിയാമു റമളാന്‍" രണ്ടോ മൂന്നോ ദിനം മാത്രമാണ്‌ നിര്‍വ്വഹിച്ചിട്ടുള്ളത്‌. ജനാധിക്യം മൂലം നിര്‍ബന്ധമാക്കപ്പെടുമോ എന്ന് ഭയന്ന നബി ﷺ പിന്നീട്‌ ഇത്‌ നമസ്‌കരിക്കാന്‍ പള്ളിയില്‍ വന്നിരുന്നില്ല.</p>
+                
+                <p>എങ്കിലും സ്വഹാബാക്കള്‍ ഒറ്റക്കോ കൂട്ടായോ പ്രവര്‍ത്തിച്ചിരുന്നു. പിന്നീടൊരിക്കല്‍ നബി ﷺ വന്നു നോക്കുമ്പോള്‍ ഉബയ്യുബ്‌നു കഅ്‌ബ്‌رضي اللّه عنه ഇമാമായി നിസ്‌കരിക്കുന്നുണ്ട്‌. നബി ﷺ അതിനെ അംഗീകരിക്കുകയാണുണ്ടായത്‌.</p>
+                
+                <blockquote>
+                    അബൂഹുറൈറ رضي اللّه عنه ഉദ്ധരിക്കുന്നു: നബി ﷺ വന്നു നോക്കുമ്പോള്‍ പള്ളിയുടെ ചെരുവില്‍ ഒരു സംഘം ജമാഅത്തായി നമസ്‌കരിക്കുന്നു. നബി ﷺ ചോദിച്ചു: "ഇവര്‍ ആരാണ്‌?" നബി ﷺ യോട്‌ പറയപ്പെട്ടു: "ഖുര്‍ആന്‍ മന:പാഠമില്ലാത്തവരാണ്‌. ഉബയ്യുബ്‌നു കഅ്‌ബ്‌ അവര്‍ക്കുവേണ്ടി നമസ്‌കരിക്കുന്നു." നബി ﷺ പറഞ്ഞു: "ഇവര്‍ ചെയ്യുന്നത്‌ശരിയാണ്‌. വളരെ നന്നായിരിക്കുന്നു ഇത്‌." (അബൂദാവൂദ്‌:1-195).
+                </blockquote>
+                
+                <p>എന്നാല്‍, നബി ﷺ തറാവീഹ്‌ നമസ്‌കരിച്ചുവെന്ന്‌ ഉദ്ധരിക്കപ്പെടുന്ന സ്വഹീഹായ ഹദീസുകളിലൊന്നും റക്‌അത്തുകളുടെ എണ്ണം രേഖപ്പെടുത്തിയിട്ടില്ല. റക്‌അത്തുകളുടെ എണ്ണം പരാമര്‍ശിക്കുന്ന ഹദീസുകളൊന്നും സ്വഹീഹുമല്ല.</p>
+                
+                <p>നബി ﷺ യുടെ കാലശേഷം അബൂബക്‌റി(റ)ന്റെ കാലത്തും സ്ഥിതിഗതി ഇങ്ങനെത്തന്നെയായിരുന്നു. നബി ﷺ യുടെ കാലത്ത് ജനങ്ങള്‍തറാവീഹ്‌ നമസ്‌കരിച്ചിരുന്നത് പോലെയായിരുന്നു അബൂബക്‌റി(റ)ന്റെ കാലത്തും ഉമറി(റ)ന്റെ ഖിലാഫത്തിന്റെ ആദ്യകാലത്തും.</p>
+                
+                <h2>ഉമറിന്റെ കാലത്തെ തീരുമാനം</h2>
+                
+                <p>പിന്നീട്‌ ഉമര്‍ رضي اللّه عنه തന്നെയാണ്‌ ഇന്ന്‌ എല്ലാ പള്ളികളിലും ഉള്ളരൂപത്തില്‍ ജമാഅത്തായി ഇതു സംഘടിപ്പിച്ചത്‌ (ശര്‍ഹു മുസ്ലിം:1-259). അതിന്റെ കാരണം സ്വഹാബത്തില്‍ ചിലര്‍ ഉമര്‍(റ)നെ പ്രേരിപ്പിച്ചത്‌ കൊണ്ടാണ്‌.</p>
+                
+                <p>അലി رضي اللّه عنه പറയുന്നു: "എന്നില്‍ നിന്നുകേട്ട ഒരു ഹദീസിന്റെയടിസ്ഥാനത്തിലാണ്‌ ഉമര്‍ رضي اللّه عنه തറാവീഹ്‌ ഇപ്രകാരം സംഘടിപ്പിച്ചത്‌." അനുയായികള്‍ ചോദിച്ചു: "അമീറുല്‍ മുഅ്‌മിനീന്‍, ആ ഹദീസ്‌ ഏതാണ്‌?" അലി رضي اللّه عنه പറഞ്ഞു: "നബി ﷺ പറയുന്നതായി ഞാന്‍ കേട്ടിട്ടുണ്ട്‌. അര്‍ശിന്റെ ചുറ്റും പ്രകാശത്തിനാലുള്ള 'ഹളീറത്തുല്‍ ഖുദ്‌സ്‌' എന്നൊരു സ്ഥലമുണ്ട്‌. അല്ലാഹുവിനല്ലാതെ മറ്റാര്‍ക്കും എണ്ണമറിയാത്ത അനേകം മലക്കുകളവിടെയുണ്ട്‌. ഒരു നിമിഷം പാഴാക്കാതെ അല്ലാഹുവിനെ ആരാധിക്കുന്നവരാണവര്‍! റമളാനിലെ രാത്രികളില്‍ ഭൂമിയിലേക്കിറങ്ങാന്‍ നാഥനോടവര്‍ സമ്മതം ചോദിക്കും. ശേഷം അവര്‍ ഇറങ്ങിവന്നു മനുഷ്യരോടൊപ്പം നമസ്‌കരിക്കും. അവരെ സ്‌പര്‍ശിച്ചവരും അവര്‍ സ്‌പര്‍ശിച്ചവരും ഒരിക്കലും പരാജയപ്പെടാത്ത വിജയം വരിച്ചവരാണ്‌." ഇതുകേട്ട ഉമര്‍ رضي اللّه عنه "നാമാണിതിന്‌ ഏറ്റവും ബന്ധപ്പെട്ടവര്‍" എന്നു പറഞ്ഞു തറാവീഹിന്‌ വേണ്ടി ജനങ്ങളെ ഒരുമിച്ച്‌ കൂട്ടി. (തന്‍ബീഹ്‌:124)</p>
+                
+                <p>ഉമറി رضي اللّه عنه നാല്‍ ഇപ്രകാരം സംഘടിപ്പിക്കപ്പെട്ട തറാവീഹ്‌ ഇരുപത്‌ റക്‌അത്താണെന്നതില്‍ അഭിപ്രായന്തരമില്ല. ഉബയ്യുബ്‌നു കഅ്‌ബ്‌ رضي اللّه عنه മദീനയില്‍ വച്ച്‌ ജനങ്ങള്‍ക്ക്‌ ഇമാമായി ഇരുപതും വിത്‌റും നമസ്‌കരിക്കുമായിരുന്നു (മുസ്വന്നഫ്‌ ഇബ്‌നു അബീശൈബ:2-392). ഉബയ്യിബ്‌നു പുറമേ സ്‌ത്രീകള്‍ക്ക്‌ ഇമാമായി സുലൈമാനുബ്‌നു അബീഹസ്‌മയേയും رضي اللّه عنه നിശ്ചയിച്ചിരുന്നു. (ഖല്‍യൂബി:1-217).</p>
+                
+                <h2>സ്വഹാബത്തിന്റെ അംഗീകാരം</h2>
+                
+                <p>ഉമറി رضي اللّه عنه ന്റെ ഈ പ്രവൃത്തി സ്വഹാബികളാരും എതിര്‍ത്തിട്ടില്ല. അബ്‌ദുറഹ്‌മാന്‍ അല്‍ജസരി رَحِمَهُ اللّه പറയുന്നു: "തറാവീഹ്‌ ഇരുപത്‌റക്അത്താണെന്ന്‌ ഉമര്‍ رضي اللّه عنه ന്റെ ഈ പ്രവൃത്തിമൂലം വ്യക്തമാകുന്നുണ്ട്‌. കാരണം, ഉമര്‍ رضي اللّه عنه ഈ എണ്ണത്തിന്റെ മേലാണ്‌ജനങ്ങളെ ഒരുമിച്ചു കൂട്ടിയത്‌. മാത്രമല്ല, ഇതില്‍സ്വഹാബത്ത്‌ യോജിക്കുകയും ചെയ്‌തു. ഖുലഫാഉ റാശിദുകളില്‍ ഉമറി رضي اللّه عنه ന്‌ ശേഷമുള്ളവര്‍ പോലും ഇതിനോടു വിയോജിച്ചിട്ടില്ല.</p>
+                
+                <blockquote>
+                    നബി ﷺ പറഞ്ഞിട്ടുണ്ടല്ലോ: "എന്റെ സച്ചരിതരായ ഖുലഫാഉ റാശിദുകളുടെ ചര്യ നിങ്ങള്‍ മുറുകെ പിടിക്കണമെന്നും അണപ്പല്ലുകൊണ്ടു കടിച്ചുപിടിക്കണമെന്നും."(അല്‍മദാഹിബുല്‍ അര്‍ബഅ:1-341.)
+                </blockquote>
+                
+                <p>ഇമാം അബൂയൂസുഫ്‌ رَحِمَهُ اللّه ഉമറി رضي اللّه عنه ന്റെ ഇപ്രവര്‍ത്തനത്തെപ്പറ്റി ഇമാം അബൂഹനീഫ رَحِمَهُ اللّه യോടു ചോദിച്ചപ്പോള്‍ ഇമാമവര്‍കള്‍പറഞ്ഞതിങ്ങനെയാണ്‌: "തറാവീഹ്‌ ശക്തമായ സുന്നത്താണ്‌. ഉമര്‍رضي اللّه عنه സ്വയമുണ്ടാക്കിയതല്ല അത്‌. ഒരു പുതിയ പ്രവൃത്തിയുമല്ല. നബി ﷺ യില്‍ നിന്ന്‌ അറിയപ്പെട്ട തെളിവും അടിസ്ഥാനവുമില്ലാതെ മഹാനത്‌ കല്‍പിച്ചിട്ടില്ല." (അല്‍ബഹറുര്‍റാഇഖ്‌).</p>
+                
+                <h3>ഇമാമുകളുടെ അഭിപ്രായം</h3>
+                
+                <p>ശാഫിഈ, ഹനഫീ, ഹമ്പലീ എന്നീ മൂന്നു മദ്‌ഹബുകളും തറാവീഹ്‌ ഇരുപത്‌ റക്‌അത്തു തന്നെയാണെന്നു പറയുന്നു. ഇമാം റാഫിഈ رَحِمَهُ اللّه പറയുന്നു, തറാവീഹ്‌ നമസ്‌കാരം സലാമോടു കൂടി ഇരുപത്‌റക്‌അത്താകുന്നു. ഇതുതന്നെയാണ്‌ ഇമാം അബൂഹനീഫ رَحِمَهُ اللّه യും ഇമാം അഹ്‌മദും رَحِمَهُ اللّه പറയുന്നതും. കാരണം, നബി ﷺ ഇരുപത്‌ റക്‌അത്ത്‌ജനങ്ങളോടൊപ്പം നമസ്‌കരിച്ചതായി നിവേദനം ചെയ്യപ്പെട്ടിട്ടുണ്ട്‌. (ശര്‍ഹുല്‍ കബീര്‍:4-264).</p>
+                
+                <p>മാലിക്‌ ഇമാമി رَحِمَهُ اللّه ന്റെ അടുക്കല്‍ മുപ്പത്തിയാറ്‌ റക്‌അത്താണ്‌ എന്ന ഒരു അഭിപ്രായമുണ്ട്‌. കാരണം, മദീനാ നിവാസികള്‍ 36 നമസ്കരിക്കാറുണ്ടെന്നും മദീനാ നിവാസികളുടെ പ്രവൃത്തി തെളിവാണെന്നുമാണ്‌ ഇമാം മാലികി رَحِمَهُ اللّه ന്റെ പക്ഷം. എന്നാല്‍, ഈ 36 തറാവീഹല്ല, എല്ലാ ഈരണ്ടു തര്‍വീഹീന്റെയും ഇടയില്‍മക്കക്കാര്‍ത്വവാഫ്‌ ചെയ്യുകയും രണ്ട്‌ റക്‌അത്ത്‌ സുന്നത്തു നമസ്‌കരിക്കുകയും ചെയ്യും. അവരോടു സദൃശമാകാന്‍ മദീനാ നിവാസികള്‍ഓരോ ത്വവാഫിന്റെ സ്ഥാനത്തും നാല്‌ റക്‌അത്തു കൂടുതലാക്കിയതുകൊണ്ടാണ്‌ മുപ്പത്തി ആറ്‌ ആയത്‌ എന്നാണ്‌ ഇതു സംബന്ധിച്ചു പണ്ഡിത വീക്ഷണം. (തുഹ്‌ഫ:2-241).</p>
+                
+                <h2>ഉപസംഹാരം</h2>
+                
+                <p>ഏതായാലും അങ്ങനെയാണ്‌ മാലികീ മദ്‌ഹബിലെ ഒരു വീക്ഷണമായി തറാവീഹ്‌ മുപ്പത്തി ആറ്‌ റക്‌അത്ത്‌ എന്നു വന്നത്‌. ഇതു വച്ചു നോക്കുമ്പോള്‍ തറാവീഹ്‌ ഇരുപതില്‍ കുറവല്ലെന്നതില്‍ മുസ്‌ലിം സമൂഹത്തിന്റെ ഇടയില്‍ ഏകോപനമുണ്ടായിട്ടുണ്ടെന്നു വ്യക്തമാകുന്നു.</p>
+                
+                <p>ചുരുക്കത്തില്‍ ഉമറി رضي اللّه عنه ന്റെ ഈ പ്രവൃത്തി സ്വഹാബത്തില്‍നിന്നാരും എതിര്‍ക്കുകയോ ആക്ഷേപിക്കുകയോ ചെയ്‌തിട്ടില്ല. അദ്ദേഹമീ ചെയ്‌തത്‌-ഇരുപത്‌ നമസ്‌കരിച്ചതോ ജമാഅത്ത്‌പുന:സംഘടിപ്പിച്ചതോ സ്വേഷ്‌ടപ്രകാരമായിരുന്നുവെങ്കില്‍സ്വഹാബത്തില്‍ആരെങ്കിലും അതിനെ എതിര്‍ക്കുമായിരുന്നുവല്ലോ. ആരും എതിര്‍ത്തില്ലെന്നു മാത്രമല്ല, എല്ലാവരും അനുകൂലിക്കുകയും ചെയ്‌തു.</p>
+                
+                <p>തറാവീഹ്‌ എട്ടെന്ന വാദത്തിന്‌ കേരള വഹ്‌ഹാബികളേക്കാള്‍ പഴക്കമുള്ള ഒരു സംഘത്തെ ചരിത്രത്തില്‍ ദൃശ്യമല്ല തന്നെ. തങ്ങളുടെ നേതാക്കളും ആശയ സ്രോതസ്സുകളുമായ ഇബ്നു തൈമിയ്യ, മുഹമ്മദ് ഇബ്നു അബ്ദുൽ വഹാബ് തുടങ്ങിയവരൊന്നും ഈ വാദമുന്നയിച്ചിട്ടില്ലെന്നല്ല, ഇരുപതെന്ന സമൂഹ തീരുമാനത്തിലുറച്ചു നില്‍ക്കുന്നവര്‍ കൂടിയായിരുന്നു.</p>
+                
+                <div class="article-actions">
+                    <div class="social-share">
+                        <a href="#" class="share-btn facebook" aria-label="Share on Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="share-btn twitter" aria-label="Share on Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="share-btn whatsapp" aria-label="Share on WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <button class="share-btn copy" id="copy-link" aria-label="Copy link">
+                            <i class="fas fa-link"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="article-navigation">
+                        <a href="#" class="nav-btn prev">
+                            <i class="fas fa-chevron-left"></i>
+                            <span>Previous</span>
+                        </a>
+                        <a href="#" class="nav-btn next">
+                            <span>Next</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+    
+    <!-- Comments Section -->
+    <section class="article-comments">
+        <div class="container">
+            <h2 class="comments-title">Comments</h2>
+            
+            <div class="comment-form">
+                <form id="comment-form">
+                    <div class="form-group">
+                        <label for="comment-name">Name</label>
+                        <input type="text" id="comment-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment-email">Email (will not be published)</label>
+                        <input type="email" id="comment-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment-text">Comment</label>
+                        <textarea id="comment-text" name="comment" required></textarea>
+                    </div>
+                    <button type="submit" class="btn primary">Submit Comment</button>
+                </form>
+            </div>
+            
+            <div class="comment-list">
+                <div class="comment glass-morphism">
+                    <div class="comment-header">
+                        <div class="comment-author">Ahmed</div>
+                        <div class="comment-date">February 28, 2023</div>
+                    </div>
+                    <div class="comment-content">
+                        JazakAllah khair for this detailed explanation. This cleared many of my doubts regarding Taraweeh prayer.
+                    </div>
+                </div>
+                
+                <div class="comment glass-morphism">
+                    <div class="comment-header">
+                        <div class="comment-author">Fathima</div>
+                        <div class="comment-date">February 25, 2023</div>
+                    </div>
+                    <div class="comment-content">
+                        നന്ദി, ഈ വിശദീകരണത്തിന്. ഇരുപത് റക്അത്ത് തറാവീഹ് നമസ്കരിക്കുന്നത് സംബന്ധിച്ച് പല തെറ്റിദ്ധാരണകളും ഇതിലൂടെ മാറി.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Related Articles -->
+    <section class="related-articles">
+        <div class="container">
+            <h2 class="related-title">Related Articles</h2>
+            
+            <div class="related-grid">
+                <div class="article-card small glass-morphism">
+                    <div class="article-image">
+                        <img src="/api/placeholder/400/200" alt="Ramadan Article" class="article-img">
+                    </div>
+                    <div class="article-content">
+                        <div class="article-tags">
+                            <span class="tag">Ramadan</span>
+                        </div>
+                        <h3 class="article-title">റമദാനിലെ പ്രവാചക ചര്യകൾ</h3>
+                        <div class="article-meta">
+                            <div class="author">
+                                <i class="fas fa-user-circle"></i>
+                                <span>Muhammed Navar</span>
+                            </div>
+                            <a href="#" class="read-more">Read</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="article-card small glass-morphism">
+                    <div class="article-image">
+                        <img src="/api/placeholder/400/200" alt="Prayer Article" class="article-img">
+                    </div>
+                    <div class="article-content">
+                        <div class="article-tags">
+                            <span class="tag">Prayer</span>
+                        </div>
+                        <h3 class="article-title">വിത്ർ നമസ്കാരത്തിന്റെ പ്രാധാന്യം</h3>
+                        <div class="article-meta">
+                            <div class="author">
+                                <i class="fas fa-user-circle"></i>
+                                <span>Muhammed Navar</span>
+                            </div>
+                            <a href="#" class="read-more">Read</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="article-card small glass-morphism">
+                    <div class="article-image">
+                        <img src="/api/placeholder/400/200" alt="Madhab Article" class="article-img">
+                    </div>
+                    <div class="article-content">
+                        <div class="article-tags">
+                            <span class="tag">Fiqh</span>
+                        </div>
+                        <h3 class="article-title">ഇമാമുകളെ പിൻപറ്റേണ്ടതിന്റെ ആവശ്യകത</h3>
+                        <div class="article-meta">
+                            <div class="author">
+                                <i class="fas fa-user-circle"></i>
+                                <span>Muhammed Navar</span>
+                            </div>
+                            <a href="#" class="read-more">Read</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="glass-morphism">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../assets/nutq logo.svg" alt="Al Nutq Logo" class="logo">
+                    <h3 class="logo-text arabic">زاوية النطق</h3>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../index.html#articles">Articles</a></li>
+                        <li><a href="../index.html#edified-ummah">Edified Ummah</a></li>
+                        <li><a href="../index.html#mentorship">Mentorship</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Connect With Us</h4>
+                    <div class="social-icons">
+                        <a href="https://instagram.com/al.nutq" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://whatsapp.com/channel/0029Vb1AoYxLikgC6h3y5n0Y" target="_blank" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" target="_blank" aria-label="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2025 <a href="https://NavarMP.github.io" target="_blank">Muhammed Navar</a>. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Navigation -->
+    <nav class="floating-nav glass-morphism">
+        <a href="../index.html" class="nav-item" aria-label="Home">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="../index.html#articles" class="nav-item" aria-label="Articles">
+            <i class="fas fa-book-open"></i>
+            <span>Articles</span>
+        </a>
+        <a href="../index.html#edified-ummah" class="nav-item" aria-label="Edified Ummah">
+            <i class="fas fa-users"></i>
+            <span>EU</span>
+        </a>
+        <button id="lang-toggle" class="nav-item" aria-label="Change Language">
+            <i class="fas fa-language"></i>
+            <span>Lang</span>
+        </button>
+        <button id="theme-toggle" class="nav-item" aria-label="Toggle Theme">
+            <i class="fas fa-moon"></i>
+            <span>Theme</span>
+        </button>
+    </nav>
+
+    <!-- Language Selector -->
+    <div class="language-selector glass-morphism" id="language-selector">
+        <button data-lang="en" class="lang-btn">English</button>
+        <button data-lang="ml" class="lang-btn active">മലയാളം</button>
+        <button data-lang="ar" class="lang-btn">العربية</button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../script.js"></script>
+    <script>
+        // Copy link functionality
+        document.getElementById('copy-link').addEventListener('click', function() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(function() {
+                // Show success message
+                const button = document.getElementById('copy-link');
+                const icon = button.querySelector('i');
+                icon.classList.remove('fa-link');
+                icon.classList.add('fa-check');
+                
+                setTimeout(function() {
+                    icon.classList.remove('fa-check');
+                    icon.classList.add('fa-link');
+                }, 2000);
+            });
+        });
+        
+        // Comment form submission
+        document.getElementById('comment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would normally send the comment to a server
+            
+            // Show a success message
+            const form = document.getElementById('comment-form');
+            form.innerHTML = '<div class="success-message">Thank you for your comment! It will be reviewed and published soon.</div>';
+        });
+    </script>
+</body>
+</html>
