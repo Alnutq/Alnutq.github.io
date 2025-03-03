@@ -1,0 +1,21 @@
+{
+    "en": {
+        "welcome": "Welcome to Nutq",
+        "mission": "A platform dedicated to refuting Wahhabi ideology and Bid'ah.",
+        "articles": "Articles",
+        "mentorship": "Personalized Mentorship",
+        "mentorship-desc": "Get guidance to overcome Wahhabi influences.",
+        "apply": "Apply Now",
+        "eu-welcome": "Edified Ummah",
+        "eu-mission": "Building a strong Islamic community.",
+        "podcast": "Podcast"
+    },
+    "ml": {
+        "welcome": "നിന്റെ സ്വാഗതം",
+        "mission": "വഹാബി ആശയവും ബിദ്അത്തിനും എതിരായി പ്രവർത്തിക്കുന്ന ഒരു പ്ലാറ്റ്ഫോം."
+    },
+    "ar": {
+        "welcome": "مرحبًا بكم في نطق",
+        "mission": "منصة مخصصة للرد على الأيديولوجية الوهابية والبدعة."
+    }
+}
