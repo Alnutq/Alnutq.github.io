@@ -1,2 +1,0 @@
-# MalluMuslimClub
-Mallu Muslim Club
